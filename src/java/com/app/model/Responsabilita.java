@@ -28,7 +28,7 @@ import javax.persistence.Transient;
  * @author FSEVERI\romano3927
  */
 @Entity
-@Table(name = "Responsabilita")
+@Table(name = "responsabilita")
 @AssociationOverrides({
     @AssociationOverride(name = "pkResponsabilita.responsabile",
             joinColumns = {

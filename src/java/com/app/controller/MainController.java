@@ -49,22 +49,19 @@ public class MainController {
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)   
     public String adminPage(ModelMap model) {
         List<Dipendenti> dipendenti = serviceDip.findAll();
-        model.addAttribute("title", "Spring Security + Hibernate Example");
-        model.addAttribute("message", "This page is for ROLE_ADMIN only!");
         model.addAttribute("dipendenti", dipendenti);
         return "adminHome";
     }
 
     @RequestMapping(value = "/showNC", method = RequestMethod.GET)
     //@ResponseBody
-    public String listNC(ModelMap model,Principal principal, @RequestParam(value = "matricola", required = false) String matricola) {
+    public String listNC(ModelMap model,Principal principal, @RequestParam(value = "matricola", required = false) Integer matricola) {
         Dipendenti dipendente;
         if (matricola == null) {
-            //org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             dipendente = serviceDip.findByUsername(principal.getName());
             model.addAttribute("dip", dipendente);
         } else {
-            dipendente = serviceDip.findById(Integer.parseInt(matricola));
+            dipendente = serviceDip.findById(matricola);
         }
         model.addAttribute("dipendente", dipendente);
         model.addAttribute("ncLeader", dipendente.getNcLeader());

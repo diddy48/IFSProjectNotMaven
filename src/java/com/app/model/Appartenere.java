@@ -24,7 +24,7 @@ import javax.persistence.Transient;
  * @author FSEVERI\romano3927
  */
 @Entity
-@Table(name = "Appartenere")
+@Table(name = "appartenere")
 @AssociationOverrides({
     @AssociationOverride(name = "pkAppartenere.membro",
         joinColumns =@JoinColumn(name = "Matricola")),

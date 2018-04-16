@@ -33,7 +33,7 @@ import javax.persistence.Table;
  * @author roman
  */
 @Entity
-@Table(name = "NC")
+@Table(name = "nc")
 public class NC implements Serializable {
 
     private int numeroNC;

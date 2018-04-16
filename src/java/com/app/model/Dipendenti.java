@@ -29,7 +29,7 @@ import javax.persistence.Table;
  * @author romano3927
  */
 @Entity
-@Table(name = "Dipendenti")
+@Table(name = "dipendenti")
 public class Dipendenti implements Serializable {
 
     private int matricola;

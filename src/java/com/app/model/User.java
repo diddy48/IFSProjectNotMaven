@@ -13,7 +13,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users", catalog = "ifsproject")
+@Table(name = "users")
 public class User {
 
     private String username;
