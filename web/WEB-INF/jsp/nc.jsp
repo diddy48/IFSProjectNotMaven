@@ -37,6 +37,16 @@
                         <th>Data Chiusura</th>
                         <th>Priorità</th>
                         <th>Codice Prodotto</th>
+                        <th>Costo NC</th>
+                        <th>Reparto Prodotto</th>
+                        <th>Azioni di Contenimento</th>
+                        <th>Cause</th>
+                        <th>Azioni Correttive</th>
+                        <th>Azioni Preventive</th>
+                        <th>Intesa e Comprensione</th>
+                        <th>Tipo</th>
+                        <th>Cliente</th>
+                        <th>Richiedente</th>
 
                     </tr>
                     <c:forEach items="${ncLeader}" var="nc">
@@ -44,10 +54,20 @@
                             <td>${nc.numeroNC}</td>
                             <td>${nc.titolo}</td>
                             <td>${nc.descrizione}</td>
-                            <td>${nc.dataA}</td>
-                            <td>${nc.dataC==null ? "Non definita" : nc.dataC}</td>
+                            <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
+                            <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
                             <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                             <td>${nc.codiceProdotto}</td>
+                            <td>${nc.costoNC}</td>
+                            <td>${nc.repartoP}</td>
+                            <td>${nc.aContenimento}</td>
+                            <td>${nc.cause}</td>
+                            <td>${nc.aCorrettiva}</td>
+                            <td>${nc.aPreventiva}</td>
+                            <td>${nc.intesaComp}</td>
+                            <td>${nc.tipo}</td>
+                            <td>${nc.cliente}</td>
+                            <td>${nc.richiedente.matricola}</td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -64,6 +84,16 @@
                         <th>Data Chiusura</th>
                         <th>Priorità</th>
                         <th>Codice Prodotto</th>
+                        <th>Costo NC</th>
+                        <th>Reparto Prodotto</th>
+                        <th>Azioni di Contenimento</th>
+                        <th>Cause</th>
+                        <th>Azioni Correttive</th>
+                        <th>Azioni Preventive</th>
+                        <th>Intesa e Comprensione</th>
+                        <th>Tipo</th>
+                        <th>Cliente</th>
+                        <th>Team Leader</th>
 
                     </tr>
                     <c:forEach items="${ncRichiede}" var="nc">
@@ -71,10 +101,20 @@
                             <td>${nc.numeroNC}</td>
                             <td>${nc.titolo}</td>
                             <td>${nc.descrizione}</td>
-                            <td>${nc.dataA}</td>
-                            <td>${nc.dataC==null ? "Non definita" : nc.dataC}</td>
+                            <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
+                            <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
                             <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                             <td>${nc.codiceProdotto}</td>
+                            <td>${nc.costoNC}</td>
+                            <td>${nc.repartoP}</td>
+                            <td>${nc.aContenimento}</td>
+                            <td>${nc.cause}</td>
+                            <td>${nc.aCorrettiva}</td>
+                            <td>${nc.aPreventiva}</td>
+                            <td>${nc.intesaComp}</td>
+                            <td>${nc.tipo}</td>
+                            <td>${nc.cliente}</td>
+                            <td>${nc.teamLeader.matricola}</td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -91,6 +131,17 @@
                         <th>Data Chiusura</th>
                         <th>Priorità</th>
                         <th>Codice Prodotto</th>
+                        <th>Costo NC</th>
+                        <th>Reparto Prodotto</th>
+                        <th>Azioni di Contenimento</th>
+                        <th>Cause</th>
+                        <th>Azioni Correttive</th>
+                        <th>Azioni Preventive</th>
+                        <th>Intesa e Comprensione</th>
+                        <th>Tipo</th>
+                        <th>Cliente</th>
+                        <th>Richiedente</th>
+                        <th>Team Leader</th>
 
                     </tr>
                     <c:forEach items="${ncResponsabile}" var="nc">
@@ -98,10 +149,21 @@
                             <td>${nc.numeroNC}</td>
                             <td>${nc.titolo}</td>
                             <td>${nc.descrizione}</td>
-                            <td>${nc.dataA}</td>
-                            <td>${nc.dataC==null ? "Non definita" : nc.dataC}</td>
+                            <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
+                            <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
                             <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                             <td>${nc.codiceProdotto}</td>
+                            <td>${nc.costoNC}</td>
+                            <td>${nc.repartoP}</td>
+                            <td>${nc.aContenimento}</td>
+                            <td>${nc.cause}</td>
+                            <td>${nc.aCorrettiva}</td>
+                            <td>${nc.aPreventiva}</td>
+                            <td>${nc.intesaComp}</td>
+                            <td>${nc.tipo}</td>
+                            <td>${nc.cliente}</td>
+                            <td>${nc.teamLeader.matricola}</td>
+                            <td>${nc.richiedente.matricola}</td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -118,6 +180,17 @@
                         <th>Data Chiusura</th>
                         <th>Priorità</th>
                         <th>Codice Prodotto</th>
+                        <th>Costo NC</th>
+                        <th>Reparto Prodotto</th>
+                        <th>Azioni di Contenimento</th>
+                        <th>Cause</th>
+                        <th>Azioni Correttive</th>
+                        <th>Azioni Preventive</th>
+                        <th>Intesa e Comprensione</th>
+                        <th>Tipo</th>
+                        <th>Cliente</th>
+                        <th>Richiedente</th>
+                        <th>Team Leader</th>
 
                     </tr>
                     <c:forEach items="${ncMembro}" var="nc">
@@ -125,10 +198,21 @@
                             <td>${nc.numeroNC}</td>
                             <td>${nc.titolo}</td>
                             <td>${nc.descrizione}</td>
-                            <td>${nc.dataA}</td>
-                            <td>${nc.dataC==null ? "Non definita" : nc.dataC}</td>
+                            <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
+                            <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
                             <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                             <td>${nc.codiceProdotto}</td>
+                            <td>${nc.costoNC}</td>
+                            <td>${nc.repartoP}</td>
+                            <td>${nc.aContenimento}</td>
+                            <td>${nc.cause}</td>
+                            <td>${nc.aCorrettiva}</td>
+                            <td>${nc.aPreventiva}</td>
+                            <td>${nc.intesaComp}</td>
+                            <td>${nc.tipo}</td>
+                            <td>${nc.cliente}</td>
+                            <td>${nc.teamLeader.matricola}</td>
+                            <td>${nc.richiedente.matricola}</td>
                         </tr>
                     </c:forEach>
                 </table>

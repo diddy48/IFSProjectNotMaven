@@ -115,12 +115,13 @@ public class NCDaoImpl implements NCDao {
         } else if (fase.equals("C")){
             criteria = getSession().createCriteria(NC.class).add(Restrictions.isNotNull("dataC"));
         }
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return criteria.list();
     }
 
     @Override
     public List<NC> findAll() {
-        Criteria criteria = getSession().createCriteria(NC.class);
+        Criteria criteria = getSession().createCriteria(NC.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return (List<NC>) criteria.list();
     }
 }

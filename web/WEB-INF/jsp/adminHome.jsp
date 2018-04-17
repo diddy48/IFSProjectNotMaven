@@ -16,11 +16,11 @@
                 document.getElementById("logoutForm").submit();
             }
         </script>
-        <h2>Dipendenti</h2>  
+        <h1>Dipendenti</h1>  
         <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <h2>
+            <h3>
                 Welcome : ${pageContext.request.userPrincipal.name}
-            </h2>
+            </h3>
         </c:if>
 
         <div class="row">
@@ -43,8 +43,8 @@
                                 <td>${u.cf}</td>
                                 <td>${u.nome}</td>
                                 <td>${u.cognome}</td>
-                                <td>${u.dataNascita}</td>
-                                <td>${u.username}</td>
+                                <td>${String.valueOf(u.dataNascita).substring(0,10)}</td>
+                                <td>${u.username.username}</td>
                                 <td><a href="<c:url value="/showNC?matricola=${u.matricola}"/>" > NC Commissionate</a></td>
                             </tr>
                         </c:forEach>
