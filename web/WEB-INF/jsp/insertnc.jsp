@@ -13,24 +13,75 @@
         <title>Nuova NC</title>
     </head>
     <body>
-        <form>
+        <form action="<c:url value='/login' />" method="GET">
             <div class="form-control">
                 <label>Titolo NC</label>
                 <input type="text" name="titolo"  placeholder="Titolo NC" required/>
             </div>
             <div class="form-control">
-                <label>Nome NC</label>
-                <input type="texarea" name="descrizione"  placeholder="Inserisci la descrizione" required/>
+                <label>Descrizione</label>
+                <textarea class="form-control" rows="5" name="descrizione"  placeholder="Inserisci la descrizione" required></textarea>
             </div>
             <div class="form-control">
-                <label>Nome NC</label>
-                <input type="texarea" name="descrizione"  placeholder="Inserisci la descrizione" required/>
+                <label>Data Apertura</label>
+                <input type="date" name="dataA"  placeholder="Inserisci la descrizione" required/>
             </div>
             <div class="form-control">
-                <label>Nome NC</label>
-                <input type="texarea" name="descrizione"  placeholder="Inserisci la descrizione" required/>
+                <label>Data Chiusura</label>
+                <input type="date" name="dataC"  placeholder="Inserisci la descrizione" />
             </div>
-        </div>
+            <div class="form-control">
+                <label>Priorità</label>
+                <input type="text" name="priorita"  placeholder="Inserisci la descrizione" required/>
+            </div>
+            <div class="form-control">
+                <label>Codice Prodotto</label>
+                <input type="text" name="codiceProdotto"  placeholder="Inserisci la descrizione" required/>
+            </div>
+            <div class="form-control">
+                <label>Costo Non Conformità</label>
+                <input type="text" name="costoNC"  placeholder="Inserisci la descrizione" />
+            </div>
+            <div class="form-control">
+                <label>Reparto Prodotto</label>
+                <input type="text" name="repartoP"  placeholder="Inserisci la descrizione" required/>
+            </div>
+            <div class="form-control">
+                <label>Azioni di Contenimento</label>
+                <textarea class="form-control" rows="5" name="aContenimento"  placeholder="Inserisci la descrizione" ></textarea>
+            </div>
+            <div class="form-control">
+                <label>Cause</label>
+                <textarea class="form-control" rows="5" name="cause"  placeholder="Inserisci la descrizione" ></textarea>
+            </div>
+            <div class="form-control">
+                <label>Azioni Correttive</label>
+                <textarea class="form-control" rows="5" name="aCorrettive"  placeholder="Inserisci la descrizione" ></textarea>
+            </div>
+            <div class="form-control">
+                <label>Azioni Preventive</label>
+                <textarea class="form-control" rows="5" name="aPreventive"  placeholder="Inserisci la descrizione" ></textarea>
+            </div>
+            <div class="form-control">
+                <label>Intesa e Comprensione</label>
+                <textarea class="form-control" rows="5" name="intesaComp"  placeholder="Inserisci la descrizione" ></textarea>
+            </div>
+            <div class="form-control">
+                <label>Tipo</label>
+                <input type="text" name="tipo"  placeholder="Inserisci la descrizione" required/>
+            </div>
+            <div class="form-control">
+                <label>Cliente</label>
+                <input type="text" name="cliente"  placeholder="Inserisci la descrizione"/>
+            </div>
+            <div class="form-control">
+                <label>Richiedente</label>
+                <input type="text" name="richiedente"  placeholder="Inserisci la descrizione"/>
+            </div>
+            <div class="form-control">
+                <label>Team Leader</label>
+                <input type="text" name="teamLeader"  placeholder="Inserisci la descrizione" required/>
+            </div>
     </form>
 </body>
 </html>

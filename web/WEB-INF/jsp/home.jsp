@@ -149,7 +149,11 @@
             </sec:authorize>
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <br/>
-                <h2>Clicca <a href="<c:url value="/admin"/>">qui</a> per vedere i Dipedenti</h2>
+                <h2>Clicca <a href="<c:url value="/admin/home"/>">qui</a> per vedere i Dipendenti</h2>
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_LEADER')">
+                <br/>
+                <h2>Clicca <a href="<c:url value="/leader/insertNC"/>">qui</a> per vedere i Dipendenti</h2>
             </sec:authorize>
         </div>
     </body>

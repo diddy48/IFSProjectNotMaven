@@ -46,13 +46,6 @@ public class MainController {
         return "home";
     }
 
-    @RequestMapping(value = "/admin**", method = RequestMethod.GET)   
-    public String adminPage(ModelMap model) {
-        List<Dipendenti> dipendenti = serviceDip.findAll();
-        model.addAttribute("dipendenti", dipendenti);
-        return "adminHome";
-    }
-
     @RequestMapping(value = "/showNC", method = RequestMethod.GET)
     //@ResponseBody
     public String listNC(ModelMap model,Principal principal, @RequestParam(value = "matricola", required = false) Integer matricola) {
