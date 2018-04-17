@@ -78,7 +78,7 @@ public class MainController {
             model.addAttribute("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
         }
         if (logout != null) {
-            model.addAttribute("msg", "You've been logged out successfully.");
+            model.addAttribute("msg", "Sei uscito con successo dal tuo account");
         }
         return "login";
     }
@@ -90,11 +90,11 @@ public class MainController {
 
         String error = "";
         if (exception instanceof BadCredentialsException) {
-            error = "Invalid username and password!";
+            error = "Password e nome utente non validi!";
         } else if (exception instanceof LockedException) {
             error = exception.getMessage();
         } else {
-            error = "You are not authorized to access!";
+            error = "Non sei autorizzato ad entrare!";
         }
 
         return error;
