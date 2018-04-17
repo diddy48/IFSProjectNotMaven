@@ -32,6 +32,6 @@ public class LeaderController {
     @RequestMapping(value="/insertNC", method = RequestMethod.GET)
     public String insertNC(ModelMap model){
         
-        return "insernc";
+        return "insertnc";
     }
 }

@@ -1,5 +1,6 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page session="true"%>
 <html>
     <head>
         <title>Gestione NC: Nc commissionate</title>
@@ -153,7 +154,7 @@
             </sec:authorize>
             <sec:authorize access="hasRole('ROLE_LEADER')">
                 <br/>
-                <h2>Clicca <a href="<c:url value="/leader/insertNC"/>">qui</a> per vedere i Dipendenti</h2>
+                <h2>Clicca <a href="<c:url value="/leader/insertNC"/>">qui</a> per aggiungere una Non Conformita</h2>
             </sec:authorize>
         </div>
     </body>

@@ -41,18 +41,18 @@
         -->
     </head>
     <body onload='document.loginForm.username.focus();'>
-        <div class="container">
+        <div class="container-fluid">
             <h1>Gestione NC</h1>
             <hr>
             <div class="row">
-                <div class="col-md-12 " id="login-box">
+                <div class="col-md-8 offset-2 " id="login-box">
                     <br/>
                     <h3>Login</h3>
                     <c:if test="${not empty error}">
                         <div class="error text-danger">${error}</div>
                     </c:if>
                     <c:if test="${not empty msg}">
-                        <p class="msg text-primary">${msg}</p>
+                        <p class="msg text-info">${msg}</p>
                     </c:if>
 
                     <form name='loginForm' action="<c:url value='/login' />" method='POST'>
