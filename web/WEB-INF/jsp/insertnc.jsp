@@ -13,6 +13,24 @@
         <title>Nuova NC</title>
     </head>
     <body>
-        
-    </body>
+        <form>
+            <div class="form-control">
+                <label>Titolo NC</label>
+                <input type="text" name="titolo"  placeholder="Titolo NC" required/>
+            </div>
+            <div class="form-control">
+                <label>Nome NC</label>
+                <input type="texarea" name="descrizione"  placeholder="Inserisci la descrizione" required/>
+            </div>
+            <div class="form-control">
+                <label>Nome NC</label>
+                <input type="texarea" name="descrizione"  placeholder="Inserisci la descrizione" required/>
+            </div>
+            <div class="form-control">
+                <label>Nome NC</label>
+                <input type="texarea" name="descrizione"  placeholder="Inserisci la descrizione" required/>
+            </div>
+        </div>
+    </form>
+</body>
 </html>
