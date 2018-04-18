@@ -19,10 +19,14 @@
         <hr>
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form action="<c:url value='/login' />" method="GET">
+
+                <c:if test="${not empty added}">
+                    <div class="error text-success">${added}</div>
+                </c:if>
+                <form action="<c:url value='/leader/addNC' />" method="GET" modelAttribute="nc">
                     <div class="form-group">
-                        <label>Titolo NC</label>
-                        <input class="form-control" type="text" name="titolo"  placeholder="Titolo NC" required/>
+                        <label for="titolo">Titolo della Non Conformità</label>
+                        <input class="form-control" type="text" name="titolo" id="titolo" placeholder="Titolo NC" required/>
                     </div>
                     <div class="form-group">
                         <label>Descrizione</label>
@@ -38,7 +42,11 @@
                     </div>
                     <div class="form-group">
                         <label>Priorità</label>
-                        <input class="form-control" type="text" name="priorita"  placeholder="Inserisci la descrizione" required/>
+                        <select class="form-control selectpicker" name="priorita">
+                            <option value="${nc.priorita.B}">Bassa</option>
+                            <option value="${nc.priorita.M}">Media</option>
+                            <option value="${nc.priorita.A}">Alta</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Codice Prodotto</label>
@@ -50,7 +58,14 @@
                     </div>
                     <div class="form-group">
                         <label>Reparto Prodotto</label>
-                        <input class="form-control" type="text" name="repartoP"  placeholder="Inserisci la descrizione" required/>
+                        <select class="form-control" name="repartoP">
+                            <option value="${nc.repartoP.Progettazione}">Progettazione</option>
+                            <option value="${nc.repartoP.Produzione}">Produzione</option>
+                            <option value="${nc.repartoP.LogisticaE}">Logistica in Entrata</option>
+                            <option value="${nc.repartoP.LogisticaU}">Logistica in Uscita</option>
+                            <option value="${nc.repartoP.Commerciale}">Commerciale</option>
+                            <option value="${nc.repartoP.Amministrativo}">Amministrativo</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Azioni di Contenimento</label>
@@ -73,8 +88,12 @@
                         <textarea class="form-control" rows="5" name="intesaComp"  placeholder="Inserisci la descrizione" ></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Tipo</label>
-                        <input class="form-control" type="text" name="tipo"  placeholder="Inserisci la descrizione" required/>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="tipo" id="interna" value="${nc.tipo.I}" checked>
+                            <label class="form-check-label" for="interna">Interna</label></div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="tipo" id="reclamo" value="${nc.tipo.R}">
+                            <label class="form-check-label" for="reclamo">Reclamo</label></div>
                     </div>
                     <div class="form-group">
                         <label>Cliente</label>
@@ -88,6 +107,7 @@
                         <label>Team Leader</label>
                         <input class="form-control" type="text" name="teamLeader"  placeholder="Inserisci la descrizione" required/>
                     </div>
+                    <input type="submit" class="btn btn-default" name="submit" value="Inserisci NC"/>
                 </form>
             </div>
         </div>

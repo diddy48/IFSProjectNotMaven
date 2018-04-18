@@ -60,6 +60,27 @@ public class NC implements Serializable {
     public NC() {
     }
 
+    public NC(int numeroNC, String titolo, String descrizione, Date dataA, Date dataC, Priorita priorita, Integer codiceProdotto, Float costoNC, RepartoProdotto repartoP, String aContenimento, String cause, String aCorrettiva, String aPreventiva, String intesaComp, Tipo tipo, String cliente, Dipendenti richiedente, Dipendenti teamLeader) {
+        this.numeroNC = numeroNC;
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+        this.dataA = dataA;
+        this.dataC = dataC;
+        this.priorita = priorita;
+        this.codiceProdotto = codiceProdotto;
+        this.costoNC = costoNC;
+        this.repartoP = repartoP;
+        this.aContenimento = aContenimento;
+        this.cause = cause;
+        this.aCorrettiva = aCorrettiva;
+        this.aPreventiva = aPreventiva;
+        this.intesaComp = intesaComp;
+        this.tipo = tipo;
+        this.cliente = cliente;
+        this.richiedente = richiedente;
+        this.teamLeader = teamLeader;
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "NumeroNC")
