@@ -27,6 +27,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -111,6 +112,7 @@ public class NC implements Serializable {
     }
 
     @Column(name = "DataApertura", nullable = false)
+    @DateTimeFormat(pattern="yyyy-MM-dd") 
     public Date getDataA() {
         return dataA;
     }
@@ -120,6 +122,7 @@ public class NC implements Serializable {
     }
 
     @Column(name = "DataChiusura")
+    @DateTimeFormat(pattern="yyyy-MM-dd") 
     public Date getDataC() {
         return dataC;
     }

@@ -82,7 +82,7 @@
                     <div class="form-group">
                         <c:forEach items="${tipo}" var="t">
                             <div class="form-check form-check-inline">
-                                <form:radiobutton class="form-check-input" path="tipo"  value="${t.key}" label="${t.value}" checked=""/>
+                                <form:radiobutton class="form-check-input" path="tipo"  value="${t.key}" label="${t.value}" checked="" />
                             </div>
                         </c:forEach>
                     </div>

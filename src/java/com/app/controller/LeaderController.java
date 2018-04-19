@@ -61,13 +61,8 @@ public class LeaderController {
     }
 
     @RequestMapping(value = "/addNC", method = RequestMethod.GET)
-    public String addNC(@ModelAttribute("nc") NC nc ,BindingResult bindingResult){//,@RequestParam("dataA") String data)  {
-        
-        /*SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        try{
-        nc.setDataA(formatter.parse(data));
-        }
-        catch( ParseException e){}*/
+    public String addNC(@ModelAttribute("nc") NC nc ,BindingResult bindingResult,@RequestParam("teamLeader") String matricolaLeader){
+        nc.setTeamLeader(serviceDip.findById(Integer.parseInt(matricolaLeader)));
         serviceNc.saveNC(nc);
         return "insertnc?added";
     }
@@ -76,7 +71,7 @@ public class LeaderController {
         List<Dipendenti> dips = serviceDip.findAll();
         Map<String, String> matrNom = new HashMap<>();
         for (Dipendenti dip : dips) {
-            matrNom.put("" + dip.getMatricola(), dip.getMatricola() + "    " + dip.getNome() + " " + dip.getCognome());
+            matrNom.put("" + dip.getMatricola(), dip.getMatricola() + " | " + dip.getNome() + " " + dip.getCognome());
         }
         return matrNom;
     }
