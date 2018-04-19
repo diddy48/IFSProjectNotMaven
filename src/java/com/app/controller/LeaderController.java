@@ -9,6 +9,7 @@ import com.app.model.Dipendenti;
 import com.app.model.NC;
 import com.app.objects.Priorita;
 import com.app.objects.RepartoProdotto;
+import com.app.objects.Tipo;
 import com.app.service.DipendentiService;
 import com.app.service.NCService;
 import java.util.HashMap;
@@ -49,6 +50,7 @@ public class LeaderController {
         model.addAttribute("dipendenti",getMatricoleNome());
         model.addAttribute("priorita",Priorita.valuesMap());
         model.addAttribute("reparti",RepartoProdotto.valuesMap());
+        model.addAttribute("tipo",Tipo.valuesMap());
         model.addAttribute("nc",new NC());
         return "insertnc";
     }

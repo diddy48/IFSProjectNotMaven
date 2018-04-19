@@ -56,14 +56,6 @@
                     </div>
                     <div class="form-group">
                         <label>Reparto Prodotto</label>
-                        <!--<select class="form-control" name="repartoP">
-                            <option value="${nc.repartoP.Progettazione}">Progettazione</option>
-                            <option value="${nc.repartoP.Produzione}">Produzione</option>
-                            <option value="${nc.repartoP.LogisticaE}">Logistica in Entrata</option>
-                            <option value="${nc.repartoP.LogisticaU}">Logistica in Uscita</option>
-                            <option value="${nc.repartoP.Commerciale}">Commerciale</option>
-                            <option value="${nc.repartoP.Amministrativo}">Amministrativo</option>
-                        </select>-->
                         <form:select class="form-control" path="repartoP" items="${reparti}"/>
                     </div>
                     <div class="form-group">
@@ -87,13 +79,17 @@
                         <textarea class="form-control" rows="5" name="intesaComp"  placeholder="Inserisci la descrizione" ></textarea>
                     </div>
                     <div class="form-group">
-                        <div class="form-check form-check-inline">
+                        <!--<div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="tipo" id="interna" value="${nc.tipo.I}" checked>
                             <label class="form-check-label" for="interna">Interna</label></div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="tipo" id="reclamo" value="${nc.tipo.R}">
-                            <label class="form-check-label" for="reclamo">Reclamo</label></div>
+                            <label class="form-check-label" for="reclamo">Reclamo</label></div>-->
+                        <div class="form-check form-check-inline">
+                        <form:radiobuttons class="form-check-input" path="tipo" items="${tipo}" />
+                        </div>
                     </div>
+                            
                     <div class="form-group">
                         <label>Cliente</label>
                         <input class="form-control" type="text" name="cliente"  placeholder="Inserisci il nome del cliente"/>
