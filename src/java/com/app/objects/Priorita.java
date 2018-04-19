@@ -1,9 +1,25 @@
 package com.app.objects;
 
-public enum Priorita{
+import java.util.HashMap;
+import java.util.Map;
 
-B,
-M,
-A
+public enum Priorita {
 
+    B("Bassa"),
+    M("Media"),
+    A("Alta");
+
+    private String descrizione;
+
+    private Priorita(String descizione) {
+        this.descrizione = descizione;
+    }
+    
+   public static Map<String,String> valuesMap(){
+       Map<String,String> priorita = new HashMap<>();
+       for(Priorita p: Priorita.values()){
+           priorita.put(""+p.name(), ""+p.descrizione);
+       }
+       return priorita;
+   }
 }

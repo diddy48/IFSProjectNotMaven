@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page session="true"%>
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,8 @@
                 <c:if test="${not empty added}">
                     <div class="error text-success">${added}</div>
                 </c:if>
-                <form action="<c:url value='/leader/addNC' />" method="GET" modelAttribute="nc">
+                <!--<form action="<c:url value='/leader/addNC' />" method="GET" modelAttribute="nc">-->
+                <form:form method="GET" commandName="nc" action="/leader/addNC">
                     <div class="form-group">
                         <label for="titolo">Titolo della Non Conformità</label>
                         <input class="form-control" type="text" name="titolo" id="titolo" placeholder="Titolo NC" required/>
@@ -42,11 +44,7 @@
                     </div>
                     <div class="form-group">
                         <label>Priorità</label>
-                        <select class="form-control selectpicker" name="priorita">
-                            <option value="${nc.priorita.B}">Bassa</option>
-                            <option value="${nc.priorita.M}">Media</option>
-                            <option value="${nc.priorita.A}">Alta</option>
-                        </select>
+                        <form:select class="form-control" path="priorita" items="${priorita}"/>
                     </div>
                     <div class="form-group">
                         <label>Codice Prodotto</label>
@@ -58,14 +56,15 @@
                     </div>
                     <div class="form-group">
                         <label>Reparto Prodotto</label>
-                        <select class="form-control" name="repartoP">
+                        <!--<select class="form-control" name="repartoP">
                             <option value="${nc.repartoP.Progettazione}">Progettazione</option>
                             <option value="${nc.repartoP.Produzione}">Produzione</option>
                             <option value="${nc.repartoP.LogisticaE}">Logistica in Entrata</option>
                             <option value="${nc.repartoP.LogisticaU}">Logistica in Uscita</option>
                             <option value="${nc.repartoP.Commerciale}">Commerciale</option>
                             <option value="${nc.repartoP.Amministrativo}">Amministrativo</option>
-                        </select>
+                        </select>-->
+                        <form:select class="form-control" path="repartoP" items="${reparti}"/>
                     </div>
                     <div class="form-group">
                         <label>Azioni di Contenimento</label>
@@ -77,11 +76,11 @@
                     </div>
                     <div class="form-group">
                         <label>Azioni Correttive</label>
-                        <textarea class="form-control" rows="5" name="aCorrettive"  placeholder="Inserisci la descrizione" ></textarea>
+                        <textarea class="form-control" rows="5" name="aCorrettiva"  placeholder="Inserisci la descrizione" ></textarea>
                     </div>
                     <div class="form-group">
                         <label>Azioni Preventive</label>
-                        <textarea class="form-control" rows="5" name="aPreventive"  placeholder="Inserisci la descrizione" ></textarea>
+                        <textarea class="form-control" rows="5" name="aPreventiva"  placeholder="Inserisci la descrizione" ></textarea>
                     </div>
                     <div class="form-group">
                         <label>Intesa e Comprensione</label>
@@ -97,18 +96,19 @@
                     </div>
                     <div class="form-group">
                         <label>Cliente</label>
-                        <input class="form-control" type="text" name="cliente"  placeholder="Inserisci la descrizione"/>
+                        <input class="form-control" type="text" name="cliente"  placeholder="Inserisci il nome del cliente"/>
                     </div>
                     <div class="form-group">
                         <label>Richiedente</label>
-                        <input class="form-control" type="text" name="richiedente"  placeholder="Inserisci la descrizione"/>
+                        <form:select class="form-control" path="richiedente" items="${dipendenti}"/>
                     </div>
                     <div class="form-group">
                         <label>Team Leader</label>
-                        <input class="form-control" type="text" name="teamLeader"  placeholder="Inserisci la descrizione" required/>
+                        <form:select class="form-control" path="teamLeader" items="${dipendenti}"/>
                     </div>
                     <input type="submit" class="btn btn-default" name="submit" value="Inserisci NC"/>
-                </form>
+                    <!--</form>-->
+                </form:form>
             </div>
         </div>
     </body>
