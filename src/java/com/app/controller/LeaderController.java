@@ -41,31 +41,32 @@ public class LeaderController {
 
     @Autowired
     NCService serviceNc;
-    
-    @RequestMapping(value="/insertNC", method = RequestMethod.GET)
-    public String insertNC(ModelMap model,@RequestParam(value = "added", required = false) String added){
-        if(added !=null){
-            model.addAttribute("addedMsg","Hai aggiunto con successo una nuova Non Conformità");
+
+    @RequestMapping(value = "/insertNC", method = RequestMethod.GET)
+    public String insertNC(ModelMap model, @RequestParam(value = "added", required = false) String added) {
+        if (added != null) {
+            model.addAttribute("addedMsg", "Hai aggiunto con successo una nuova Non Conformità");
         }
-        model.addAttribute("dipendenti",getMatricoleNome());
-        model.addAttribute("priorita",Priorita.valuesMap());
-        model.addAttribute("reparti",RepartoProdotto.valuesMap());
-        model.addAttribute("tipo",Tipo.valuesMap());
-        model.addAttribute("nc",new NC());
+        model.addAttribute("dipendenti", getMatricoleNome());
+        model.addAttribute("priorita", Priorita.valuesMap());
+        model.addAttribute("reparti", RepartoProdotto.valuesMap());
+        model.addAttribute("tipo", Tipo.valuesMap());
+        NC nc = new NC();
+        model.addAttribute("nc", nc);
         return "insertnc";
     }
-    
-     @RequestMapping(value="/addNC", method = RequestMethod.GET,consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public String addNC(@ModelAttribute("nc") NC nc,ModelMap model){
+
+    @RequestMapping(value = "/addNC", method = RequestMethod.GET)
+    public String addNC(@ModelAttribute("nc") NC nc, ModelMap model) {
         serviceNc.saveNC(nc);
         return "insertnc?added";
     }
-    
-    public Map<String,String> getMatricoleNome(){
+
+    public Map<String, String> getMatricoleNome() {
         List<Dipendenti> dips = serviceDip.findAll();
-        Map<String,String> matrNom = new HashMap<>();
-        for(Dipendenti dip: dips){
-            matrNom.put(""+dip.getMatricola(), dip.getMatricola()+"    "+dip.getNome()+" "+dip.getCognome());
+        Map<String, String> matrNom = new HashMap<>();
+        for (Dipendenti dip : dips) {
+            matrNom.put("" + dip.getMatricola(), dip.getMatricola() + "    " + dip.getNome() + " " + dip.getCognome());
         }
         return matrNom;
     }

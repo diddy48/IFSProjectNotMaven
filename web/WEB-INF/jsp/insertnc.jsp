@@ -24,23 +24,24 @@
                 <c:if test="${not empty added}">
                     <div class="error text-success">${added}</div>
                 </c:if>
-                <!--<form action="<c:url value='/leader/addNC' />" method="GET" modelAttribute="nc">-->
-                <form:form method="GET" commandName="nc" action="/leader/addNC">
+                <form:form method="GET" modelAttribute="nc" action="/leader/addNC">
+                    <form:input path="numeroNC" readonly="true" disabled="true" />
+                    <form:hidden path="numeroNC"/>
                     <div class="form-group">
                         <label for="titolo">Titolo della Non Conformità</label>
-                        <input class="form-control" type="text" name="titolo" id="titolo" placeholder="Titolo NC" required/>
+                        <input class="form-control" type="text" name="titolo" id="titolo" placeholder="Titolo NC" value="${not empty nc.titolo ? nc.titolo : "" }" required/>
                     </div>
                     <div class="form-group">
                         <label>Descrizione</label>
-                        <textarea class="form-control" rows="5" name="descrizione"  placeholder="Inserisci la descrizione" required></textarea>
+                        <textarea class="form-control" rows="5" name="descrizione" value="${not empty nc.descrizione ? nc.descrizione : "" }" placeholder="Inserisci la descrizione" required></textarea>
                     </div>
                     <div class="form-group">
                         <label>Data Apertura</label>
-                        <input class="form-control" type="date" name="dataA"  placeholder="Inserisci la descrizione" required/>
+                        <input class="form-control" type="date" name="dataA" value="${not empty nc.dataA ? nc.dataA : "" }" required/>
                     </div>
                     <div class="form-group">
                         <label>Data Chiusura</label>
-                        <input class="form-control" type="date" name="dataC"  placeholder="Inserisci la descrizione" />
+                        <input class="form-control" type="date" value="${not empty nc.dataC ? nc.dataC : "" }" name="dataC"  />
                     </div>
                     <div class="form-group">
                         <label>Priorità</label>
@@ -48,11 +49,11 @@
                     </div>
                     <div class="form-group">
                         <label>Codice Prodotto</label>
-                        <input class="form-control" type="text" name="codiceProdotto"  placeholder="Inserisci la descrizione" required/>
+                        <input class="form-control" type="text" name="codiceProdotto" value="${not empty nc.codiceProdotto ? nc.codiceProdotto : "" }" placeholder="Inserisci il codice del prodotto" required/>
                     </div>
                     <div class="form-group">
                         <label>Costo Non Conformità</label>
-                        <input class="form-control" type="text" name="costoNC"  placeholder="Inserisci la descrizione" />
+                        <input class="form-control" type="text" name="costoNC" value=""  placeholder="Inserisci il costo della Non Conformità" />
                     </div>
                     <div class="form-group">
                         <label>Reparto Prodotto</label>
@@ -60,39 +61,35 @@
                     </div>
                     <div class="form-group">
                         <label>Azioni di Contenimento</label>
-                        <textarea class="form-control" rows="5" name="aContenimento"  placeholder="Inserisci la descrizione" ></textarea>
+                        <textarea class="form-control" rows="5" name="aContenimento" value=""  placeholder="Inserisci " ></textarea>
                     </div>
                     <div class="form-group">
                         <label>Cause</label>
-                        <textarea class="form-control" rows="5" name="cause"  placeholder="Inserisci la descrizione" ></textarea>
+                        <textarea class="form-control" rows="5" name="cause" value=""  placeholder="Inserisci" ></textarea>
                     </div>
                     <div class="form-group">
                         <label>Azioni Correttive</label>
-                        <textarea class="form-control" rows="5" name="aCorrettiva"  placeholder="Inserisci la descrizione" ></textarea>
+                        <textarea class="form-control" rows="5" name="aCorrettiva" value=""  placeholder="Inserisci" ></textarea>
                     </div>
                     <div class="form-group">
                         <label>Azioni Preventive</label>
-                        <textarea class="form-control" rows="5" name="aPreventiva"  placeholder="Inserisci la descrizione" ></textarea>
+                        <textarea class="form-control" rows="5" name="aPreventiva" value=""  placeholder="Inserisci " ></textarea>
                     </div>
                     <div class="form-group">
                         <label>Intesa e Comprensione</label>
-                        <textarea class="form-control" rows="5" name="intesaComp"  placeholder="Inserisci la descrizione" ></textarea>
+                        <textarea class="form-control" rows="5" name="intesaComp" value=""  placeholder="Inserisci" ></textarea>
                     </div>
                     <div class="form-group">
-                        <!--<div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tipo" id="interna" value="${nc.tipo.I}" checked>
-                            <label class="form-check-label" for="interna">Interna</label></div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tipo" id="reclamo" value="${nc.tipo.R}">
-                            <label class="form-check-label" for="reclamo">Reclamo</label></div>-->
-                        <div class="form-check form-check-inline">
-                        <form:radiobuttons class="form-check-input" path="tipo" items="${tipo}" />
-                        </div>
+                        <c:forEach items="${tipo}" var="t">
+                            <div class="form-check form-check-inline">
+                                <form:radiobutton class="form-check-input" path="tipo"  value="${t.key}" label="${t.value}" checked=""/>
+                            </div>
+                        </c:forEach>
                     </div>
-                            
+
                     <div class="form-group">
                         <label>Cliente</label>
-                        <input class="form-control" type="text" name="cliente"  placeholder="Inserisci il nome del cliente"/>
+                        <input class="form-control" type="text" name="cliente" value=""  placeholder="Inserisci il nome del cliente"/>
                     </div>
                     <div class="form-group">
                         <label>Richiedente</label>
@@ -103,7 +100,6 @@
                         <form:select class="form-control" path="teamLeader" items="${dipendenti}"/>
                     </div>
                     <input type="submit" class="btn btn-default" name="submit" value="Inserisci NC"/>
-                    <!--</form>-->
                 </form:form>
             </div>
         </div>
