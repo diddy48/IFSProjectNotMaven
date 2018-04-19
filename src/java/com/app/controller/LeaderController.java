@@ -12,6 +12,9 @@ import com.app.objects.RepartoProdotto;
 import com.app.objects.Tipo;
 import com.app.service.DipendentiService;
 import com.app.service.NCService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +24,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,7 +61,13 @@ public class LeaderController {
     }
 
     @RequestMapping(value = "/addNC", method = RequestMethod.GET)
-    public String addNC(@ModelAttribute("nc") NC nc, ModelMap model) {
+    public String addNC(@ModelAttribute("nc") NC nc ,BindingResult bindingResult){//,@RequestParam("dataA") String data)  {
+        
+        /*SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+        nc.setDataA(formatter.parse(data));
+        }
+        catch( ParseException e){}*/
         serviceNc.saveNC(nc);
         return "insertnc?added";
     }

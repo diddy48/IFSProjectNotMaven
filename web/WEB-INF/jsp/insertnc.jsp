@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@page import="com.app.objects.*"%>
 <%@page session="true"%>
 <!DOCTYPE html>
 <html>
@@ -20,64 +21,63 @@
         <hr>
         <div class="row">
             <div class="col-md-8 offset-2">
-
                 <c:if test="${not empty added}">
                     <div class="error text-success">${added}</div>
                 </c:if>
-                <form:form method="GET" modelAttribute="nc" action="/leader/addNC">
-                    <form:input path="numeroNC" readonly="true" disabled="true" />
-                    <form:hidden path="numeroNC"/>
+                <c:url value="/leader/addNC" var="add"/>
+                <form:form method="GET" modelAttribute="nc" action="${add}" enctype="multipart/form-data">
+                    <form:input path="numeroNC" readonly="true" disabled="true" hidden="true" />
                     <div class="form-group">
-                        <label for="titolo">Titolo della Non Conformità</label>
-                        <input class="form-control" type="text" name="titolo" id="titolo" placeholder="Titolo NC" value="${not empty nc.titolo ? nc.titolo : "" }" required/>
+                        <form:label path="titolo">Titolo della Non Conformità</form:label>
+                        <form:input class="form-control" path="titolo" placeholder="Inserisci il titolo" required="required" />
                     </div>
                     <div class="form-group">
-                        <label>Descrizione</label>
-                        <textarea class="form-control" rows="5" name="descrizione" value="${not empty nc.descrizione ? nc.descrizione : "" }" placeholder="Inserisci la descrizione" required></textarea>
+                        <form:label path="descrizione">Descrizione</form:label>
+                        <form:textarea class="form-control" path="descrizione" rows="5" placeholder="Inserisci la descrizione" required="required" />
                     </div>
                     <div class="form-group">
-                        <label>Data Apertura</label>
-                        <input class="form-control" type="date" name="dataA" value="${not empty nc.dataA ? nc.dataA : "" }" required/>
+                        <form:label path="dataA">Data Apertura</form:label>
+                        <input class="form-control" type="date" name="dataA" required/>
                     </div>
                     <div class="form-group">
-                        <label>Data Chiusura</label>
-                        <input class="form-control" type="date" value="${not empty nc.dataC ? nc.dataC : "" }" name="dataC"  />
+                        <form:label path="dataC">Data Chiusura</form:label><!--value="${not empty nc.dataC ? nc.dataC : "" }"-->
+                        <input class="form-control" type="date"  name="dataC"  />
                     </div>
                     <div class="form-group">
-                        <label>Priorità</label>
+                        <form:label path="priorita">Priorità</form:label>
                         <form:select class="form-control" path="priorita" items="${priorita}"/>
                     </div>
                     <div class="form-group">
-                        <label>Codice Prodotto</label>
-                        <input class="form-control" type="text" name="codiceProdotto" value="${not empty nc.codiceProdotto ? nc.codiceProdotto : "" }" placeholder="Inserisci il codice del prodotto" required/>
+                        <form:label path="codiceProdotto">Codice Prodotto</form:label>                       
+                        <form:input class="form-control" path="codiceProdotto" placeholder="Inserisci il codice del prodotto" required="required" />
                     </div>
                     <div class="form-group">
-                        <label>Costo Non Conformità</label>
-                        <input class="form-control" type="text" name="costoNC" value=""  placeholder="Inserisci il costo della Non Conformità" />
+                        <form:label path="costoNC">Costo Non Conformità</form:label>
+                        <form:input class="form-control" path="costoNC" placeholder="Inserisci il costo della Non Conformità" />
                     </div>
                     <div class="form-group">
-                        <label>Reparto Prodotto</label>
+                        <form:label path="repartoP">Reparto Prodotto</form:label>
                         <form:select class="form-control" path="repartoP" items="${reparti}"/>
                     </div>
                     <div class="form-group">
-                        <label>Azioni di Contenimento</label>
-                        <textarea class="form-control" rows="5" name="aContenimento" value=""  placeholder="Inserisci " ></textarea>
+                        <form:label path="aContenimento">Azioni di Contenimento</form:label>
+                        <form:textarea class="form-control" path="aContenimento" rows="5" placeholder="Inserisci la descrizione" />
                     </div>
                     <div class="form-group">
-                        <label>Cause</label>
-                        <textarea class="form-control" rows="5" name="cause" value=""  placeholder="Inserisci" ></textarea>
+                        <form:label path="cause">Cause</form:label>
+                        <form:textarea class="form-control" path="cause" rows="5" placeholder="Inserisci la descrizione" />
                     </div>
                     <div class="form-group">
-                        <label>Azioni Correttive</label>
-                        <textarea class="form-control" rows="5" name="aCorrettiva" value=""  placeholder="Inserisci" ></textarea>
+                        <form:label path="aCorrettiva">Azioni Correttive</form:label>
+                        <form:textarea class="form-control" path="aCorrettiva" rows="5" placeholder="Inserisci la descrizione" />
                     </div>
                     <div class="form-group">
-                        <label>Azioni Preventive</label>
-                        <textarea class="form-control" rows="5" name="aPreventiva" value=""  placeholder="Inserisci " ></textarea>
+                        <form:label path="aPreventiva">Azioni Preventive</form:label>
+                        <form:textarea class="form-control" path="aPreventiva" rows="5" placeholder="Inserisci la descrizione" />
                     </div>
                     <div class="form-group">
-                        <label>Intesa e Comprensione</label>
-                        <textarea class="form-control" rows="5" name="intesaComp" value=""  placeholder="Inserisci" ></textarea>
+                        <form:label path="intesaComp">Intesa e Comprensione</form:label>
+                        <form:textarea class="form-control" path="intesaComp" rows="5" placeholder="Inserisci la descrizione" />
                     </div>
                     <div class="form-group">
                         <c:forEach items="${tipo}" var="t">
@@ -88,15 +88,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Cliente</label>
-                        <input class="form-control" type="text" name="cliente" value=""  placeholder="Inserisci il nome del cliente"/>
+                        <form:label path="cliente">Cliente</form:label>
+                        <form:input class="form-control" path="cliente" placeholder="Inserisci il nome del cliente" />
                     </div>
                     <div class="form-group">
-                        <label>Richiedente</label>
+                        <form:label path="richiedente">Richiedente</form:label>
                         <form:select class="form-control" path="richiedente" items="${dipendenti}"/>
                     </div>
                     <div class="form-group">
-                        <label>Team Leader</label>
+                        <form:label path="teamLeader">Team Leader</form:label>
                         <form:select class="form-control" path="teamLeader" items="${dipendenti}"/>
                     </div>
                     <input type="submit" class="btn btn-default" name="submit" value="Inserisci NC"/>
