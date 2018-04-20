@@ -233,7 +233,7 @@ public class NC implements Serializable {
         this.cliente = cliente;
     }
 
-    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "Richiedente")
     public Dipendenti getRichiedente() {
         return richiedente;
@@ -243,7 +243,7 @@ public class NC implements Serializable {
         this.richiedente = richiedente;
     }
 
-    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "TeamLeader", nullable = false)
     public Dipendenti getTeamLeader() {
         return teamLeader;

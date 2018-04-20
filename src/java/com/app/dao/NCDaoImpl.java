@@ -105,14 +105,24 @@ public class NCDaoImpl implements NCDao {
         Criteria criteria = getSession().createCriteria(NC.class);
         if (fase.equals("A")) {
             criteria = getSession().createCriteria(NC.class);
-            Criterion restrAzioni = Restrictions.and(Restrictions.isNull("cause"),Restrictions.isNull("aContenimento"),Restrictions.isNull("aCorrettiva"),Restrictions.isNull("aPreventiva"),Restrictions.isNull("intesaComp"));
-            criteria.add(Restrictions.and(restrAzioni,Restrictions.isNull("dataC")));
-        } else if (fase.equals("I")){
+            Criterion restrAzioni = Restrictions.and(
+                    Restrictions.or(Restrictions.isNull("cause"), Restrictions.eq("cause","")),
+                    Restrictions.or(Restrictions.isNull("aContenimento"), Restrictions.eq("aContenimento","")),
+                    Restrictions.or(Restrictions.isNull("aCorrettiva"), Restrictions.eq("aCorrettiva","")),
+                    Restrictions.or(Restrictions.isNull("aPreventiva"), Restrictions.eq("aPreventiva","")),
+                    Restrictions.or(Restrictions.isNull("intesaComp"), Restrictions.eq("intesaComp","")));
+            criteria.add(Restrictions.and(restrAzioni, Restrictions.isNull("dataC")));
+        } else if (fase.equals("I")) {
             criteria = getSession().createCriteria(NC.class);
-            Criterion restrAzioni = Restrictions.or(Restrictions.isNotNull("cause"),Restrictions.isNotNull("aContenimento"),Restrictions.isNotNull("aCorrettiva"),Restrictions.isNotNull("aPreventiva"),Restrictions.isNotNull("intesaComp"));
-            criteria.add(Restrictions.and(restrAzioni,Restrictions.isNull("dataC")));
-            
-        } else if (fase.equals("C")){
+            Criterion restrAzioni = Restrictions.and(
+                    Restrictions.or(Restrictions.isNotNull("cause"),Restrictions.ne("cause", "")),
+                    Restrictions.or(Restrictions.isNotNull("aContenimento"),Restrictions.ne("aContenimento", "")),
+                    Restrictions.or(Restrictions.isNotNull("aCorrettiva"),Restrictions.ne("aCorrettiva", "")),
+                    Restrictions.or(Restrictions.isNotNull("aPreventiva"),Restrictions.ne("aPreventiva", "")),
+                    Restrictions.or(Restrictions.isNotNull("intesaComp"),Restrictions.ne("intesaComp", "")));
+            criteria.add(Restrictions.and(restrAzioni, Restrictions.or(Restrictions.isNull("dataC"))));
+
+        } else if (fase.equals("C")) {
             criteria = getSession().createCriteria(NC.class).add(Restrictions.isNotNull("dataC"));
         }
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);

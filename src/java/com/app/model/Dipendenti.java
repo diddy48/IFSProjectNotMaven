@@ -32,7 +32,7 @@ import javax.persistence.Table;
 @Table(name = "dipendenti")
 public class Dipendenti implements Serializable {
 
-    private int matricola;
+    private Integer matricola;
     private String cf;
     private String nome;
     private String cognome;
@@ -49,11 +49,11 @@ public class Dipendenti implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Matricola")
-    public int getMatricola() {
+    public Integer getMatricola() {
         return matricola;
     }
 
-    public void setMatricola(int matricola) {
+    public void setMatricola(Integer matricola) {
         this.matricola = matricola;
     }
 

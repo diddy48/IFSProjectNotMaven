@@ -24,6 +24,9 @@
                 <c:if test="${not empty added}">
                     <div class="error text-success">${added}</div>
                 </c:if>
+                <c:if test="${not empty error}">
+                    <div class="error text-danger">${error}</div>
+                </c:if>
                 <c:url value="/leader/addNC" var="add"/>
                 <form:form method="GET" modelAttribute="nc" action="${add}" enctype="multipart/form-data">
                     <form:input path="numeroNC" readonly="true" disabled="true" hidden="true" />
@@ -37,13 +40,13 @@
                     </div>
                     <div class="form-group">
                         <form:label path="dataA">Data Apertura</form:label>
-                        <input class="form-control" type="date" name="dataA" required/>
-                    </div>
-                    <div class="form-group">
+                            <input class="form-control" type="date" name="dataA" required/>
+                        </div>
+                        <div class="form-group">
                         <form:label path="dataC">Data Chiusura</form:label><!--value="${not empty nc.dataC ? nc.dataC : "" }"-->
-                        <input class="form-control" type="date"  name="dataC"  />
-                    </div>
-                    <div class="form-group">
+                            <input class="form-control" type="date"  name="dataC"  />
+                        </div>
+                        <div class="form-group">
                         <form:label path="priorita">Priorità</form:label>
                         <form:select class="form-control" path="priorita" items="${priorita}"/>
                     </div>
@@ -82,7 +85,7 @@
                     <div class="form-group">
                         <c:forEach items="${tipo}" var="t">
                             <div class="form-check form-check-inline">
-                                <form:radiobutton class="form-check-input" path="tipo"  value="${t.key}" label="${t.value}" checked="" />
+                                <form:radiobutton class="form-check-input" path="tipo"  value="${t.key}" label="${t.value}" checked="true" />
                             </div>
                         </c:forEach>
                     </div>
@@ -93,11 +96,17 @@
                     </div>
                     <div class="form-group">
                         <form:label path="richiedente">Richiedente</form:label>
-                        <form:select class="form-control" path="richiedente" items="${dipendenti}"/>
+                        <form:select class="form-control" path="richiedente"  >
+                            <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
+                            <form:options items="${dipendenti}" />
+                        </form:select>
                     </div>
                     <div class="form-group">
-                        <form:label path="teamLeader">Team Leader</form:label>
-                        <form:select class="form-control" path="teamLeader" items="${dipendenti}"/>
+                        <form:label path="teamLeader.matricola">Team Leader</form:label>
+                        <form:select class="form-control" path="teamLeader.matricola" required="true" >
+                            <form:option value="" label="-- Seleziona il team leader --" disabled="true" selected="true" />
+                            <form:options items="${dipendenti}" />
+                        </form:select>
                     </div>
                     <input type="submit" class="btn btn-default" name="submit" value="Inserisci NC"/>
                 </form:form>

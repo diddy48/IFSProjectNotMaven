@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
@@ -47,9 +49,12 @@ public class LeaderController {
     NCService serviceNc;
 
     @RequestMapping(value = "/insertNC", method = RequestMethod.GET)
-    public String insertNC(ModelMap model, @RequestParam(value = "added", required = false) String added) {
+    public String insertNC(ModelMap model, @RequestParam(value = "added", required = false) String added, @RequestParam(value = "error", required = false) String error) {
         if (added != null) {
-            model.addAttribute("addedMsg", "Hai aggiunto con successo una nuova Non Conformità");
+            model.addAttribute("added", "Hai aggiunto con successo una nuova Non Conformità");
+        }
+        if (error != null) {
+            model.addAttribute("error", error);
         }
         model.addAttribute("dipendenti", getMatricoleNome());
         model.addAttribute("priorita", Priorita.valuesMap());
@@ -61,10 +66,15 @@ public class LeaderController {
     }
 
     @RequestMapping(value = "/addNC", method = RequestMethod.GET)
-    public String addNC(@ModelAttribute("nc") NC nc ,BindingResult bindingResult,@RequestParam("teamLeader") String matricolaLeader){
-        nc.setTeamLeader(serviceDip.findById(Integer.parseInt(matricolaLeader)));
-        serviceNc.saveNC(nc);
-        return "insertnc?added";
+    public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult, @RequestParam(value = "richiedente", required = false) Integer matricolaRichiedente,
+            ModelMap model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("error", bindingResult.getAllErrors());
+        } else {
+            serviceNc.saveNC(nc);
+            model.addAttribute("added", "true");
+        }
+        return "redirect:/leader/insertNC";
     }
 
     public Map<String, String> getMatricoleNome() {
