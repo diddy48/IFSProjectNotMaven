@@ -51,7 +51,7 @@ public class LeaderController {
     @RequestMapping(value = "/insertNC", method = RequestMethod.GET)
     public String insertNC(ModelMap model, @RequestParam(value = "added", required = false) String added, @RequestParam(value = "error", required = false) String error) {
         if (added != null) {
-            model.addAttribute("added", "Hai aggiunto con successo una nuova Non Conformità");
+            model.addAttribute("added", added);
         }
         if (error != null) {
             model.addAttribute("error", error);
@@ -66,13 +66,12 @@ public class LeaderController {
     }
 
     @RequestMapping(value = "/addNC", method = RequestMethod.GET)
-    public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult, @RequestParam(value = "richiedente", required = false) Integer matricolaRichiedente,
-            ModelMap model) {
+    public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult, @RequestParam(value = "richiedente", required = false) Integer matricolaRichiedente,ModelMap model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("error", bindingResult.getAllErrors());
+            model.addAttribute("error", ""+bindingResult.getAllErrors());
         } else {
             serviceNc.saveNC(nc);
-            model.addAttribute("added", "true");
+            model.addAttribute("added", "Hai aggiunto con successo una nuova Non Conformita'");
         }
         return "redirect:/leader/insertNC";
     }
