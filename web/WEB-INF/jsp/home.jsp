@@ -1,4 +1,5 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 <html>
@@ -49,22 +50,28 @@
                                     <table class="table table-striped table-bordered">
                                         <th>Numero NC</th>
                                         <th>Titolo</th>
-                                        <th>Descrizione</th>
                                         <th>Data Apertura</th>
                                         <th>Data Chiusura</th>
                                         <th>Priorità</th>
                                         <th>Codice Prodotto</th>
+                                        <th>Azioni</th>
 
                                         </tr>
+                                        <c:url value="/leader/deleteNC" var="delete"/>
                                         <c:forEach items="${ncAperte}" var="nc">
                                             <tr>
                                                 <td>${nc.numeroNC}</td>
                                                 <td>${nc.titolo}</td>
-                                                <td>${nc.descrizione}</td>
                                                 <td>${nc.dataA}</td>
                                                 <td>${nc.dataC==null ? "Non definita" : nc.dataC}</td>
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                                 <td>${nc.codiceProdotto}</td>
+                                                <td>
+                                                    <form action="${delete}" method="GET">
+                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                        <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
+                                                    </form>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                     </table>

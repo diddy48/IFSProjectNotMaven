@@ -117,10 +117,15 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-default" name="submit" value="Inserisci NC"/>
+                    <input type="submit" class="btn-block btn btn-default" name="submit" value="Inserisci NC"/>
                 </form:form>
             </div>
         </div>
+        <footer class="footer pt-4 mt-4">
+            <div class="footer-copyright py-3 text-center">
+                © 2018 Copyright: <h5 class="text-primary">Gabriele Romano</h5>
+            </div>
+        </footer>
     </body>
 </html>
 <script>
