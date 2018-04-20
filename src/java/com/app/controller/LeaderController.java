@@ -66,14 +66,21 @@ public class LeaderController {
     }
 
     @RequestMapping(value = "/addNC", method = RequestMethod.GET)
-    public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult, @RequestParam(value = "richiedente", required = false) Integer matricolaRichiedente,ModelMap model) {
+    public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult, @RequestParam(value = "richiedente", required = false) Integer matricolaRichiedente, ModelMap model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("error", ""+bindingResult.getAllErrors());
+            model.addAttribute("error", "" + bindingResult.getAllErrors());
         } else {
             serviceNc.saveNC(nc);
             model.addAttribute("added", "Hai aggiunto con successo una nuova Non Conformita'");
         }
         return "redirect:/leader/insertNC";
+    }
+
+    @RequestMapping(value = "/deleteNC", method = RequestMethod.GET)
+    public String deleteNC(@RequestParam(value = "numeroNC", required = true) Integer numeroNC, ModelMap model) {
+        serviceNc.deleteNC(numeroNC);
+        model.addAttribute("added", "Hai eliminato con successo una Non Conformita'");
+        return "redirect:/";
     }
 
     public Map<String, String> getMatricoleNome() {
