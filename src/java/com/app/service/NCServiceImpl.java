@@ -28,8 +28,8 @@ public class NCServiceImpl implements NCService {
     }
 
     @Override
-    public void saveNC(NC nc) {
-        dao.saveNC(nc);
+    public void saveOrUpdateNC(NC nc) {
+        dao.saveOrUpdateNC(nc);
     }
 
     @Override
@@ -37,18 +37,6 @@ public class NCServiceImpl implements NCService {
         dao.deleteNC(id);
     }
 
-    /*
-
-    @Override
-    public void updateDipedenti(NC dip) {
-        Dipedenti entity = dao.findById(dip.getId());
-        if(entity!=null){
-            entity.setCategoria(dip.getCategoria());
-            entity.setDescrizione(dip.getDescrizione());
-        }
-    }
-
-     */
     public List<NC> findNCResponsabileById(int id) {
         return dao.findNCResponsabileById(id);
     }

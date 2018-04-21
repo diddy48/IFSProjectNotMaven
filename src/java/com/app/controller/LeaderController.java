@@ -62,6 +62,9 @@ public class LeaderController {
             model.addAttribute("error", error);
         }
         if (update != null) {
+            model.addAttribute("update", update);
+        }
+        if (update != null) {
             NC toUpdate = serviceNc.findById(numeroNC);
             nc.setNumeroNC(toUpdate.getNumeroNC());
             nc.setTitolo(toUpdate.getTitolo());
@@ -97,12 +100,18 @@ public class LeaderController {
     }
 
     @RequestMapping(value = "/addNC", method = RequestMethod.GET)
-    public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult, @RequestParam(value = "richiedente", required = false) Integer matricolaRichiedente, ModelMap model) {
+    public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult, @RequestParam(value = "richiedente", required = false) Integer matricolaRichiedente,
+            @RequestParam(value = "update", required = false) String update,
+             ModelMap model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("error", "" + bindingResult.getAllErrors());
         } else {
-            serviceNc.saveNC(nc);
-            model.addAttribute("added", "Hai aggiunto con successo una nuova Non Conformita'");
+            serviceNc.saveOrUpdateNC(nc);
+            if (update!=null) {
+                model.addAttribute("update", "Hai aggiornato con successo una Non Conformita'");
+            } else {
+                model.addAttribute("added", "Hai aggiunto con successo una nuova Non Conformita'");
+            }
         }
         return "redirect:/leader/insertNC";
     }

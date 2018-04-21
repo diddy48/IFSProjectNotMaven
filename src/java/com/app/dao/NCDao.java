@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface NCDao {
     NC findById(int id);
-    void saveNC(NC dip);
+    void saveOrUpdateNC(NC dip);
     void deleteNC(int id);
     List<NC> findNCbyFase(String fase);
     List<NC> findNCResponsabileById(int id);

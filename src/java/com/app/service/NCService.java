@@ -14,9 +14,8 @@ import java.util.List;
  */
 public interface NCService {
     NC findById(int id);
-    void saveNC(NC nc);
-    void deleteNC(int id);/*
-    void updateDipedenti(NC dip);*/
+    void saveOrUpdateNC(NC nc);
+    void deleteNC(int id);
     List<NC> findNCbyFase(String fase);
     List<NC> findNCResponsabileById(int id);
     List<NC> findNCAppartenereById(int id);

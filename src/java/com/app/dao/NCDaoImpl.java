@@ -38,14 +38,17 @@ public class NCDaoImpl implements NCDao {
         return sessionFactory.getCurrentSession();
     }
 
+    @Override
     public NC findById(int id) {
         return (NC) getSession().get(NC.class, id);
     }
 
-    public void saveNC(NC nc) {
-        getSession().persist(nc);
+    @Override
+    public void saveOrUpdateNC(NC nc) {
+        getSession().saveOrUpdate(nc);
     }
-
+    
+    @Override
     public void deleteNC(int id) {
         NC nc = (NC) getSession().load(NC.class, id);
         if (nc != null) {

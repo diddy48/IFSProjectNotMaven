@@ -28,8 +28,11 @@
                 <c:if test="${not empty error}">
                     <div class="error text-danger">${error}</div>
                 </c:if>
-                <c:url value="/leader/addNC" var="add"/>
-                <form:form method="GET" modelAttribute="nc" action="${add}" enctype="multipart/form-data">
+                <c:if test="${not empty update}">
+                    <div class="error text-success">${update}</div>
+                </c:if>
+                <c:url value="/leader/addNC" var="action"/>
+                <form:form method="GET" modelAttribute="nc" action="${action}" enctype="multipart/form-data">
                     <form:input path="numeroNC" readonly="true" disabled="true" hidden="true" />
                     <div class="row">
                         <div class="form-group col-md-8">
@@ -118,7 +121,7 @@
                         </div>
                     </div>
                     <c:choose>
-                        <c:when test="${not empty numeroNC}">
+                        <c:when test="${not empty update}">
                             <input type="submit" class="btn-block btn btn-default" name="submit" value="Aggiorna NC"/>
                         </c:when>
                         <c:otherwise>
