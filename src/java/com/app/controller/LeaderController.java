@@ -49,18 +49,49 @@ public class LeaderController {
     NCService serviceNc;
 
     @RequestMapping(value = "/insertNC", method = RequestMethod.GET)
-    public String insertNC(ModelMap model, @RequestParam(value = "added", required = false) String added, @RequestParam(value = "error", required = false) String error) {
+    public String insertNC(ModelMap model,
+            @RequestParam(value = "added", required = false) String added,
+            @RequestParam(value = "error", required = false) String error,
+            @RequestParam(value = "update", required = false) String update,
+            @RequestParam(value = "numeroNC", required = false) Integer numeroNC) {
+        NC nc = new NC();
         if (added != null) {
             model.addAttribute("added", added);
         }
         if (error != null) {
             model.addAttribute("error", error);
         }
+        if (update != null) {
+            NC toUpdate = serviceNc.findById(numeroNC);
+            nc.setNumeroNC(toUpdate.getNumeroNC());
+            nc.setTitolo(toUpdate.getTitolo());
+            nc.setDescrizione(toUpdate.getDescrizione());
+            nc.setDataA(toUpdate.getDataA());
+            if (toUpdate.getDataC() != null) {
+                nc.setDataC(toUpdate.getDataC());
+            }
+            nc.setPriorita(toUpdate.getPriorita());
+            nc.setCodiceProdotto(toUpdate.getCodiceProdotto());
+            nc.setCostoNC(toUpdate.getCostoNC());
+            nc.setRepartoP(toUpdate.getRepartoP());
+            nc.setaContenimento(toUpdate.getaContenimento());
+            nc.setCause(toUpdate.getCause());
+            nc.setaCorrettiva(toUpdate.getaCorrettiva());
+            nc.setaPreventiva(toUpdate.getaPreventiva());
+            nc.setIntesaComp(toUpdate.getIntesaComp());
+            nc.setTipo(toUpdate.getTipo());
+            if (toUpdate.getTipo().compareTo(Tipo.I) == 0) {
+                nc.setRichiedente(toUpdate.getRichiedente());
+            } else {
+                nc.setCliente(toUpdate.getCliente());
+            }
+            nc.setTeamLeader(toUpdate.getTeamLeader());
+
+        }
         model.addAttribute("dipendenti", getMatricoleNome());
         model.addAttribute("priorita", Priorita.valuesMap());
         model.addAttribute("reparti", RepartoProdotto.valuesMap());
         model.addAttribute("tipo", Tipo.valuesMap());
-        NC nc = new NC();
         model.addAttribute("nc", nc);
         return "insertnc";
     }

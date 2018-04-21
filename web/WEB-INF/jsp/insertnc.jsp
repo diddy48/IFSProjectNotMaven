@@ -117,7 +117,14 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" class="btn-block btn btn-default" name="submit" value="Inserisci NC"/>
+                    <c:choose>
+                        <c:when test="${not empty numeroNC}">
+                            <input type="submit" class="btn-block btn btn-default" name="submit" value="Aggiorna NC"/>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="submit" class="btn-block btn btn-default" name="submit" value="Inserisci NC"/>
+                        </c:otherwise> 
+                    </c:choose> 
                 </form:form>
             </div>
         </div>

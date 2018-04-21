@@ -58,6 +58,7 @@
 
                                         </tr>
                                         <c:url value="/leader/deleteNC" var="delete"/>
+                                        <c:url value="/leader/insertNC" var="update"/>
                                         <c:forEach items="${ncAperte}" var="nc">
                                             <tr>
                                                 <td>${nc.numeroNC}</td>
@@ -71,6 +72,11 @@
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                         <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
                                                     </form>
+
+                                                    <form action="${update}" method="GET">
+                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                        <input class="btn btn-primary" type="submit" name="update" value="Modifica" />
+                                                    </form> 
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -90,22 +96,27 @@
                                     <table class="table table-striped table-bordered">
                                         <th>Numero NC</th>
                                         <th>Titolo</th>
-                                        <th>Descrizione</th>
                                         <th>Data Apertura</th>
                                         <th>Data Chiusura</th>
                                         <th>Priorità</th>
                                         <th>Codice Prodotto</th>
+                                        <th>Azioni</th>
 
                                         </tr>
                                         <c:forEach items="${ncIntermedie}" var="nc">
                                             <tr>
                                                 <td>${nc.numeroNC}</td>
                                                 <td>${nc.titolo}</td>
-                                                <td>${nc.descrizione}</td>
                                                 <td>${nc.dataA}</td>
                                                 <td>${nc.dataC==null ? "Non definita" : nc.dataC}</td>
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                                 <td>${nc.codiceProdotto}</td>
+                                                <td>
+                                                    <form action="${delete}" method="GET">
+                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                        <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
+                                                    </form>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                     </table>
@@ -124,22 +135,27 @@
                                     <table class="table table-striped table-bordered">
                                         <th>Numero NC</th>
                                         <th>Titolo</th>
-                                        <th>Descrizione</th>
                                         <th>Data Apertura</th>
                                         <th>Data Chiusura</th>
                                         <th>Priorità</th>
                                         <th>Codice Prodotto</th>
+                                        <th>Azioni</th>
 
                                         </tr>
                                         <c:forEach items="${ncChiuse}" var="nc">
                                             <tr>
                                                 <td>${nc.numeroNC}</td>
                                                 <td>${nc.titolo}</td>
-                                                <td>${nc.descrizione}</td>
                                                 <td>${nc.dataA}</td>
                                                 <td>${nc.dataC==null ? "Non definita" : nc.dataC}</td>
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                                 <td>${nc.codiceProdotto}</td>
+                                                <td>
+                                                    <form action="${delete}" method="GET">
+                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                        <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
+                                                    </form>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                     </table>
