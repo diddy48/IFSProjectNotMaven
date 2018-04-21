@@ -19,5 +19,6 @@ public interface NCService {
     List<NC> findNCbyFase(String fase);
     List<NC> findNCResponsabileById(int id);
     List<NC> findNCAppartenereById(int id);
+    String getFase(int numeroNC);
     List<NC> findAll(); 
 }

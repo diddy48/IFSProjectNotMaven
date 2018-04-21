@@ -47,7 +47,7 @@ public class NCDaoImpl implements NCDao {
     public void saveOrUpdateNC(NC nc) {
         getSession().saveOrUpdate(nc);
     }
-    
+
     @Override
     public void deleteNC(int id) {
         NC nc = (NC) getSession().load(NC.class, id);
@@ -106,33 +106,13 @@ public class NCDaoImpl implements NCDao {
     public List<NC> findNCbyFase(String fase) {
         List<NC> ncs = new ArrayList<NC>();
         Criteria criteria = getSession().createCriteria(NC.class);
+        Criterion restrAzioni = criteriaByFase(fase);
         if (fase.equals("A")) {
-            criteria = getSession().createCriteria(NC.class);
-            Criterion restrAzioni = Restrictions.and(
-                    Restrictions.or(Restrictions.isNull("cause"), Restrictions.eq("cause","")),
-                    Restrictions.or(Restrictions.isNull("aContenimento"), Restrictions.eq("aContenimento","")),
-                    Restrictions.or(Restrictions.isNull("aCorrettiva"), Restrictions.eq("aCorrettiva","")),
-                    Restrictions.or(Restrictions.isNull("aPreventiva"), Restrictions.eq("aPreventiva","")),
-                    Restrictions.or(Restrictions.isNull("intesaComp"), Restrictions.eq("intesaComp","")));
             criteria.add(Restrictions.and(restrAzioni, Restrictions.isNull("dataC")));
         } else if (fase.equals("I")) {
-            criteria = getSession().createCriteria(NC.class);
-            Criterion restrAzioni = Restrictions.or(
-                    Restrictions.and(Restrictions.isNotNull("cause"),Restrictions.ne("cause", "")),
-                    Restrictions.and(Restrictions.isNotNull("aContenimento"),Restrictions.ne("aContenimento", "")),
-                    Restrictions.and(Restrictions.isNotNull("aCorrettiva"),Restrictions.ne("aCorrettiva", "")),
-                    Restrictions.and(Restrictions.isNotNull("aPreventiva"),Restrictions.ne("aPreventiva", "")),
-                    Restrictions.and(Restrictions.isNotNull("intesaComp"),Restrictions.ne("intesaComp", "")));
             criteria.add(Restrictions.and(restrAzioni, Restrictions.isNull("dataC")));
         } else if (fase.equals("C")) {
-            criteria = getSession().createCriteria(NC.class);
-            Criterion restrAzioni = Restrictions.and(
-                    Restrictions.or(Restrictions.isNotNull("cause"),Restrictions.ne("cause", "")),
-                    Restrictions.or(Restrictions.isNotNull("aContenimento"),Restrictions.ne("aContenimento", "")),
-                    Restrictions.or(Restrictions.isNotNull("aCorrettiva"),Restrictions.ne("aCorrettiva", "")),
-                    Restrictions.or(Restrictions.isNotNull("aPreventiva"),Restrictions.ne("aPreventiva", "")),
-                    Restrictions.or(Restrictions.isNotNull("intesaComp"),Restrictions.ne("intesaComp", "")));
-            criteria.add(Restrictions.and(restrAzioni, Restrictions.isNotNull("dataC"),Restrictions.isNotNull("costoNC")));
+            criteria.add(Restrictions.and(restrAzioni, Restrictions.isNotNull("dataC"), Restrictions.isNotNull("costoNC")));
         }
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return criteria.list();
@@ -142,5 +122,45 @@ public class NCDaoImpl implements NCDao {
     public List<NC> findAll() {
         Criteria criteria = getSession().createCriteria(NC.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return (List<NC>) criteria.list();
+    }
+
+    public Criterion criteriaByFase(String fase) {
+        Criterion criteria = null;
+        if (fase.equals("A")) {
+            criteria = Restrictions.and(
+                    Restrictions.or(Restrictions.isNull("cause"), Restrictions.eq("cause", "")),
+                    Restrictions.or(Restrictions.isNull("aContenimento"), Restrictions.eq("aContenimento", "")),
+                    Restrictions.or(Restrictions.isNull("aCorrettiva"), Restrictions.eq("aCorrettiva", "")),
+                    Restrictions.or(Restrictions.isNull("aPreventiva"), Restrictions.eq("aPreventiva", "")),
+                    Restrictions.or(Restrictions.isNull("intesaComp"), Restrictions.eq("intesaComp", "")));
+        } else if (fase.equals("I")) {
+            criteria = Restrictions.or(
+                    Restrictions.and(Restrictions.isNotNull("cause"), Restrictions.ne("cause", "")),
+                    Restrictions.and(Restrictions.isNotNull("aContenimento"), Restrictions.ne("aContenimento", "")),
+                    Restrictions.and(Restrictions.isNotNull("aCorrettiva"), Restrictions.ne("aCorrettiva", "")),
+                    Restrictions.and(Restrictions.isNotNull("aPreventiva"), Restrictions.ne("aPreventiva", "")),
+                    Restrictions.and(Restrictions.isNotNull("intesaComp"), Restrictions.ne("intesaComp", "")));
+        } else if (fase.equals("C")) {
+            criteria = Restrictions.and(
+                    Restrictions.or(Restrictions.isNotNull("cause"), Restrictions.ne("cause", "")),
+                    Restrictions.or(Restrictions.isNotNull("aContenimento"), Restrictions.ne("aContenimento", "")),
+                    Restrictions.or(Restrictions.isNotNull("aCorrettiva"), Restrictions.ne("aCorrettiva", "")),
+                    Restrictions.or(Restrictions.isNotNull("aPreventiva"), Restrictions.ne("aPreventiva", "")),
+                    Restrictions.or(Restrictions.isNotNull("intesaComp"), Restrictions.ne("intesaComp", "")));
+        }
+        return criteria;
+    }
+
+    @Override
+    public String getFase(int numeroNC) {
+        Criteria criteria = getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", numeroNC));
+        if (criteria.add(Restrictions.and(criteriaByFase("A"), Restrictions.isNull("dataC"))).uniqueResult() != null) {
+            return "Aperta";
+        } else if (criteria.add(Restrictions.and(criteriaByFase("I"), Restrictions.isNull("dataC"))).uniqueResult() != null) {
+            return "Intermedia";
+        } else if (criteria.add(Restrictions.and(criteriaByFase("C"), Restrictions.isNotNull("dataC"), Restrictions.isNotNull("costoNC"))).uniqueResult() != null) {
+            return "Chiusa";
+        }
+        return "Non definita";
     }
 }

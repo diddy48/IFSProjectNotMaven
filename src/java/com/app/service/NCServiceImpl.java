@@ -52,8 +52,13 @@ public class NCServiceImpl implements NCService {
     }
 
     @Override
+    public String getFase(int numeroNC) {
+        return dao.getFase(numeroNC);
+    }
+
+
+    @Override
     public List<NC> findAll() {
         return dao.findAll();
     }
-
 }

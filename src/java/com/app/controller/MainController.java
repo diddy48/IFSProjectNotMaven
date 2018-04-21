@@ -24,6 +24,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,7 +49,7 @@ public class MainController {
 
     @RequestMapping(value = "/showNC", method = RequestMethod.GET)
     //@ResponseBody
-    public String listNC(ModelMap model,Principal principal, @RequestParam(value = "matricola", required = false) Integer matricola) {
+    public String listNC(ModelMap model, Principal principal, @RequestParam(value = "matricola", required = false) Integer matricola) {
         Dipendenti dipendente;
         if (matricola == null) {
             dipendente = serviceDip.findByUsername(principal.getName());
@@ -104,6 +105,13 @@ public class MainController {
             model.addAttribute("username", userDetail.getUsername());
         }
         return "403";
+    }
+
+    @RequestMapping(value = "/displayNC", method = GET)
+    public String displayNC(ModelMap model, @RequestParam("numeroNC") Integer numeroNC) {
+        model.addAttribute("nc",serviceNc.findById(numeroNC));
+        model.addAttribute("fase",serviceNc.getFase(numeroNC));
+        return "displaync";
     }
 
 }

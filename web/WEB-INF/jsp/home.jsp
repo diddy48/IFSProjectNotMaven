@@ -59,6 +59,7 @@
                                         </tr>
                                         <c:url value="/leader/deleteNC" var="delete"/>
                                         <c:url value="/leader/insertNC" var="update"/>
+                                        <c:url value="/displayNC" var="display"/>
                                         <c:forEach items="${ncAperte}" var="nc">
                                             <tr>
                                                 <td>${nc.numeroNC}</td>
@@ -76,6 +77,11 @@
                                                     <form action="${update}" method="GET">
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                         <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
+                                                    </form>
+
+                                                    <form action="${display}" method="GET">
+                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                        <input class="btn btn-secondary" type="submit" name="submit" value="Visualizza NC" />
                                                     </form> 
                                                 </td>
                                             </tr>
@@ -121,6 +127,10 @@
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                         <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
                                                     </form>
+                                                    <form action="${display}" method="GET">
+                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                        <input class="btn btn-secondary" type="submit" name="submit" value="Visualizza NC" />
+                                                    </form>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -164,6 +174,10 @@
                                                     <form action="${update}" method="GET">
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                         <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
+                                                    </form>
+                                                    <form action="${display}" method="GET">
+                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                        <input class="btn btn-secondary" type="submit" name="submit" value="Visualizza NC" />
                                                     </form>
                                                 </td>
                                             </tr>
