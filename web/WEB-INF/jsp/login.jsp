@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>Login</title>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <jsp:include page="links.jsp" />
         <style>
             .error {
                 padding: 15px;
@@ -41,9 +41,8 @@
         -->
     </head>
     <body onload='document.loginForm.username.focus();'>
+        <jsp:include page="header.jsp" />
         <div class="container-fluid">
-            <h1>Gestione NC</h1>
-            <hr>
             <div class="row">
                 <div class="col-md-8 offset-2 " id="login-box">
                     <br/>

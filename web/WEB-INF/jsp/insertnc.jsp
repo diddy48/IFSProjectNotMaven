@@ -13,150 +13,153 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <jsp:include page="links.jsp" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <title>Nuova NC</title>
     </head>
-    <body class="container-fluid">
-        <h1>${submit} una Non Conformità</h1>
-        <hr>
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <c:if test="${not empty added}">
-                    <div class="error text-success">${added}</div>
-                </c:if>
-                <c:if test="${not empty error}">
-                    <div class="error text-danger">${error}</div>
-                </c:if>
-                <c:if test="${not empty update}">
-                    <div class="error text-success">${update}</div>
-                </c:if>
-                <c:url value="/leader/addNC" var="action"/>
-                <form:form method="GET" modelAttribute="nc" action="${action}" enctype="multipart/form-data">            
-                    <c:choose>
-                        <c:when test="${numeroNC!=0}">
-                            <div class="form-group">
-                                <form:label path="numeroNC">Numero NC</form:label>
-                                <form:input class="form-control" path="numeroNC" readonly="true"/>
-                            </div>
-                        </c:when>
-                    </c:choose>
-                    <div class="row">
-                        <div class="form-group col-md-8">
-                            <form:label path="titolo">Titolo della Non Conformità</form:label>
-                            <form:input class="form-control" path="titolo" placeholder="Inserisci il titolo" required="required" />
-                        </div>
-                        <div class="form-group col-md-2 offset-md-1">
-                            <br/>
-                            <c:forEach items="${tipo}" var="t">
-                                <div class="form-check">
-                                    <form:radiobutton class="form-check-input" path="tipo"  value="${t.key}" label="${t.value}"  required="true"/>
+    <body >
+        <jsp:include page="header.jsp" />
+        <div class="container-fluid">
+            <h1>${submit} una Non Conformità</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <c:if test="${not empty added}">
+                        <div class="error text-success">${added}</div>
+                    </c:if>
+                    <c:if test="${not empty error}">
+                        <div class="error text-danger">${error}</div>
+                    </c:if>
+                    <c:if test="${not empty update}">
+                        <div class="error text-success">${update}</div>
+                    </c:if>
+                    <c:url value="/leader/addNC" var="action"/>
+                    <form:form method="GET" modelAttribute="nc" action="${action}" enctype="multipart/form-data">            
+                        <c:choose>
+                            <c:when test="${numeroNC!=0}">
+                                <div class="form-group">
+                                    <form:label path="numeroNC">Numero NC</form:label>
+                                    <form:input class="form-control" path="numeroNC" readonly="true"/>
                                 </div>
-                            </c:forEach>
+                            </c:when>
+                        </c:choose>
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <form:label path="titolo">Titolo della Non Conformità</form:label>
+                                <form:input class="form-control" path="titolo" placeholder="Inserisci il titolo" required="required" />
+                            </div>
+                            <div class="form-group col-md-2 offset-md-1">
+                                <br/>
+                                <c:forEach items="${tipo}" var="t">
+                                    <div class="form-check">
+                                        <form:radiobutton class="form-check-input" path="tipo"  value="${t.key}" label="${t.value}"  required="true"/>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <form:label path="descrizione">Descrizione</form:label>
+                                <form:textarea class="form-control" path="descrizione" rows="5" placeholder="Inserisci la descrizione" required="required" />
+                            </div>
                         </div>
-                        <div class="form-group col-md-12">
-                            <form:label path="descrizione">Descrizione</form:label>
-                            <form:textarea class="form-control" path="descrizione" rows="5" placeholder="Inserisci la descrizione" required="required" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-3">
-                            <form:label path="dataA">Data Apertura</form:label>
-                                <input class="form-control" type="date" name="dataA" required/>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <form:label path="dataA">Data Apertura</form:label>
+                                    <input class="form-control" type="date" name="dataA" required/>
+                                </div>
+                                <div class="form-group col-md-3">
+                                <form:label path="dataC">Data Chiusura</form:label><!--value="${not empty nc.dataC ? nc.dataC : "" }"-->
+                                    <input class="form-control" type="date"  name="dataC"  />
+                                </div>
+                                <div class="form-group col-md-3">
+                                <form:label path="priorita">Priorità</form:label>
+                                <form:select class="form-control" path="priorita" items="${priorita}"/>
                             </div>
                             <div class="form-group col-md-3">
-                            <form:label path="dataC">Data Chiusura</form:label><!--value="${not empty nc.dataC ? nc.dataC : "" }"-->
-                                <input class="form-control" type="date"  name="dataC"  />
+                                <form:label path="codiceProdotto">Codice Prodotto</form:label>                       
+                                <form:input class="form-control" path="codiceProdotto" placeholder="Inserisci il codice del prodotto" required="required" />
                             </div>
                             <div class="form-group col-md-3">
-                            <form:label path="priorita">Priorità</form:label>
-                            <form:select class="form-control" path="priorita" items="${priorita}"/>
+                                <form:label path="costoNC">Costo Non Conformità</form:label>
+                                <form:input class="form-control" path="costoNC" placeholder="Inserisci il costo della Non Conformità" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <form:label path="repartoP">Reparto Prodotto</form:label>
+                                <form:select class="form-control" path="repartoP" items="${reparti}"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <form:label path="teamLeader.matricola">Team Leader</form:label>
+                                <form:select class="form-control" path="teamLeader.matricola" required="true" >
+                                    <form:option value="" label="-- Seleziona il team leader --" disabled="true" selected="true" />
+                                    <form:options items="${dipendenti}" />
+                                </form:select>
+                            </div>
                         </div>
-                        <div class="form-group col-md-3">
-                            <form:label path="codiceProdotto">Codice Prodotto</form:label>                       
-                            <form:input class="form-control" path="codiceProdotto" placeholder="Inserisci il codice del prodotto" required="required" />
-                        </div>
-                        <div class="form-group col-md-3">
-                            <form:label path="costoNC">Costo Non Conformità</form:label>
-                            <form:input class="form-control" path="costoNC" placeholder="Inserisci il costo della Non Conformità" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <form:label path="repartoP">Reparto Prodotto</form:label>
-                            <form:select class="form-control" path="repartoP" items="${reparti}"/>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <form:label path="teamLeader.matricola">Team Leader</form:label>
-                            <form:select class="form-control" path="teamLeader.matricola" required="true" >
-                                <form:option value="" label="-- Seleziona il team leader --" disabled="true" selected="true" />
-                                <form:options items="${dipendenti}" />
-                            </form:select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class=" col-md-6 form-group">
-                            <form:label path="aContenimento">Azioni di Contenimento</form:label>
-                            <form:textarea class="form-control" path="aContenimento" rows="5" placeholder="Inserisci la descrizione" />
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <form:label path="cause">Cause</form:label>
-                            <form:textarea class="form-control" path="cause" rows="5" placeholder="Inserisci la descrizione" />
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <form:label path="aCorrettiva">Azioni Correttive</form:label>
-                            <form:textarea class="form-control" path="aCorrettiva" rows="5" placeholder="Inserisci la descrizione" />
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <form:label path="aPreventiva">Azioni Preventive</form:label>
-                            <form:textarea class="form-control" path="aPreventiva" rows="5" placeholder="Inserisci la descrizione" />
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <form:label path="intesaComp">Intesa e Comprensione</form:label>
-                            <form:textarea class="form-control" path="intesaComp" rows="5" placeholder="Inserisci la descrizione" />
-                        </div>
-                        <div class=" col-md-6">
-                            <c:choose>
-                                <c:when test="${(submit=='Modifica')&&(nc.cliente!=null)}">
-                                    <div class="form-group">
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="form-group" hidden="true">
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <form:label path="cliente" hidden="">Cliente</form:label>
-                                    <form:input class="form-control" path="cliente" placeholder="Inserisci il nome del cliente"/>
-                                </div>
+                        <div class="row">
+                            <div class=" col-md-6 form-group">
+                                <form:label path="aContenimento">Azioni di Contenimento</form:label>
+                                <form:textarea class="form-control" path="aContenimento" rows="5" placeholder="Inserisci la descrizione" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <form:label path="cause">Cause</form:label>
+                                <form:textarea class="form-control" path="cause" rows="5" placeholder="Inserisci la descrizione" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <form:label path="aCorrettiva">Azioni Correttive</form:label>
+                                <form:textarea class="form-control" path="aCorrettiva" rows="5" placeholder="Inserisci la descrizione" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <form:label path="aPreventiva">Azioni Preventive</form:label>
+                                <form:textarea class="form-control" path="aPreventiva" rows="5" placeholder="Inserisci la descrizione" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <form:label path="intesaComp">Intesa e Comprensione</form:label>
+                                <form:textarea class="form-control" path="intesaComp" rows="5" placeholder="Inserisci la descrizione" />
+                            </div>
+                            <div class=" col-md-6">
                                 <c:choose>
-                                    <c:when test="${(submit=='Modifica')&&(nc.richiedente!=null)}">
+                                    <c:when test="${(submit=='Modifica')&&(nc.cliente!=null)}">
                                         <div class="form-group">
                                         </c:when>
                                         <c:otherwise>
                                             <div class="form-group" hidden="true">
                                             </c:otherwise>
                                         </c:choose>
-                                        <form:label path="richiedente.matricola">Richiedente</form:label>
-                                        <form:select class="form-control" path="richiedente.matricola">
-                                            <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
-                                            <form:options items="${dipendenti}" />
-                                        </form:select>
+                                        <form:label path="cliente" hidden="">Cliente</form:label>
+                                        <form:input class="form-control" path="cliente" placeholder="Inserisci il nome del cliente"/>
+                                    </div>
+                                    <c:choose>
+                                        <c:when test="${(submit=='Modifica')&&(nc.richiedente!=null)}">
+                                            <div class="form-group">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="form-group" hidden="true">
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <form:label path="richiedente.matricola">Richiedente</form:label>
+                                            <form:select class="form-control" path="richiedente.matricola">
+                                                <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
+                                                <form:options items="${dipendenti}" />
+                                            </form:select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <c:choose>
-                                <c:when test="${submit=='Modifica'}">
-                                    <input type="submit" class="btn-block btn btn-default" name="update" value="Aggiorna NC"/>
-                                </c:when>
-                                <c:otherwise>
-                                    <input type="submit" class="btn-block btn btn-default" name="insert" value="Inserisci NC"/>
-                                </c:otherwise> 
-                            </c:choose> 
-                        </form:form>
+                                <c:choose>
+                                    <c:when test="${submit=='Modifica'}">
+                                        <input type="submit" class="btn-block btn btn-default" name="update" value="Aggiorna NC"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="submit" class="btn-block btn btn-default" name="insert" value="Inserisci NC"/>
+                                    </c:otherwise> 
+                                </c:choose> 
+                            </form:form>
+                        </div>
                     </div>
+                    <footer class="footer pt-4 mt-4">
+                        <div class="footer-copyright py-3 text-center">
+                            © 2018 Copyright: <h5 class="text-primary">Gabriele Romano</h5>
+                        </div>
+                    </footer>
                 </div>
-                <footer class="footer pt-4 mt-4">
-                    <div class="footer-copyright py-3 text-center">
-                        © 2018 Copyright: <h5 class="text-primary">Gabriele Romano</h5>
-                    </div>
-                </footer>
                 </body>
                 </html>
                 <script>
