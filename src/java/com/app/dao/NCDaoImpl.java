@@ -150,7 +150,8 @@ public class NCDaoImpl implements NCDao {
         }
         return criteria;
     }
-
+//Non in uso in questo momento
+    //non va I e C
     @Override
     public String getFase(int numeroNC) {
         Criteria criteria = getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", numeroNC));

@@ -102,7 +102,7 @@ public class NC implements Serializable {
         this.titolo = titolo;
     }
 
-    @Column(name = "Descrizione", nullable = false, length = 300)
+    @Column(name = "Descrizione", nullable = false, length = 1000)
     public String getDescrizione() {
         return descrizione;
     }
@@ -169,7 +169,7 @@ public class NC implements Serializable {
         this.repartoP = repartoP;
     }
 
-    @Column(name = "AContenimento", length = 300)
+    @Column(name = "AContenimento", length = 1000)
     public String getaContenimento() {
         return aContenimento;
     }
@@ -178,7 +178,7 @@ public class NC implements Serializable {
         this.aContenimento = aContenimento;
     }
 
-    @Column(name = "Cause", length = 300)
+    @Column(name = "Cause", length = 1000)
     public String getCause() {
         return cause;
     }
@@ -187,7 +187,7 @@ public class NC implements Serializable {
         this.cause = cause;
     }
 
-    @Column(name = "ACorrettiva", length = 300)
+    @Column(name = "ACorrettiva", length = 1000)
     public String getaCorrettiva() {
         return aCorrettiva;
     }
@@ -196,7 +196,7 @@ public class NC implements Serializable {
         this.aCorrettiva = aCorrettiva;
     }
 
-    @Column(name = "APreventiva", length = 300)
+    @Column(name = "APreventiva", length = 1000)
     public String getaPreventiva() {
         return aPreventiva;
     }
@@ -205,7 +205,7 @@ public class NC implements Serializable {
         this.aPreventiva = aPreventiva;
     }
 
-    @Column(name = "IntesaComprensione", length = 300)
+    @Column(name = "IntesaComprensione", length = 1000)
     public String getIntesaComp() {
         return intesaComp;
     }

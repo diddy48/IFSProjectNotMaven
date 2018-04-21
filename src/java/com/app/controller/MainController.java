@@ -108,9 +108,9 @@ public class MainController {
     }
 
     @RequestMapping(value = "/displayNC", method = GET)
-    public String displayNC(ModelMap model, @RequestParam("numeroNC") Integer numeroNC) {
+    public String displayNC(ModelMap model, @RequestParam("numeroNC") Integer numeroNC,@RequestParam(value="fase", required=false) String fase) {
         model.addAttribute("nc",serviceNc.findById(numeroNC));
-        model.addAttribute("fase",serviceNc.getFase(numeroNC));
+        model.addAttribute("fase",fase);//serviceNc.getFase(numeroNC));
         return "displaync";
     }
 

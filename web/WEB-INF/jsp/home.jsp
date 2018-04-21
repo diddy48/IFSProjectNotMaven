@@ -20,6 +20,9 @@
                 </div>
             </sec:authorize>
             <sec:authorize access="hasRole('ROLE_USER')">
+                <c:url value="/leader/deleteNC" var="delete"/>
+                <c:url value="/leader/insertNC" var="update"/>
+                <c:url value="/displayNC" var="display"/>
                 <div class="row">
                     <div class="col-md-7">
                         <!-- For login user -->
@@ -57,9 +60,6 @@
                                         <th>Azioni</th>
 
                                         </tr>
-                                        <c:url value="/leader/deleteNC" var="delete"/>
-                                        <c:url value="/leader/insertNC" var="update"/>
-                                        <c:url value="/displayNC" var="display"/>
                                         <c:forEach items="${ncAperte}" var="nc">
                                             <tr>
                                                 <td>${nc.numeroNC}</td>
@@ -80,6 +80,7 @@
                                                     </form>
 
                                                     <form action="${display}" method="GET">
+                                                        <input type="text" name="fase" value="Aperta" hidden="true"/>
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                         <input class="btn btn-secondary" type="submit" name="submit" value="Visualizza NC" />
                                                     </form> 
@@ -128,6 +129,7 @@
                                                         <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
                                                     </form>
                                                     <form action="${display}" method="GET">
+                                                        <input type='text' name="fase" value="Intermedia" hidden="true"/>
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                         <input class="btn btn-secondary" type="submit" name="submit" value="Visualizza NC" />
                                                     </form>
@@ -176,6 +178,7 @@
                                                         <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
                                                     </form>
                                                     <form action="${display}" method="GET">
+                                                        <input type='text' name="fase" value="Chiusa" hidden="true"/>
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                         <input class="btn btn-secondary" type="submit" name="submit" value="Visualizza NC" />
                                                     </form>

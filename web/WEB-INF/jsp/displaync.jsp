@@ -18,76 +18,76 @@
                     printWindow.print();
                 });
             </script>
-
+<br/>
             <div class="row">
                 <div class="col-md-10 offset-md-1">
-                    <h2>Tabella Non-Conformit&agrave </h2><br></br>
+                    <h2>Non-Conformit&agrave in dettaglio</h2><br/>
                     <table class="table table-bordered table-striped" >
                         <tr>
-                            <td colspan="16">Codice NC:${nc.numeroNC}</td>
+                            <td colspan="16"><span class="font-weight-bold">Codice NC: </span>${nc.numeroNC}</td>
                         </tr>
                         <tr>
-                            <td colspan="8">Titolo:${nc.titolo}</td>
-                            <td colspan="4">Tipo:${nc.tipo}</td>
-                            <td colspan="4">Fase: ${fase}</td>
+                            <td colspan="8"><span class="font-weight-bold">Titolo: </span>${nc.titolo}</td>
+                            <td colspan="4"><span class="font-weight-bold">Tipo: </span>${nc.tipo.descrizione}</td>
+                            <td colspan="4"><span class="font-weight-bold">Fase: </span>${fase}</td>
                         </tr>
                         <tr>
-                            <td colspan="8">Data apertura:${nc.dataA}</td>
-                            <td colspan="8" rowspan="3">Descrizione:${nc.descrizione}</td>
+                            <td colspan="8"><span class="font-weight-bold">Data apertura: </span>${nc.dataA}</td>
+                            <td colspan="8" rowspan="3"><span class="font-weight-bold">Descrizione: </span>${nc.descrizione}</td>
                         </tr>
                         <tr>
-                            <td colspan="8">Data chiusura:${nc.dataC}</td>
+                            <td colspan="8"><span class="font-weight-bold">Data chiusura: </span>${nc.dataC!=null?nc.dataC : "Non definita"}</td>
                         </tr>
                         <tr>
-                            <td colspan="8">Priorit&agrave:${nc.priorita}</td>
+                            <td colspan="8"><span class="font-weight-bold">Priorit&agrave: </span>${nc.priorita.descrizione}</td>
                         </tr>
                         <tr>
-                            <td colspan="8" rowspan="2">Team di lavoro:</td>
-                            <td colspan="8">Codice prodotto:${nc.codiceProdotto}</td>
+                            <td colspan="8" rowspan="2"><span class="font-weight-bold">Team di lavoro: </td>
+                            <td colspan="8"><span class="font-weight-bold">Codice prodotto: </span>${nc.codiceProdotto}</td>
                         </tr>
                         <tr>
-                            <td colspan="8">Reparto prodotto:${nc.repartoP}</td>
+                            <td colspan="8"><span class="font-weight-bold">Reparto prodotto: </span>${nc.repartoP.descrizione}</td>
                         </tr>
                         <tr style="height:70px;background:lightgray">
                             <td colspan="16"></td>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3">Cause:${nc.cause}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Cause: </span>${nc.cause}</td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3">Azioni di contenimento:${nc.aContenimento}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Azioni di contenimento: </span>${nc.aContenimento}</td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3">Azioni correttive:${nc.aCorrettiva}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Azioni correttive: </span>${nc.aCorrettiva}</td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3">Azioni preventive:${nc.aPreventiva}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Azioni preventive: </span>${nc.aPreventiva}</td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3">Intesa e comprensione:${nc.intesaComp}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Intesa e comprensione: </span>${nc.intesaComp}</td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3">Costo:${nc.costoNC}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Costo: </span>${nc.costoNC}</td>
                         </tr>
 
                     </table>

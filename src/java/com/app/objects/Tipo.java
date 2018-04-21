@@ -13,6 +13,14 @@ private String descrizione;
     private Tipo(String descizione) {
         this.descrizione = descizione;
     }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
     
     public static Map<String,String> valuesMap(){
        Map<String,String> tipi = new HashMap<>();
