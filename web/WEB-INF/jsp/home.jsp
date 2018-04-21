@@ -5,11 +5,65 @@
 <html>
     <head>
         <title>Gestione NC: Nc commissionate</title>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     </head>
+
+
     <body>
-        <div class="container-fluid">
-            <h1>Benvenuto nel software di gestione delle Non Conformità</h1>
+        <nav class="navbar navbar-expand-md sticky-top  navbar-dark bg-primary">
+            <a class="navbar-brand" href="<c:url value="/"/>">Gestione delle Non Conformità</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<c:url value="/"/>"> Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <sec:authorize access="!hasRole('ROLE_ADMIN') && !isAnonymous()">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Non-Conformità
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="<c:url value="/showNC/${dip.matricola}"/>"> Mostra le tue Non Conformità </a>
+                                <sec:authorize access="hasRole('ROLE_LEADER')">
+                                    <a class="dropdown-item" href="<c:url value="/leader/insertNC?submit=Inserisci" />">Inserisci una nuova NC</a>
+
+                                </sec:authorize>
+                            </div>
+                        </li>
+                    </sec:authorize>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Non-Conformità
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="<c:url value="/leader/insertNC?submit=Inserisci" />">Inserisci una nuova NC</a>
+                            </div>
+                        </li>
+                    </sec:authorize>
+                    <!--<li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>-->
+                </ul>
+            </div>
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <div class="navbar-collapse collapse order-3 dual-collapse2">
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="javascript:formSubmit()"> Esci</a>
+                        </li>
+                    </ul>
+                </div>
+            </c:if>
+        </nav>
+        <div  class="container-fluid">
             <!-- https://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html per se authority-->
             <sec:authorize access="isAnonymous()">
                 <div class="row">
@@ -26,21 +80,10 @@
                 <div class="row">
                     <div class="col-md-7">
                         <!-- For login user -->
-                        <c:url value="/logout" var="logoutUrl" />
-                        <form action="${logoutUrl}" method="post" id="logoutForm">
-                            <input type="hidden" name="${_csrf.parameterName}"
-                                   value="${_csrf.token}" />
-                        </form>
-                        <script>
-                            function formSubmit() {
-                                document.getElementById("logoutForm").submit();
-                            }
-                        </script>
                         <c:if test="${pageContext.request.userPrincipal.name != null}">
-                            <h2>
-                                Utente : ${pageContext.request.userPrincipal.name} | <a
-                                    href="javascript:formSubmit()"> Esci</a>
-                            </h2>
+                            <h1>
+                                Benvenuto ${pageContext.request.userPrincipal.name}
+                            </h1>
                         </c:if>
                     </div>
                 </div>
@@ -195,19 +238,21 @@
                     </div>
                 </div>
             </sec:authorize>
-            <sec:authorize access="!hasRole('ROLE_ADMIN') && !isAnonymous()">
-                <h2>Clicca <a href="<c:url value="/showNC/${dip.matricola}"/>">qui</a> per vedere le tue Non Conformità</h2>
-            </sec:authorize>
             <sec:authorize access="hasRole('ROLE_ADMIN')">
                 <br/>
                 <h2>Clicca <a href="<c:url value="/admin/home"/>">qui</a> per vedere i Dipendenti</h2>
             </sec:authorize>
-            <sec:authorize access="hasRole('ROLE_LEADER')">
-                <br/><c:url value="/leader/insertNC" var="insert"/>
-                <form action="${insert}" method="GET">
-                    <h2><input class="btn btn-primary" type="submit" name="submit" value="Inserisci" /> una nuova non conformità</h2>
-                </form>
-            </sec:authorize>
         </div>
     </body>
 </html>
+
+<c:url value="/logout" var="logoutUrl" />
+<form action="${logoutUrl}" method="post" id="logoutForm">
+    <input type="hidden" name="${_csrf.parameterName}"
+           value="${_csrf.token}" />
+</form>
+<script>
+    function formSubmit() {
+        document.getElementById("logoutForm").submit();
+    }
+</script>

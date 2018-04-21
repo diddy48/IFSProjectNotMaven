@@ -26,7 +26,7 @@
                 document.getElementById("logoutForm").submit();
             }
         </script>
-        <div class="col-md-8">
+        <div class="col">
             <c:if test="${!empty ncLeader}">
                 <h3>NC di cui è leader</h3>
                 <table class="table table-striped table-bordered">
@@ -219,9 +219,10 @@
                 </table>
             </c:if>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <h2>
-                    <a href="javascript:formSubmit()"> Esci</a>
-                </h2>
+                <h4>
+                <a href="<c:url value="/"/>">Indietro</a>
+                <br/><a href="javascript:formSubmit()"> Esci</a>
+                </h4>
             </c:if>
         </div>
     </body>
