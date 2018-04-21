@@ -346,4 +346,28 @@ public class NC implements Serializable {
         return true;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + this.numeroNC;
+        hash = 59 * hash + Objects.hashCode(this.titolo);
+        hash = 59 * hash + Objects.hashCode(this.descrizione);
+        hash = 59 * hash + Objects.hashCode(this.dataA);
+        hash = 59 * hash + Objects.hashCode(this.dataC);
+        hash = 59 * hash + Objects.hashCode(this.priorita);
+        hash = 59 * hash + Objects.hashCode(this.codiceProdotto);
+        hash = 59 * hash + Objects.hashCode(this.costoNC);
+        hash = 59 * hash + Objects.hashCode(this.repartoP);
+        hash = 59 * hash + Objects.hashCode(this.aContenimento);
+        hash = 59 * hash + Objects.hashCode(this.cause);
+        hash = 59 * hash + Objects.hashCode(this.aCorrettiva);
+        hash = 59 * hash + Objects.hashCode(this.aPreventiva);
+        hash = 59 * hash + Objects.hashCode(this.intesaComp);
+        hash = 59 * hash + Objects.hashCode(this.tipo);
+        hash = 59 * hash + Objects.hashCode(this.cliente);
+        hash = 59 * hash + Objects.hashCode(this.richiedente);
+        hash = 59 * hash + Objects.hashCode(this.teamLeader);
+        return hash;
+    }
+
 }

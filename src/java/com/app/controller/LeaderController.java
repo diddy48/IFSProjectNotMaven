@@ -64,7 +64,7 @@ public class LeaderController {
         if (update != null) {
             model.addAttribute("update", update);
         }
-        if (update != null) {
+        if (numeroNC != null) {
             NC toUpdate = serviceNc.findById(numeroNC);
             nc.setNumeroNC(toUpdate.getNumeroNC());
             nc.setTitolo(toUpdate.getTitolo());
@@ -89,7 +89,6 @@ public class LeaderController {
                 nc.setCliente(toUpdate.getCliente());
             }
             nc.setTeamLeader(toUpdate.getTeamLeader());
-
         }
         model.addAttribute("dipendenti", getMatricoleNome());
         model.addAttribute("priorita", Priorita.valuesMap());
@@ -100,7 +99,8 @@ public class LeaderController {
     }
 
     @RequestMapping(value = "/addNC", method = RequestMethod.GET)
-    public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult, @RequestParam(value = "richiedente", required = false) Integer matricolaRichiedente,
+    public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult, 
+            @RequestParam(value = "richiedente", required = false) Integer matricolaRichiedente,
             @RequestParam(value = "update", required = false) String update,
              ModelMap model) {
         if (bindingResult.hasErrors()) {
@@ -108,12 +108,13 @@ public class LeaderController {
         } else {
             serviceNc.saveOrUpdateNC(nc);
             if (update!=null) {
+                //serviceNc.update(nc);
                 model.addAttribute("update", "Hai aggiornato con successo una Non Conformita'");
             } else {
                 model.addAttribute("added", "Hai aggiunto con successo una nuova Non Conformita'");
             }
         }
-        return "redirect:/leader/insertNC";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/deleteNC", method = RequestMethod.GET)
