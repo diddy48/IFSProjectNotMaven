@@ -75,7 +75,7 @@
 
                                                     <form action="${update}" method="GET">
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
-                                                        <input class="btn btn-primary" type="submit" name="update" value="Modifica" />
+                                                        <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
                                                     </form> 
                                                 </td>
                                             </tr>
@@ -116,6 +116,11 @@
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                         <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
                                                     </form>
+
+                                                    <form action="${update}" method="GET">
+                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                        <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
+                                                    </form>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -155,6 +160,11 @@
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                         <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
                                                     </form>
+
+                                                    <form action="${update}" method="GET">
+                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                        <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
+                                                    </form>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -176,8 +186,10 @@
                 <h2>Clicca <a href="<c:url value="/admin/home"/>">qui</a> per vedere i Dipendenti</h2>
             </sec:authorize>
             <sec:authorize access="hasRole('ROLE_LEADER')">
-                <br/>
-                <h2>Clicca <a href="<c:url value="/leader/insertNC"/>">qui</a> per aggiungere una Non Conformita</h2>
+                <br/><c:url value="/leader/insertNC" var="insert"/>
+                <form action="${insert}" method="GET">
+                    <h2><input class="btn btn-primary" type="submit" name="submit" value="Inserisci" /> una nuova non conformità</h2>
+                </form>
             </sec:authorize>
         </div>
     </body>

@@ -50,13 +50,15 @@ public class LeaderController {
 
     @RequestMapping(value = "/insertNC", method = RequestMethod.GET)
     public String insertNC(ModelMap model,
-            @RequestParam(value = "added", required = false) String added,
+            @RequestParam(value = "insert", required = false) String added,
             @RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "update", required = false) String update,
-            @RequestParam(value = "numeroNC", required = false) Integer numeroNC) {
+            @RequestParam(value = "numeroNC", required = false) Integer numeroNC,
+            @RequestParam("submit") String submit) {
+        model.addAttribute("submit",submit);
         NC nc = new NC();
         if (added != null) {
-            model.addAttribute("added", added);
+            model.addAttribute("insert", added);
         }
         if (error != null) {
             model.addAttribute("error", error);
@@ -99,19 +101,19 @@ public class LeaderController {
     }
 
     @RequestMapping(value = "/addNC", method = RequestMethod.GET)
-    public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult, 
+    public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult,
             @RequestParam(value = "richiedente", required = false) Integer matricolaRichiedente,
             @RequestParam(value = "update", required = false) String update,
-             ModelMap model) {
+            ModelMap model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("error", "" + bindingResult.getAllErrors());
         } else {
             serviceNc.saveOrUpdateNC(nc);
-            if (update!=null) {
+            if (update != null) {
                 //serviceNc.update(nc);
                 model.addAttribute("update", "Hai aggiornato con successo una Non Conformita'");
             } else {
-                model.addAttribute("added", "Hai aggiunto con successo una nuova Non Conformita'");
+                model.addAttribute("insert", "Hai aggiunto con successo una nuova Non Conformita'");
             }
         }
         return "redirect:/";

@@ -18,7 +18,7 @@
         <title>Nuova NC</title>
     </head>
     <body class="container-fluid">
-        <h1>Inserisci una nuova Non Conformità</h1>
+        <h1>${submit} una Non Conformità</h1>
         <hr>
         <div class="row">
             <div class="col-md-8 offset-md-2">
@@ -115,7 +115,7 @@
                         </div>
                         <div class=" col-md-6">
                             <c:choose>
-                                <c:when test="${(not empty update)&&(nc.cliente!=null)}">
+                                <c:when test="${(submit=='Modifica')&&(nc.cliente!=null)}">
                                     <div class="form-group">
                                     </c:when>
                                     <c:otherwise>
@@ -126,7 +126,7 @@
                                     <form:input class="form-control" path="cliente" placeholder="Inserisci il nome del cliente"/>
                                 </div>
                                 <c:choose>
-                                    <c:when test="${(not empty update)&&(nc.richiedente!=null)}">
+                                    <c:when test="${(submit=='Modifica')&&(nc.richiedente!=null)}">
                                         <div class="form-group">
                                         </c:when>
                                         <c:otherwise>
@@ -142,7 +142,7 @@
                                 </div>
                             </div>
                             <c:choose>
-                                <c:when test="${not empty update}">
+                                <c:when test="${submit=='Modifica'}">
                                     <input type="submit" class="btn-block btn btn-default" name="update" value="Aggiorna NC"/>
                                 </c:when>
                                 <c:otherwise>
