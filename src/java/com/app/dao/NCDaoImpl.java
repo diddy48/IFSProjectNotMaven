@@ -117,16 +117,22 @@ public class NCDaoImpl implements NCDao {
             criteria.add(Restrictions.and(restrAzioni, Restrictions.isNull("dataC")));
         } else if (fase.equals("I")) {
             criteria = getSession().createCriteria(NC.class);
+            Criterion restrAzioni = Restrictions.or(
+                    Restrictions.and(Restrictions.isNotNull("cause"),Restrictions.ne("cause", "")),
+                    Restrictions.and(Restrictions.isNotNull("aContenimento"),Restrictions.ne("aContenimento", "")),
+                    Restrictions.and(Restrictions.isNotNull("aCorrettiva"),Restrictions.ne("aCorrettiva", "")),
+                    Restrictions.and(Restrictions.isNotNull("aPreventiva"),Restrictions.ne("aPreventiva", "")),
+                    Restrictions.and(Restrictions.isNotNull("intesaComp"),Restrictions.ne("intesaComp", "")));
+            criteria.add(Restrictions.and(restrAzioni, Restrictions.isNull("dataC")));
+        } else if (fase.equals("C")) {
+            criteria = getSession().createCriteria(NC.class);
             Criterion restrAzioni = Restrictions.and(
                     Restrictions.or(Restrictions.isNotNull("cause"),Restrictions.ne("cause", "")),
                     Restrictions.or(Restrictions.isNotNull("aContenimento"),Restrictions.ne("aContenimento", "")),
                     Restrictions.or(Restrictions.isNotNull("aCorrettiva"),Restrictions.ne("aCorrettiva", "")),
                     Restrictions.or(Restrictions.isNotNull("aPreventiva"),Restrictions.ne("aPreventiva", "")),
                     Restrictions.or(Restrictions.isNotNull("intesaComp"),Restrictions.ne("intesaComp", "")));
-            criteria.add(Restrictions.and(restrAzioni, Restrictions.or(Restrictions.isNull("dataC"))));
-
-        } else if (fase.equals("C")) {
-            criteria = getSession().createCriteria(NC.class).add(Restrictions.isNotNull("dataC"));
+            criteria.add(Restrictions.and(restrAzioni, Restrictions.isNotNull("dataC"),Restrictions.isNotNull("costoNC")));
         }
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return criteria.list();
