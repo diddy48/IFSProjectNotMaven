@@ -1,6 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+    <title>Mostra NC</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <form id="form1">
         <div id="dvContainer">
@@ -51,42 +52,42 @@
                             <td colspan="16"></td>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Cause: </span>${nc.cause}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Cause: </span>${nc.cause==null || nc.cause==''  ? "Non ancora definite" :nc.cause}</td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Azioni di contenimento: </span>${nc.aContenimento}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Azioni di contenimento: </span>${nc.aContenimento==null || nc.aContenimento=='' ? "Non ancora definite" :nc.aContenimento}</td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Azioni correttive: </span>${nc.aCorrettiva}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Azioni correttive: </span>${nc.aCorrettiva==null || nc.aCorrettiva=='' ? "Non ancora definite" :nc.aCorrettiva}</td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Azioni preventive: </span>${nc.aPreventiva}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Azioni preventive: </span>${nc.aPreventiva==null || nc.aPreventiva=='' ? "Non ancora definite" :nc.aPreventiva}</td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Intesa e comprensione: </span>${nc.intesaComp}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Intesa e comprensione: </span>${nc.intesaComp==null || nc.intesaComp=='' ? "Non ancora definita" :nc.intesaComp}</td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Costo: </span>${nc.costoNC}</td>
+                            <td colspan="16" rowspan="3"><span class="font-weight-bold">Costo: </span>${nc.costoNC==null ? "Non definito":nc.costoNC}</td>
                         </tr>
 
                     </table>

@@ -29,7 +29,7 @@
                     document.getElementById("logoutForm").submit();
                 }
             </script>
-            <div class="col">
+            <div class="col-md-12">
                 <c:if test="${!empty ncLeader}">
                     <h3>NC di cui è leader</h3>
                     <table class="table table-striped table-bordered">
@@ -41,13 +41,13 @@
                             <th>Data Chiusura</th>
                             <th>Priorità</th>
                             <th>Codice Prodotto</th>
-                            <th>Costo NC</th>
+                            <!--<th>Costo NC</th>
                             <th>Reparto Prodotto</th>
                             <th>Azioni di Contenimento</th>
                             <th>Cause</th>
                             <th>Azioni Correttive</th>
                             <th>Azioni Preventive</th>
-                            <th>Intesa e Comprensione</th>
+                            <th>Intesa e Comprensione</th>-->
                             <th>Tipo</th>
                             <th>Cliente</th>
                             <th>Richiedente</th>
@@ -62,13 +62,13 @@
                                 <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                 <td>${nc.codiceProdotto}</td>
-                                <td>${nc.costoNC}</td>
+                                <!--<td>${nc.costoNC}</td>
                                 <td>${nc.repartoP}</td>
                                 <td>${nc.aContenimento}</td>
                                 <td>${nc.cause}</td>
                                 <td>${nc.aCorrettiva}</td>
                                 <td>${nc.aPreventiva}</td>
-                                <td>${nc.intesaComp}</td>
+                                <td>${nc.intesaComp}</td>-->
                                 <td>${nc.tipo}</td>
                                 <td>${nc.cliente}</td>
                                 <td>${nc.richiedente.matricola}</td>
@@ -88,13 +88,6 @@
                             <th>Data Chiusura</th>
                             <th>Priorità</th>
                             <th>Codice Prodotto</th>
-                            <th>Costo NC</th>
-                            <th>Reparto Prodotto</th>
-                            <th>Azioni di Contenimento</th>
-                            <th>Cause</th>
-                            <th>Azioni Correttive</th>
-                            <th>Azioni Preventive</th>
-                            <th>Intesa e Comprensione</th>
                             <th>Tipo</th>
                             <th>Cliente</th>
                             <th>Team Leader</th>
@@ -109,13 +102,6 @@
                                 <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                 <td>${nc.codiceProdotto}</td>
-                                <td>${nc.costoNC}</td>
-                                <td>${nc.repartoP}</td>
-                                <td>${nc.aContenimento}</td>
-                                <td>${nc.cause}</td>
-                                <td>${nc.aCorrettiva}</td>
-                                <td>${nc.aPreventiva}</td>
-                                <td>${nc.intesaComp}</td>
                                 <td>${nc.tipo}</td>
                                 <td>${nc.cliente}</td>
                                 <td>${nc.teamLeader.matricola}</td>
@@ -135,13 +121,6 @@
                             <th>Data Chiusura</th>
                             <th>Priorità</th>
                             <th>Codice Prodotto</th>
-                            <th>Costo NC</th>
-                            <th>Reparto Prodotto</th>
-                            <th>Azioni di Contenimento</th>
-                            <th>Cause</th>
-                            <th>Azioni Correttive</th>
-                            <th>Azioni Preventive</th>
-                            <th>Intesa e Comprensione</th>
                             <th>Tipo</th>
                             <th>Cliente</th>
                             <th>Richiedente</th>
@@ -157,13 +136,6 @@
                                 <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                 <td>${nc.codiceProdotto}</td>
-                                <td>${nc.costoNC}</td>
-                                <td>${nc.repartoP}</td>
-                                <td>${nc.aContenimento}</td>
-                                <td>${nc.cause}</td>
-                                <td>${nc.aCorrettiva}</td>
-                                <td>${nc.aPreventiva}</td>
-                                <td>${nc.intesaComp}</td>
                                 <td>${nc.tipo}</td>
                                 <td>${nc.cliente}</td>
                                 <td>${nc.teamLeader.matricola}</td>
@@ -184,13 +156,6 @@
                             <th>Data Chiusura</th>
                             <th>Priorità</th>
                             <th>Codice Prodotto</th>
-                            <th>Costo NC</th>
-                            <th>Reparto Prodotto</th>
-                            <th>Azioni di Contenimento</th>
-                            <th>Cause</th>
-                            <th>Azioni Correttive</th>
-                            <th>Azioni Preventive</th>
-                            <th>Intesa e Comprensione</th>
                             <th>Tipo</th>
                             <th>Cliente</th>
                             <th>Richiedente</th>
@@ -206,13 +171,6 @@
                                 <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                 <td>${nc.codiceProdotto}</td>
-                                <td>${nc.costoNC}</td>
-                                <td>${nc.repartoP}</td>
-                                <td>${nc.aContenimento}</td>
-                                <td>${nc.cause}</td>
-                                <td>${nc.aCorrettiva}</td>
-                                <td>${nc.aPreventiva}</td>
-                                <td>${nc.intesaComp}</td>
                                 <td>${nc.tipo}</td>
                                 <td>${nc.cliente}</td>
                                 <td>${nc.teamLeader.matricola}</td>

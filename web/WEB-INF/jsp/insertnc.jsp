@@ -124,53 +124,73 @@
                                             <div class="form-group" hidden="true">
                                             </c:otherwise>
                                         </c:choose>
-                                        <form:label path="cliente" hidden="">Cliente</form:label>
+                                        <form:label path="cliente">Cliente</form:label>
                                         <form:input class="form-control" path="cliente" placeholder="Inserisci il nome del cliente"/>
-                                    </div>
+                                        <c:choose>
+                                            <c:when test="${(submit=='Modifica')&&(nc.cliente!=null)}"></div></c:when>
+                                        <c:otherwise></div></c:otherwise>
+                                    </c:choose>
                                     <c:choose>
                                         <c:when test="${(submit=='Modifica')&&(nc.richiedente!=null)}">
-                                            <div class="form-group">
-                                            </c:when>
-                                            <c:otherwise>
-                                                <div class="form-group" hidden="true">
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <form:label path="richiedente.matricola">Richiedente</form:label>
-                                            <form:select class="form-control" path="richiedente.matricola">
-                                                <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
-                                                <form:options items="${dipendenti}" />
-                                            </form:select>
-                                        </div>
-                                    </div>
+                                        <div class="form-group">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="form-group" hidden="true">
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <form:label path="richiedente.matricola">Richiedente</form:label>
+                                        <form:select class="form-control" path="richiedente.matricola">
+                                            <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
+                                            <form:options items="${dipendenti}" />
+                                        </form:select>
+                                        <c:choose>
+                                            <c:when test="${(submit=='Modifica')&&(nc.richiedente!=null)}"></div></c:when>
+                                        <c:otherwise></div></c:otherwise>
+                                    </c:choose>
+
+
+                                <div class="form-group">
+                                    <form:label path="membri">Team di Lavoro</form:label>
+                                    <form:select class="form-control" path="membri" multiple="true">
+                                        <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
+                                        <form:options items="${dipendenti}" />
+                                    </form:select>
+
                                 </div>
-                                <c:choose>
-                                    <c:when test="${submit=='Modifica'}">
-                                        <input type="submit" class="btn-block btn btn-default" name="update" value="Aggiorna NC"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <input type="submit" class="btn-block btn btn-default" name="insert" value="Inserisci NC"/>
-                                    </c:otherwise> 
-                                </c:choose> 
-                            </form:form>
+                            </div>
                         </div>
-                    </div>
-                    <footer class="footer pt-4 mt-4">
-                        <div class="footer-copyright py-3 text-center">
-                            © 2018 Copyright: <h5 class="text-primary">Gabriele Romano</h5>
-                        </div>
-                    </footer>
+                        <c:choose>
+                            <c:when test="${submit=='Modifica'}">
+                                <input type="submit" class="btn-block btn btn-default" name="update" value="Aggiorna NC"/>
+                            </c:when>
+                            <c:otherwise>
+                                <input type="submit" class="btn-block btn btn-default" name="insert" value="Inserisci NC"/>
+                            </c:otherwise> 
+                        </c:choose> 
+                    </form:form>
                 </div>
-                </body>
-                </html>
-                <script>
-                    $(document).on("change", "input[type=radio]", function () {
-                        var tipo = $('[name="tipo"]:checked').val();
-                        if (tipo === "I") {
-                            $('[name="richiedente.matricola"]').parent().prop("hidden", "");
-                            $('[name="cliente"]').parent().prop("hidden", "hidden");
-                        } else {
-                            $('[name="richiedente.matricola"]').parent().prop("hidden", "hidden");
-                            $('[name="cliente"]').parent().prop("hidden", "");
-                        }
-                    });
-                </script>
+            </div>
+            <footer class="footer pt-4 mt-4">
+                <div class="footer-copyright py-3 text-center">
+                    © 2018 Copyright: <h5 class="text-primary">Gabriele Romano</h5>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
+<script>
+    $(document).on("change", "input[type=radio]", function () {
+        var tipo = $('[name="tipo"]:checked').val();
+        if (tipo === "I") {
+            $('[name="richiedente.matricola"]').parent().prop("hidden", "");
+            $('[name="richiedente.matricola"]').prop("required", "true");
+            $('[name="cliente"]').parent().prop("hidden", "hidden");
+            $('[name="cliente"]').prop("required", "");
+        } else {
+            $('[name="richiedente.matricola"]').parent().prop("hidden", "hidden");
+            $('[name="richiedente.matricola"]').prop("required", "");
+            $('[name="cliente"]').parent().prop("hidden", "");
+            $('[name="cliente"]').prop("required", "true");
+        }
+    });
+</script>

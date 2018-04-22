@@ -13,9 +13,8 @@
             <!-- https://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html per se authority-->
             <sec:authorize access="isAnonymous()">
                 <div class="row">
-                    <div class="col-md-8">
-                        <br/>
-                        <h3><a href="<c:url value="/login"/>">Accedi</a> per visualizzare le NC</h3>
+                    <div class="col">
+                        <jsp:include page="torta.jsp"/>
                     </div>
                 </div>
             </sec:authorize>
@@ -43,9 +42,7 @@
                                         <th>Numero NC</th>
                                         <th>Titolo</th>
                                         <th>Data Apertura</th>
-                                        <th>Data Chiusura</th>
                                         <th>Priorità</th>
-                                        <th>Codice Prodotto</th>
                                         <th>Azioni</th>
 
                                         </tr>
@@ -54,9 +51,7 @@
                                                 <td>${nc.numeroNC}</td>
                                                 <td>${nc.titolo}</td>
                                                 <td>${nc.dataA}</td>
-                                                <td>${nc.dataC==null ? "Non definita" : nc.dataC}</td>
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
-                                                <td>${nc.codiceProdotto}</td>
                                                 <td>
                                                     <form action="${delete}" method="GET">
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
@@ -93,9 +88,7 @@
                                         <th>Numero NC</th>
                                         <th>Titolo</th>
                                         <th>Data Apertura</th>
-                                        <th>Data Chiusura</th>
                                         <th>Priorità</th>
-                                        <th>Codice Prodotto</th>
                                         <th>Azioni</th>
 
                                         </tr>
@@ -104,9 +97,7 @@
                                                 <td>${nc.numeroNC}</td>
                                                 <td>${nc.titolo}</td>
                                                 <td>${nc.dataA}</td>
-                                                <td>${nc.dataC==null ? "Non definita" : nc.dataC}</td>
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
-                                                <td>${nc.codiceProdotto}</td>
                                                 <td>
                                                     <form action="${delete}" method="GET">
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
@@ -142,9 +133,7 @@
                                         <th>Numero NC</th>
                                         <th>Titolo</th>
                                         <th>Data Apertura</th>
-                                        <th>Data Chiusura</th>
                                         <th>Priorità</th>
-                                        <th>Codice Prodotto</th>
                                         <th>Azioni</th>
 
                                         </tr>
@@ -153,9 +142,7 @@
                                                 <td>${nc.numeroNC}</td>
                                                 <td>${nc.titolo}</td>
                                                 <td>${nc.dataA}</td>
-                                                <td>${nc.dataC==null ? "Non definita" : nc.dataC}</td>
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
-                                                <td>${nc.codiceProdotto}</td>
                                                 <td>
                                                     <form action="${delete}" method="GET">
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
