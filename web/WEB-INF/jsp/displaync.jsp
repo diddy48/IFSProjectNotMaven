@@ -3,6 +3,7 @@
 <html>
     <title>Mostra NC</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="icon" href="<c:url value="/resources/img/vite-icona-vettore-clipart_csp50198116.png"/>" type="image/png"/>
     <form id="form1">
         <div id="dvContainer">
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>

@@ -7,7 +7,7 @@ public enum RepartoProdotto {
 
     Progettazione("Progettazione"),
     Produzione("Produzione"),
-    LogisticaE("Logistica in Uscita"),
+    LogisticaE("Logistica in Entrata"),
     LogisticaU("Logistica in Uscita"),
     Commerciale("Commerciale"),
     Amministrativo("Amministrativo");

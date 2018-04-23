@@ -116,47 +116,25 @@
                                 <form:textarea class="form-control" path="intesaComp" rows="5" placeholder="Inserisci la descrizione" />
                             </div>
                             <div class=" col-md-6">
-                                <c:choose>
-                                    <c:when test="${(submit=='Modifica')&&(nc.cliente!=null)}">
-                                        <div class="form-group">
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class="form-group" hidden="true">
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <form:label path="cliente">Cliente</form:label>
-                                        <form:input class="form-control" path="cliente" placeholder="Inserisci il nome del cliente"/>
-                                        <c:choose>
-                                            <c:when test="${(submit=='Modifica')&&(nc.cliente!=null)}"></div></c:when>
-                                        <c:otherwise></div></c:otherwise>
-                                    </c:choose>
-                                    <c:choose>
-                                        <c:when test="${(submit=='Modifica')&&(nc.richiedente!=null)}">
-                                        <div class="form-group">
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class="form-group" hidden="true">
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <form:label path="richiedente.matricola">Richiedente</form:label>
-                                        <form:select class="form-control" path="richiedente.matricola">
-                                            <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
-                                            <form:options items="${dipendenti}" />
-                                        </form:select>
-                                        <c:choose>
-                                            <c:when test="${(submit=='Modifica')&&(nc.richiedente!=null)}"></div></c:when>
-                                        <c:otherwise></div></c:otherwise>
-                                    </c:choose>
-
-
-                                <div class="form-group">
-                                    <form:label path="membri">Team di Lavoro</form:label>
-                                    <form:select class="form-control" path="membri" multiple="true">
+                                <div class="form-group" hidden=${(submit=='Modifica')&&(nc.cliente!=null) ? "" : "hidden"}>
+                                    <form:label path="cliente">Cliente</form:label>
+                                    <form:input class="form-control" path="cliente" placeholder="Inserisci il nome del cliente"/>
+                                </div>
+                                <div class="form-group" hidden=${(submit=='Modifica')&&(nc.richiedente!=null) ? "" : "hidden"}>
+                                    <form:label path="richiedente.matricola">Richiedente</form:label>
+                                    <form:select class="form-control" path="richiedente.matricola">
                                         <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
                                         <form:options items="${dipendenti}" />
                                     </form:select>
-
                                 </div>
+                                <!--<div class="form-group">
+                                <form:label path="membri">Team di Lavoro</form:label>
+                                <form:select class="form-control" path="membri" multiple="true">
+                                    <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
+                                    <form:options items="${dipendenti}" />
+                                </form:select>
+
+                            </div>-->
                             </div>
                         </div>
                         <c:choose>
