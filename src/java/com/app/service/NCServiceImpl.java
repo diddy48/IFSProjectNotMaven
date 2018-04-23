@@ -28,6 +28,11 @@ public class NCServiceImpl implements NCService {
     }
 
     @Override
+    public List<NC> findSegnalazioni() {
+        return dao.findSegnalazioni();
+    }
+
+    @Override
     public void saveOrUpdateNC(NC nc) {
         dao.saveOrUpdateNC(nc);
     }
@@ -55,7 +60,6 @@ public class NCServiceImpl implements NCService {
     public String getFase(int numeroNC) {
         return dao.getFase(numeroNC);
     }
-
 
     @Override
     public List<NC> findAll() {

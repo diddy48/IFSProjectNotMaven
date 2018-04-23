@@ -29,6 +29,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -55,7 +56,7 @@ public class LeaderController {
             @RequestParam(value = "update", required = false) String update,
             @RequestParam(value = "numeroNC", required = false) Integer numeroNC,
             @RequestParam("submit") String submit) {
-        model.addAttribute("submit",submit);
+        model.addAttribute("submit", submit);
         NC nc = new NC();
         if (added != null) {
             model.addAttribute("insert", added);
@@ -124,6 +125,19 @@ public class LeaderController {
         serviceNc.deleteNC(numeroNC);
         model.addAttribute("added", "Hai eliminato con successo una Non Conformita'");
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/enable", method = GET)
+    public String enableNC(
+            @RequestParam(value = "numeroNC", required = true) Integer numeroNC,
+            @RequestParam(value = "submit", required = true) String submit,
+            ModelMap model) {
+        NC nc = serviceNc.findById(numeroNC);
+        nc.setEnabled(1);
+        serviceNc.saveOrUpdateNC(nc);
+        model.addAttribute("submit", submit);
+        model.addAttribute("numeroNC", numeroNC);
+        return "redirect:/leader/insertNC";
     }
 
     public Map<String, String> getMatricoleNome() {

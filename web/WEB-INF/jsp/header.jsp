@@ -46,9 +46,11 @@
                         <a class="nav-link" href="<c:url value="/admin/home"/>"> Gestisci i dipendenti <span class="sr-only">(current)</span></a>
                     </li>
                 </sec:authorize>
+                <sec:authorize access="!hasRole('ROLE_ADMIN')&&!hasRole('ROLE_LEADER')&&hasRole('ROLE_USER')">
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/user/insertNC"/>"> Inserisci una nuova segnalazione</a>
                     </li>
+                </sec:authorize>
                 <!--<li class="nav-item">
                     <a class="nav-link disabled" href="#">Disabled</a>
                 </li>-->

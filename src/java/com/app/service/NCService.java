@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface NCService {
     NC findById(int id);
+    List<NC> findSegnalazioni();
     void saveOrUpdateNC(NC nc);
     void deleteNC(int id);
     List<NC> findNCbyFase(String fase);

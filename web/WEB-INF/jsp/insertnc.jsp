@@ -34,15 +34,17 @@
                         <div class="error text-success">${update}</div>
                     </c:if>
                     <c:url value="/leader/addNC" var="action"/>
-                    <form:form method="GET" modelAttribute="nc" action="${action}" enctype="multipart/form-data">            
-                        <c:choose>
-                            <c:when test="${numeroNC!=0}">
-                                <div class="form-group">
-                                    <form:label path="numeroNC">Numero NC</form:label>
-                                    <form:input class="form-control" path="numeroNC" readonly="true"/>
-                                </div>
-                            </c:when>
-                        </c:choose>
+                    <form:form method="GET" modelAttribute="nc" action="${action}" enctype="multipart/form-data">      
+                        <c:if test="${numeroNC!=0}">
+                            <div class="form-group" >
+                                <form:label path="numeroNC" >Numero NC</form:label>
+                                <form:input class="form-control" path="numeroNC" readonly="true" />
+                            </div>
+                        </c:if>
+                        <div class="form-group"  hidden="true" >
+                            <form:label path="enabled">Abilitata</form:label>
+                            <form:input class="form-control" path="enabled" readonly="true" value="1"/>
+                        </div>
                         <div class="row">
                             <div class="form-group col-md-8">
                                 <form:label path="titolo">Titolo della Non Conformità</form:label>
@@ -64,10 +66,10 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <form:label path="dataA">Data Apertura</form:label>
-                                    <input class="form-control" type="date" name="dataA" required/>
+                                    <input class="form-control" type="date" name="dataA" required=""/>
                                 </div>
                                 <div class="form-group col-md-3">
-                                <form:label path="dataC">Data Chiusura</form:label><!--value="${not empty nc.dataC ? nc.dataC : "" }"-->
+                                <form:label id ="dataC" path="dataC">Data Chiusura</form:label><!--value="${not empty nc.dataC ? nc.dataC : "" }"-->
                                     <input class="form-control" type="date"  name="dataC"  />
                                 </div>
                                 <div class="form-group col-md-3">
@@ -171,4 +173,11 @@
             $('[name="cliente"]').prop("required", "true");
         }
     });
+
+    /*$(document).on("click", "input[name=dataC]", function () {
+        var dataC = $('[name="dataC"]').val();
+        if (dataC != null) {
+            $('[name="costoNC"]').prop("required", "true");
+        }
+    });*/
 </script>

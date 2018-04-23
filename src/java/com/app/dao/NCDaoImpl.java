@@ -44,6 +44,11 @@ public class NCDaoImpl implements NCDao {
     }
 
     @Override
+    public List<NC> findSegnalazioni() {
+        return getSession().createCriteria(NC.class).add(Restrictions.eq("enabled", 0)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+    }
+
+    @Override
     public void saveOrUpdateNC(NC nc) {
         getSession().saveOrUpdate(nc);
     }
@@ -108,11 +113,11 @@ public class NCDaoImpl implements NCDao {
         Criteria criteria = getSession().createCriteria(NC.class);
         Criterion restrAzioni = criteriaByFase(fase);
         if (fase.equals("A")) {
-            criteria.add(Restrictions.and(restrAzioni, Restrictions.isNull("dataC")));
+            criteria.add(Restrictions.and(restrAzioni, Restrictions.isNull("dataC"), Restrictions.eq("enabled", 1)));
         } else if (fase.equals("I")) {
-            criteria.add(Restrictions.and(restrAzioni, Restrictions.isNull("dataC")));
+            criteria.add(Restrictions.and(restrAzioni, Restrictions.isNull("dataC"), Restrictions.eq("enabled", 1)));
         } else if (fase.equals("C")) {
-            criteria.add(Restrictions.and(restrAzioni, Restrictions.isNotNull("dataC"), Restrictions.isNotNull("costoNC")));
+            criteria.add(Restrictions.and(restrAzioni, Restrictions.isNotNull("dataC"), Restrictions.isNotNull("costoNC"), Restrictions.eq("enabled", 1)));
         }
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return criteria.list();
@@ -152,6 +157,7 @@ public class NCDaoImpl implements NCDao {
     }
 //Non in uso in questo momento
     //non va I e C
+
     @Override
     public String getFase(int numeroNC) {
         Criteria criteria = getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", numeroNC));
@@ -163,5 +169,10 @@ public class NCDaoImpl implements NCDao {
             return "Chiusa";
         }
         return "Non definita";
+    }
+
+    @Override
+    public List<NC> filterNC(List<NC> nc, String filter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -22,6 +22,7 @@
                 <c:url value="/leader/deleteNC" var="delete"/>
                 <c:url value="/leader/insertNC" var="update"/>
                 <c:url value="/user/displayNC" var="display"/>
+                <c:url value="/leader/enable" var="enable"/>
                 <div class="row">
                     <div class="col-md-7">
                         <!-- For login user -->
@@ -75,7 +76,7 @@
                                     </table>
                                 </c:when>
                                 <c:otherwise>
-                                    <h4>Non sono presenti NC aperte</h4>
+                                    <h4>Non sono presenti non conformità aperte al momento</h4>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -123,7 +124,7 @@
                                     </table>
                                 </c:when>
                                 <c:otherwise>
-                                    <h4>Non sono presenti NC intermedie</h4>
+                                    <h4>Non sono presenti non conformità intermedie al momento</h4>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -170,7 +171,65 @@
                                     </table>
                                 </c:when>
                                 <c:otherwise>
-                                    <h4>Non sono presenti NC chiuse</h4>
+                                    <h4>Non sono presenti non conformità chiuse al momento</h4>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                </div>
+                <c:if test="${not empty insert}">
+                    <div class="error text-success">${insert}</div>
+                </c:if>
+                <c:if test="${not empty error}">
+                    <div class="error text-danger">${error}</div>
+                </c:if>
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_LEADER')">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h3>Le tue segnalazioni</h3>
+                        <div class="table-responsive">
+                            <c:choose>
+                                <c:when test="${not empty segnalazioni}">
+                                    <table class="table table-striped table-bordered">
+                                        <th>Numero NC</th>
+                                        <th>Titolo</th>
+                                        <th>Descrizione</th>
+                                        <th>Data Apertura</th>
+                                        <th>Priorità</th>
+                                        <th>Azioni</th>
+
+                                        </tr>
+                                        <c:forEach items="${segnalazioni}" var="nc">
+                                            <tr>
+                                                <td>${nc.numeroNC}</td>
+                                                <td>${nc.titolo}</td>
+                                                <td>${nc.descrizione}</td>
+                                                <td>${nc.dataA}</td>
+                                                <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
+                                                <td>
+                                                    <sec:authorize access="hasRole('ROLE_LEADER')">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <form action="${delete}" method="GET">
+                                                                    <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                                    <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
+                                                                </form>
+                                                            </div><div class="col-md-4">
+                                                                <form action="${enable}" method="GET">
+                                                                    <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                                    <input class="btn btn-primary" type="submit" name="submit" value="Abilita" />
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </sec:authorize>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+                                </c:when>
+                                <c:otherwise>
+                                    <h4>Non sono presenti segnalazioni al momento</h4>
                                 </c:otherwise>
                             </c:choose>
                         </div>

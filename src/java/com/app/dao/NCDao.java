@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface NCDao {
     NC findById(int id);
+    List<NC> findSegnalazioni();
     void saveOrUpdateNC(NC dip);
     void deleteNC(int id);
     List<NC> findNCbyFase(String fase);
@@ -21,5 +22,12 @@ public interface NCDao {
     List<NC> findNCAppartenereById(int id);
     String getFase(int numeroNC);
     List<NC> findAll();
+    /**
+     * Filtra le tue NC
+     * @param nc lista delle nc
+     * @param filter Responsabile, Leader, Richiedente, Membro
+     * @return lista delle nc filtrate
+     */
+    List<NC> filterNC(List<NC> nc,String filter);
 }
 

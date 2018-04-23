@@ -27,6 +27,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import static org.aspectj.lang.reflect.DeclareAnnotation.Kind.Type;
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -57,11 +61,12 @@ public class NC implements Serializable {
     private Dipendenti teamLeader;
     private Set<Appartenere> membri = new HashSet();
     private Set<Responsabilita> responsabili = new HashSet();
+    private int enabled;
 
     public NC() {
     }
 
-    public NC(int numeroNC, String titolo, String descrizione, Date dataA, Date dataC, Priorita priorita, Integer codiceProdotto, Float costoNC, RepartoProdotto repartoP, String aContenimento, String cause, String aCorrettiva, String aPreventiva, String intesaComp, Tipo tipo, String cliente, Dipendenti richiedente, Dipendenti teamLeader) {
+    public NC(int numeroNC, String titolo, String descrizione, Date dataA, Date dataC, Priorita priorita, Integer codiceProdotto, Float costoNC, RepartoProdotto repartoP, String aContenimento, String cause, String aCorrettiva, String aPreventiva, String intesaComp, Tipo tipo, String cliente, Dipendenti richiedente, Dipendenti teamLeader, int enabled) {
         this.numeroNC = numeroNC;
         this.titolo = titolo;
         this.descrizione = descrizione;
@@ -80,8 +85,9 @@ public class NC implements Serializable {
         this.cliente = cliente;
         this.richiedente = richiedente;
         this.teamLeader = teamLeader;
+        this.enabled = enabled;
     }
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "NumeroNC")
@@ -111,8 +117,9 @@ public class NC implements Serializable {
         this.descrizione = descrizione;
     }
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "DataApertura", nullable = false)
-    @DateTimeFormat(pattern="yyyy-MM-dd") 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getDataA() {
         return dataA;
     }
@@ -121,8 +128,9 @@ public class NC implements Serializable {
         this.dataA = dataA;
     }
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "DataChiusura")
-    @DateTimeFormat(pattern="yyyy-MM-dd") 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getDataC() {
         return dataC;
     }
@@ -271,6 +279,15 @@ public class NC implements Serializable {
         this.responsabili = responsabili;
     }
 
+    @Column(name = "Enabled", nullable = false)
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -286,7 +303,7 @@ public class NC implements Serializable {
         if (this.numeroNC != other.numeroNC) {
             return false;
         }
-        if (this.codiceProdotto != other.codiceProdotto) {
+        if (this.enabled != other.enabled) {
             return false;
         }
         if (Float.floatToIntBits(this.costoNC) != Float.floatToIntBits(other.costoNC)) {
@@ -325,6 +342,12 @@ public class NC implements Serializable {
         if (this.priorita != other.priorita) {
             return false;
         }
+        if (!Objects.equals(this.codiceProdotto, other.codiceProdotto)) {
+            return false;
+        }
+        if (!Objects.equals(this.costoNC, other.costoNC)) {
+            return false;
+        }
         if (this.repartoP != other.repartoP) {
             return false;
         }
@@ -344,30 +367,6 @@ public class NC implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + this.numeroNC;
-        hash = 59 * hash + Objects.hashCode(this.titolo);
-        hash = 59 * hash + Objects.hashCode(this.descrizione);
-        hash = 59 * hash + Objects.hashCode(this.dataA);
-        hash = 59 * hash + Objects.hashCode(this.dataC);
-        hash = 59 * hash + Objects.hashCode(this.priorita);
-        hash = 59 * hash + Objects.hashCode(this.codiceProdotto);
-        hash = 59 * hash + Objects.hashCode(this.costoNC);
-        hash = 59 * hash + Objects.hashCode(this.repartoP);
-        hash = 59 * hash + Objects.hashCode(this.aContenimento);
-        hash = 59 * hash + Objects.hashCode(this.cause);
-        hash = 59 * hash + Objects.hashCode(this.aCorrettiva);
-        hash = 59 * hash + Objects.hashCode(this.aPreventiva);
-        hash = 59 * hash + Objects.hashCode(this.intesaComp);
-        hash = 59 * hash + Objects.hashCode(this.tipo);
-        hash = 59 * hash + Objects.hashCode(this.cliente);
-        hash = 59 * hash + Objects.hashCode(this.richiedente);
-        hash = 59 * hash + Objects.hashCode(this.teamLeader);
-        return hash;
     }
 
 }

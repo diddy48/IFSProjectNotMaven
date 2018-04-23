@@ -44,25 +44,9 @@ public class MainController {
         model.addAttribute("ncAperte", serviceNc.findNCbyFase("A"));
         model.addAttribute("ncIntermedie", serviceNc.findNCbyFase("I"));
         model.addAttribute("ncChiuse", serviceNc.findNCbyFase("C"));
+        model.addAttribute("segnalazioni",serviceNc.findSegnalazioni());
         return "home";
     }
-
-    /*@RequestMapping(value = "/showNC", method = RequestMethod.GET)
-    public String listNC(ModelMap model, Principal principal, @RequestParam(value = "matricola", required = false) Integer matricola) {
-    Dipendenti dipendente;
-    if (matricola == null) {
-    dipendente = serviceDip.findByUsername(principal.getName());
-    model.addAttribute("dip", dipendente);
-    } else {
-    dipendente = serviceDip.findById(matricola);
-    }
-    model.addAttribute("dipendente", dipendente);
-    model.addAttribute("ncLeader", dipendente.getNcLeader());
-    model.addAttribute("ncRichiede", dipendente.getNcRichiede());
-    model.addAttribute("ncResponsabile", serviceNc.findNCResponsabileById(dipendente.getMatricola()));
-    model.addAttribute("ncMembro", serviceNc.findNCAppartenereById(dipendente.getMatricola()));
-    return "nc";
-    }*/
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String login(@RequestParam(value = "error", required = false) String error,
@@ -106,10 +90,4 @@ public class MainController {
         return "403";
     }
 
-    /*@RequestMapping(value = "/displayNC", method = GET)
-    public String displayNC(ModelMap model, @RequestParam("numeroNC") Integer numeroNC,@RequestParam(value="fase", required=false) String fase) {
-    model.addAttribute("nc",serviceNc.findById(numeroNC));
-    model.addAttribute("fase",fase);//serviceNc.getFase(numeroNC));
-    return "displaync";
-    }*/
 }
