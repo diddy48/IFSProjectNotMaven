@@ -21,7 +21,7 @@
             <sec:authorize access="hasRole('ROLE_USER')">
                 <c:url value="/leader/deleteNC" var="delete"/>
                 <c:url value="/leader/insertNC" var="update"/>
-                <c:url value="/displayNC" var="display"/>
+                <c:url value="/user/displayNC" var="display"/>
                 <div class="row">
                     <div class="col-md-7">
                         <!-- For login user -->
@@ -53,16 +53,17 @@
                                                 <td>${nc.dataA}</td>
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                                 <td>
-                                                    <form action="${delete}" method="GET">
-                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
-                                                        <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
-                                                    </form>
+                                                    <sec:authorize access="hasRole('ROLE_LEADER')">
+                                                        <form action="${delete}" method="GET">
+                                                            <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                            <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
+                                                        </form>
 
-                                                    <form action="${update}" method="GET">
-                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
-                                                        <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
-                                                    </form>
-
+                                                        <form action="${update}" method="GET">
+                                                            <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                            <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
+                                                        </form>
+                                                    </sec:authorize>
                                                     <form action="${display}" method="GET">
                                                         <input type="text" name="fase" value="Aperta" hidden="true"/>
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
@@ -99,15 +100,18 @@
                                                 <td>${nc.dataA}</td>
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                                 <td>
-                                                    <form action="${delete}" method="GET">
-                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
-                                                        <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
-                                                    </form>
 
-                                                    <form action="${update}" method="GET">
-                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
-                                                        <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
-                                                    </form>
+                                                    <sec:authorize access="hasRole('ROLE_LEADER')">
+                                                        <form action="${delete}" method="GET">
+                                                            <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                            <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
+                                                        </form>
+
+                                                        <form action="${update}" method="GET">
+                                                            <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                            <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
+                                                        </form>
+                                                    </sec:authorize>
                                                     <form action="${display}" method="GET">
                                                         <input type='text' name="fase" value="Intermedia" hidden="true"/>
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
@@ -144,15 +148,17 @@
                                                 <td>${nc.dataA}</td>
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                                 <td>
-                                                    <form action="${delete}" method="GET">
-                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
-                                                        <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
-                                                    </form>
+                                                    <sec:authorize access="hasRole('ROLE_LEADER')">
+                                                        <form action="${delete}" method="GET">
+                                                            <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                            <input class="btn btn-danger" type="submit" name="delete" value="Elimina" />
+                                                        </form>
 
-                                                    <form action="${update}" method="GET">
-                                                        <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
-                                                        <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
-                                                    </form>
+                                                        <form action="${update}" method="GET">
+                                                            <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                            <input class="btn btn-primary" type="submit" name="submit" value="Modifica" />
+                                                        </form>
+                                                    </sec:authorize>
                                                     <form action="${display}" method="GET">
                                                         <input type='text' name="fase" value="Chiusa" hidden="true"/>
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>

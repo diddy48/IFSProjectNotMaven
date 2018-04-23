@@ -25,7 +25,7 @@
                             Non-Conformità
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="<c:url value="/showNC/${dip.matricola}"/>"> Mostra le tue Non Conformità </a>
+                            <a class="dropdown-item" href="<c:url value="/user/showNC/${dip.matricola}"/>"> Mostra le tue Non Conformità </a>
                             <sec:authorize access="hasRole('ROLE_LEADER')">
                                 <a class="dropdown-item" href="<c:url value="/leader/insertNC?submit=Inserisci" />">Inserisci una nuova NC</a>
 
@@ -46,6 +46,9 @@
                         <a class="nav-link" href="<c:url value="/admin/home"/>"> Gestisci i dipendenti <span class="sr-only">(current)</span></a>
                     </li>
                 </sec:authorize>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/user/insertNC"/>"> Inserisci una nuova segnalazione</a>
+                    </li>
                 <!--<li class="nav-item">
                     <a class="nav-link disabled" href="#">Disabled</a>
                 </li>-->
