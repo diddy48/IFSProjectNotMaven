@@ -171,10 +171,6 @@
                     </div>
                 </div>
             </sec:authorize>
-            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                <br/>
-                <h2>Clicca <a href="<c:url value="/admin/home"/>">qui</a> per vedere i Dipendenti</h2>
-            </sec:authorize>
         </div>
     </body>
 </html>

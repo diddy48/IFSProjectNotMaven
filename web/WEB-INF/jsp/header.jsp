@@ -42,6 +42,9 @@
                             <a class="dropdown-item" href="<c:url value="/leader/insertNC?submit=Inserisci" />">Inserisci una nuova NC</a>
                         </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/admin/home"/>"> Gestisci i dipendenti <span class="sr-only">(current)</span></a>
+                    </li>
                 </sec:authorize>
                 <!--<li class="nav-item">
                     <a class="nav-link disabled" href="#">Disabled</a>

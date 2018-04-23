@@ -2,14 +2,14 @@
 <%@page session="true"%>
 <html>
     <head>
-        <title>Gestione Nc: Dipedenti</title>
+        <title>Gestione Nc: Dipendenti</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <nav class="navbar navbar-expand-md sticky-top  navbar-dark bg-primary">
+    <body><jsp:include page="header.jsp"/>
+        <!--<nav class="navbar navbar-expand-md sticky-top  navbar-dark bg-primary">
             <a class="navbar-brand" href="<c:url value="/"/>">Gestione delle Non Conformità</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@
                     </li>
                     <!--<li class="nav-item">
                         <a class="nav-link disabled" href="#">Disabled</a>
-                    </li>-->
+                    </li>
                 </ul>
             </div>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -42,7 +42,7 @@
                     </ul>
                 </div>
             </c:if>
-        </nav>
+        </nav>-->
         <div class="container-fluid">
             <h1>Dipendenti</h1>  
             <c:if test="${pageContext.request.userPrincipal.name != null}">
