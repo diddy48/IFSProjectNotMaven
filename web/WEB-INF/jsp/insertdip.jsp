@@ -23,22 +23,22 @@
                 <br/>
                 <h1>Inserisci i dati del dipendente</h1>
                     <c:url value="/admin/addDip"  var="insert"/>
-                    <form action="${insert}"  method="POST">
+                    <form action="${insert}"  method="GET">
                         <div class="form-group">
-                            <form:label path="dip.username">Username </form:label>
-                            <form:input path="dip.username" required="true" class="form-control" placeholder="Inserisci lo username del dipendente" />
+                            <form:label path="dip.username.username">Username </form:label>
+                            <form:input path="dip.username.username" required="true" class="form-control" placeholder="Inserisci lo username del dipendente" />
                         </div>
                         <div class="form-group">
                             <form:label path="dip.nome">Nome: </form:label>
                             <form:input path="dip.nome" required="true" class="form-control" placeholder="Inserisci il nome del dipendente" />
                         </div>
                         <div class="form-group">
-                            <form:label path="dip.cognome">Nome: </form:label>
+                            <form:label path="dip.cognome">Cognome </form:label>
                             <form:input path="dip.cognome" required="true" class="form-control" placeholder="Inserisci il nome del dipendente" />
                         </div>
                         <div class="form-group">
                             <form:label path="user.password">Password: </form:label>
-                            <form:input path="user.password" required="true" class="form-control" placeholder="Inserisci la password del dipendente" />
+                            <form:input path="user.password" type="password" required="true" class="form-control" value="a" placeholder="Inserisci la password del dipendente" />
                         </div>
                         <div class="form-group">
                             <form:label path="dip.cf">Codice Fiscale:  </form:label>
@@ -48,7 +48,11 @@
                             <form:label path="dip.dataNascita">Data di nascita </form:label>
                             <input type="date" name="dip.dataNascita" required="true" class="form-control" placeholder="Inserisci la data di nascita del dipendente" />
                         </div>
+                            <input class="btn btn-primary" type="submit" name="submit" value="Inserisci"/>
                     </form>
+                            <c:if test="${not empty error}" >
+                                <h4 class="text-danger">${error}</h4>
+                            </c:if>
                 </div>
             </div>
         </div>

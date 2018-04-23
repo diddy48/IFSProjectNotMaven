@@ -46,7 +46,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/insertDip", method = GET)
-    public String insertDip(ModelMap model, @RequestParam(value = "error") String error) {
+    public String insertDip(ModelMap model, @RequestParam(value = "error",required=false) String error) {
         model.addAttribute("dip", new Dipendenti());
         model.addAttribute("user", new User());
         if (error != null) {
@@ -55,14 +55,14 @@ public class AdminController {
         return "insertdip";
     }
 
-    @RequestMapping(value = "/addDip", method = POST)
+    @RequestMapping(value = "/addDip", method = GET)
     public String addDip(ModelMap model, @Valid
             @ModelAttribute(value = "dip") Dipendenti dip, BindingResult bindDip,
             @ModelAttribute(value = "user") User user, BindingResult bindUser) {
 
         if (bindUser.hasErrors() || bindDip.hasErrors()) {
             model.addAttribute("error", bindUser.getAllErrors() + "<br/>" + bindDip.getAllErrors());
-            return "/admin/insertDip";
+            return "redirect:/admin/insertDip";
         }
         serviceDip.saveDipedenti(dip);
         serviceUser.addUser(user);
