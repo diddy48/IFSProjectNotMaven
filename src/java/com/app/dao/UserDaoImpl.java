@@ -43,4 +43,9 @@ public class UserDaoImpl implements UserDao {
         return (Dipendenti) getSession().createCriteria(Dipendenti.class).add(Restrictions.eq("username", user.getUsername())).uniqueResult();
     }
 
+    @Override
+    public void addUser(User u) {
+        getSession().save(u);
+    }
+
 }

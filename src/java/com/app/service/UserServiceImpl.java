@@ -32,4 +32,9 @@ public class UserServiceImpl implements UserService {
     public Dipendenti findByUser(User user) {
         return dao.findByUser(user);
     }
+
+    @Override
+    public void addUser(User u) {
+        dao.addUser(u);
+    }
 }

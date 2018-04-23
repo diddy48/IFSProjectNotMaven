@@ -47,8 +47,8 @@
                             Dipendenti
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="<c:url value="/admin/home"/>"> Gestisci i dipendenti <span class="sr-only">(current)</span></a>
-                            <a class="dropdown-item" href="<c:url value="/admin/insertDip"/>"> Aggiungi un dipendente <span class="sr-only">(current)</span></a>
+                            <a class="dropdown-item" href="<c:url value="/admin/home"/>"> Gestisci i dipendenti</a>
+                            <a class="dropdown-item" href="<c:url value="/admin/insertDip"/>"> Aggiungi un dipendente</a>
                         </div>
                     </li>
                 </sec:authorize>

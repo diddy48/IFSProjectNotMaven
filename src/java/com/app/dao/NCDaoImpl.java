@@ -76,7 +76,7 @@ public class NCDaoImpl implements NCDao {
         }
         Criteria criteria3;
         for (Responsabilita r : resp) {
-            List<NC> lista = getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", r.getNc().getNumeroNC())).list();
+            List<NC> lista = getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", r.getNc().getNumeroNC())).add(Restrictions.eq("enabled", 1)).list();
             if (!lista.isEmpty()) {
                 nc.add(lista.get(0));
             }
@@ -99,7 +99,7 @@ public class NCDaoImpl implements NCDao {
         }
         Criteria criteria3;
         for (Appartenere r : resp) {
-            List<NC> lista = getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", r.getNc().getNumeroNC())).list();
+            List<NC> lista = getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", r.getNc().getNumeroNC())).add(Restrictions.eq("enabled", 1)).list();
             if (!lista.isEmpty()) {
                 nc.add(lista.get(0));
             }

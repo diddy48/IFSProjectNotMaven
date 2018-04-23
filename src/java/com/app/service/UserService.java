@@ -17,4 +17,5 @@ public interface UserService {
 
     User findByUserName(String username);
     Dipendenti findByUser(User user);
+    void addUser(User u);
 }
