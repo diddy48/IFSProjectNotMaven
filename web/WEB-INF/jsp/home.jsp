@@ -26,9 +26,9 @@
                 <div class="row">
                     <div class="col-md-7">
                         <!-- For login user -->
-                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                        <c:if test="${dipendente.nome != null}">
                             <h1>
-                                Benvenuto ${pageContext.request.userPrincipal.name}
+                                Benvenuto ${dipendente.nome}
                             </h1>
                         </c:if>
                     </div>

@@ -11,12 +11,7 @@
     <body>
         <jsp:include page="header.jsp"/>
         <div class="container-fluid">
-            <h1>Dipendenti</h1>  
-            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <h3>
-                    Benvenuto : ${pageContext.request.userPrincipal.name}
-                </h3>
-            </c:if>
+            <h1>Gestisci i Dipendenti</h1>  <br/>
 
             <div class="row">
                 <div class="col-md-7">
@@ -48,6 +43,7 @@
                     </c:if>
                 </div>
             </div>
+            <div id="showNC"></div>
         </div>
     </body>
 </html>

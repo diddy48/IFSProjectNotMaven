@@ -172,7 +172,40 @@ public class NCDaoImpl implements NCDao {
     }
 
     @Override
-    public List<NC> filterNC(List<NC> nc, String filter) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<NC> filterNC(List<NC> nc, String filter, int matricolaDip) {
+        List<NC> result = new ArrayList<>();
+        if (filter.compareTo("Leader") == 0) {
+            for (NC ncItem : nc) {
+                if (ncItem.getTeamLeader().getMatricola() == matricolaDip) {
+                    result.add(ncItem);
+                }
+            }
+        } else if (filter.compareTo("Richiedente") == 0) {
+            for (NC ncItem : nc) {
+                if (ncItem.getRichiedente().getMatricola() == matricolaDip) {
+                    result.add(ncItem);
+                }
+            }
+        } else if (filter.compareTo("Responsabile") == 0) {
+            for (NC ncItem : nc) {
+                Set<Responsabilita> responsabili = ncItem.getResponsabili();
+                for (Responsabilita resp : responsabili) {
+                    if (resp.getResponsabile().getMatricola() == matricolaDip) {
+                        result.add(ncItem);
+                    }
+                }
+            }
+        } else if (filter.compareTo("Membro") == 0) {
+            for (NC ncItem : nc) {
+                Set<Appartenere> membri = ncItem.getMembri();
+                for (Appartenere membro : membri) {
+                    if (membro.getMembro().getMatricola() == matricolaDip) {
+                        result.add(ncItem);
+                    }
+                }
+            }
+        }
+        if(result.isEmpty())return nc;
+        return result;
     }
 }

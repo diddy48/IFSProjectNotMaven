@@ -65,4 +65,9 @@ public class NCServiceImpl implements NCService {
     public List<NC> findAll() {
         return dao.findAll();
     }
+
+    @Override
+    public List<NC> filterNC(List<NC> nc, String filter, int MatricolaDip) {
+        return dao.filterNC(nc, filter, MatricolaDip);
+    }
 }

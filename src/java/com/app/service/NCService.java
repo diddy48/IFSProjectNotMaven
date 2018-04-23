@@ -22,4 +22,11 @@ public interface NCService {
     List<NC> findNCAppartenereById(int id);
     String getFase(int numeroNC);
     List<NC> findAll(); 
+    /**
+     * Filtra le tue NC
+     * @param nc lista delle nc
+     * @param filter Responsabile, Leader, Richiedente, Membro
+     * @return lista delle nc filtrate
+     */
+    List<NC> filterNC(List<NC> nc,String filter, int MatricolaDip);
 }

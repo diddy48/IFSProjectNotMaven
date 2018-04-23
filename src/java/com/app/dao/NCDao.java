@@ -28,6 +28,6 @@ public interface NCDao {
      * @param filter Responsabile, Leader, Richiedente, Membro
      * @return lista delle nc filtrate
      */
-    List<NC> filterNC(List<NC> nc,String filter);
+    List<NC> filterNC(List<NC> nc,String filter, int MatricolaDip);
 }
 

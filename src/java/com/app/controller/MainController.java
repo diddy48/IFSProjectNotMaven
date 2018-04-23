@@ -40,11 +40,15 @@ public class MainController {
     NCService serviceNc;
 
     @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
-    public String defaultPage(ModelMap model) {
+    public String defaultPage(ModelMap model, Principal principal) {
+        if (principal != null) {
+            Dipendenti dipendente = serviceDip.findByUsername(principal.getName());
+            model.addAttribute("dipendente",dipendente);
+        }
         model.addAttribute("ncAperte", serviceNc.findNCbyFase("A"));
         model.addAttribute("ncIntermedie", serviceNc.findNCbyFase("I"));
         model.addAttribute("ncChiuse", serviceNc.findNCbyFase("C"));
-        model.addAttribute("segnalazioni",serviceNc.findSegnalazioni());
+        model.addAttribute("segnalazioni", serviceNc.findSegnalazioni());
         return "home";
     }
 

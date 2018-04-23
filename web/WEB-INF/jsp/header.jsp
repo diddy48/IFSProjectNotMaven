@@ -42,8 +42,14 @@
                             <a class="dropdown-item" href="<c:url value="/leader/insertNC?submit=Inserisci" />">Inserisci una nuova NC</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/admin/home"/>"> Gestisci i dipendenti <span class="sr-only">(current)</span></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dipendenti
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="<c:url value="/admin/home"/>"> Gestisci i dipendenti <span class="sr-only">(current)</span></a>
+                            <a class="dropdown-item" href="<c:url value="/admin/insertDip"/>"> Aggiungi un dipendente <span class="sr-only">(current)</span></a>
+                        </div>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="!hasRole('ROLE_ADMIN')&&!hasRole('ROLE_LEADER')&&hasRole('ROLE_USER')">
