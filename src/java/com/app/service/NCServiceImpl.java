@@ -70,4 +70,19 @@ public class NCServiceImpl implements NCService {
     public List<NC> filterNC(List<NC> nc, String filter, int MatricolaDip) {
         return dao.filterNC(nc, filter, MatricolaDip);
     }
+
+    @Override
+    public int[] getCountByReparto() {
+        return dao.getCountByReparto();
+    }
+
+    @Override
+    public int[] getCountByFase() {
+        return dao.getCountByFase();
+    }
+
+    @Override
+    public int[] getCountByMese() {
+        return dao.getCountByMese();
+    }
 }

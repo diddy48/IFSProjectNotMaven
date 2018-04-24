@@ -52,6 +52,10 @@ public class MainController {
         model.addAttribute("ncIntermedie", serviceNc.findNCbyFase("I"));
         model.addAttribute("ncChiuse", serviceNc.findNCbyFase("C"));
         model.addAttribute("segnalazioni", serviceNc.findSegnalazioni());
+        
+        model.addAttribute("calcNCFase",serviceNc.getCountByFase());
+        model.addAttribute("calcNCReparto",serviceNc.getCountByReparto());
+        model.addAttribute("calcNCMese",serviceNc.getCountByMese());
         return "home";
     }
 

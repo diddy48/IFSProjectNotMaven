@@ -14,7 +14,7 @@
             <sec:authorize access="isAnonymous()">
                 <div class="row">
                     <div class="col">
-                        <jsp:include page="torta.jsp"/>
+                        <jsp:include page="grafici.jsp"/>
                     </div>
                 </div>
             </sec:authorize>

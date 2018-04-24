@@ -97,6 +97,14 @@ public class UserController {
         return "displaync";
     }
 
+    @RequestMapping(value="/statistiche" ,method=GET)
+    public String statistiche(ModelMap model){
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
+        model.addAttribute("calcNCFase",serviceNc.getCountByFase());
+        model.addAttribute("calcNCReparto",serviceNc.getCountByReparto());
+        model.addAttribute("calcNCMese",serviceNc.getCountByMese());
+        return "statistiche";
+    }
     public Map<String, String> getMatricoleNome() {
         List<Dipendenti> dips = serviceDip.findAll();
         Map<String, String> matrNom = new HashMap<>();

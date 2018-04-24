@@ -29,4 +29,10 @@ public interface NCService {
      * @return lista delle nc filtrate
      */
     List<NC> filterNC(List<NC> nc,String filter, int MatricolaDip);
+
+    public int[] getCountByReparto();
+
+    public int[] getCountByFase();
+
+    public int[] getCountByMese();
 }

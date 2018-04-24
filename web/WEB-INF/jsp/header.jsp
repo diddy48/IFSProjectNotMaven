@@ -57,6 +57,9 @@
                         <a class="nav-link" href="<c:url value="/user/insertNC"/>"> Inserisci una nuova segnalazione</a>
                     </li>
                 </sec:authorize>
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/user/statistiche"/>"> Statistiche</a>
+                </li>
                 <!--<li class="nav-item">
                     <a class="nav-link disabled" href="#">Disabled</a>
                 </li>-->
@@ -82,7 +85,7 @@
                     <h4><a class="nav-link" href="javascript:formSubmit()"><img width="25px" height="30px" src="<c:url value="/resources/img/exit.png"/>"/></a></h4>
                 </li>
             </ul>
-       </div>
+        </div>
     </c:if>
 </nav>
 <c:url value="/logout" var="logoutUrl" />

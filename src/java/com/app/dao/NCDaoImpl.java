@@ -9,9 +9,16 @@ import com.app.model.Appartenere;
 import com.app.model.Dipendenti;
 import com.app.model.NC;
 import com.app.model.Responsabilita;
+import com.app.objects.RepartoProdotto;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -205,7 +212,96 @@ public class NCDaoImpl implements NCDao {
                 }
             }
         }
-        if(result.isEmpty())return nc;
+        if (result.isEmpty()) {
+            return nc;
+        }
         return result;
+    }
+
+    @Override
+    public int[] getCountByReparto() {
+        int[] a = {0, 0, 0, 0, 0, 0};
+        List<NC> ncs = getSession().createCriteria(NC.class).add(Restrictions.eq("enabled", 1)).list();
+        for (NC nc : ncs) {
+            if (nc.getRepartoP().equals(RepartoProdotto.Amministrativo)) {
+                a[0] += 1;
+            }
+            if (nc.getRepartoP().equals(RepartoProdotto.Commerciale)) {
+                a[1] += 1;
+            }
+            if (nc.getRepartoP().equals(RepartoProdotto.LogisticaE)) {
+                a[2] += 1;
+            }
+            if (nc.getRepartoP().equals(RepartoProdotto.LogisticaU)) {
+                a[3] += 1;
+            }
+            if (nc.getRepartoP().equals(RepartoProdotto.Produzione)) {
+                a[4] += 1;
+            }
+            if (nc.getRepartoP().equals(RepartoProdotto.Progettazione)) {
+                a[5] += 1;
+            }
+        }
+        return a;
+    }
+
+    @Override
+    public int[] getCountByFase() {
+        int[] a = new int[3];
+        a[0] = findNCbyFase("A").size();
+        a[1] = findNCbyFase("I").size();
+        a[2] = findNCbyFase("C").size();
+        return a;
+    }
+
+    @Override
+    public int[] getCountByMese() {
+        int[] a = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        List<NC> ncs = getSession().createCriteria(NC.class).add(Restrictions.eq("enabled", 1)).list();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        for (NC nc : ncs) {
+            try {
+                if (nc.getDataA().compareTo(sdf.parse("01/01/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/01/" + year)) <= 0) {
+                    a[0] += 1;
+                }
+                if (nc.getDataA().compareTo(sdf.parse("01/02/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("28/02/" + year)) <= 0) {
+                    a[1] += 1;
+                }
+                if (nc.getDataA().compareTo(sdf.parse("01/03/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/03/" + year)) <= 0) {
+                    a[2] += 1;
+                }
+                if (nc.getDataA().compareTo(sdf.parse("01/04/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("30/04/" + year)) <= 0) {
+                    a[3] += 1;
+                }
+                if (nc.getDataA().compareTo(sdf.parse("01/05/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/05/" + year)) <= 0) {
+                    a[4] += 1;
+                }
+                if (nc.getDataA().compareTo(sdf.parse("01/06/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("30/06/" + year)) <= 0) {
+                    a[5] += 1;
+                }
+                if (nc.getDataA().compareTo(sdf.parse("01/07/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/07/" + year)) <= 0) {
+                    a[6] += 1;
+                }
+                if (nc.getDataA().compareTo(sdf.parse("01/08/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/08/" + year)) <= 0) {
+                    a[7] += 1;
+                }
+                if (nc.getDataA().compareTo(sdf.parse("01/09/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("30/09/" + year)) <= 0) {
+                    a[8] += 1;
+                }
+                if (nc.getDataA().compareTo(sdf.parse("01/10/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/10/" + year)) <= 0) {
+                    a[9] += 1;
+                }
+                if (nc.getDataA().compareTo(sdf.parse("01/11/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("30/11/" + year)) <= 0) {
+                    a[10] += 1;
+                }
+                if (nc.getDataA().compareTo(sdf.parse("01/12/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/12/" + year)) <= 0) {
+                    a[11] += 1;
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(NCDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return a;
     }
 }
