@@ -35,16 +35,16 @@
                                     <td>${u.username.username}</td>
                                     <td>
                                         <div class="row">
-                                            <div class="col-md-3">
-                                                <form action="${delete}" method="POST">
+                                            <div class="col-md-6">
+                                                <form action="${delete}" method="GET">
                                                     <input type="text" name="matricola" value="${u.matricola}" hidden="true"/>
-                                                    <input class="btn btn-danger" type="submit" name="submit" value="Elimina" />
+                                                    <input class="btn btn-danger btn-block" type="submit" name="submit" value="Elimina" />
                                                 </form> 
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <form action="${showNC}" method="GET">
                                                     <input type="text" name="matricola" value="${u.matricola}" hidden="true"/>
-                                                    <input class="btn btn-secondary" type="submit" name="submit" value="NC commissionate" />
+                                                    <input class="btn btn-secondary btn-block" type="submit" name="submit" value="NC commissionate" />
                                                 </form> 
                                             </div>
                                         </div>

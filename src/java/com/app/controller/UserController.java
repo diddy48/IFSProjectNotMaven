@@ -51,6 +51,7 @@ public class UserController {
         model.addAttribute("reparti", RepartoProdotto.valuesMap());
         model.addAttribute("tipo", Tipo.valuesMap());
         model.addAttribute("nc", new NC());
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "insertsegnalazione";
     }
 
@@ -66,6 +67,7 @@ public class UserController {
                 model.addAttribute("insert", "Hai aggiunto con successo una nuova segnalazione'");
             }
         }
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "redirect:/";
     }
 
@@ -83,6 +85,7 @@ public class UserController {
         model.addAttribute("ncRichiede", dipendente.getNcRichiede());
         model.addAttribute("ncResponsabile", serviceNc.findNCResponsabileById(dipendente.getMatricola()));
         model.addAttribute("ncMembro", serviceNc.findNCAppartenereById(dipendente.getMatricola()));
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "nc";
     }
 
@@ -90,6 +93,7 @@ public class UserController {
     public String displayNC(ModelMap model, @RequestParam("numeroNC") Integer numeroNC, @RequestParam(value = "fase", required = false) String fase) {
         model.addAttribute("nc", serviceNc.findById(numeroNC));
         model.addAttribute("fase", fase);//serviceNc.getFase(numeroNC));
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "displaync";
     }
 

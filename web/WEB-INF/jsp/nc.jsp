@@ -17,168 +17,163 @@
     <body>
         <jsp:include page="header.jsp" />
         <div  class="container-fluid">
-            <h2>Le tue Non Conformità</h2>  
+            <h1>Le tue Non Conformità</h1>  
             <br/>
-            <c:url value="/logout" var="logoutUrl" />
-            <form action="${logoutUrl}" method="post" id="logoutForm">
-                <input type="hidden" name="${_csrf.parameterName}"
-                       value="${_csrf.token}" />
-            </form>
-            <script>
-                function formSubmit() {
-                    document.getElementById("logoutForm").submit();
-                }
-            </script>
-            <div class="col-md-12">
-                <c:if test="${!empty ncLeader}">
-                    <h3>NC di cui è leader</h3>
-                    <table class="table table-striped table-bordered">
-                        <tr>
-                            <th>Numero NC</th>
-                            <th>Titolo</th>
-                            <th>Descrizione</th>
-                            <th>Data Apertura</th>
-                            <th>Data Chiusura</th>
-                            <th>Priorità</th>
-                            <th>Codice Prodotto</th>
-                            <!--<th>Costo NC</th>
-                            <th>Reparto Prodotto</th>
-                            <th>Azioni di Contenimento</th>
-                            <th>Cause</th>
-                            <th>Azioni Correttive</th>
-                            <th>Azioni Preventive</th>
-                            <th>Intesa e Comprensione</th>-->
-                            <th>Tipo</th>
-                            <th>Cliente</th>
-                            <th>Richiedente</th>
-
-                        </tr>
-                        <c:forEach items="${ncLeader}" var="nc">
+            <div class="row">
+                <div class="col-md-12">
+                    <c:if test="${!empty ncLeader}">
+                        <h3>NC di cui è leader</h3>
+                        <table class="table table-striped table-bordered">
                             <tr>
-                                <td>${nc.numeroNC}</td>
-                                <td>${nc.titolo}</td>
-                                <td>${nc.descrizione}</td>
-                                <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
-                                <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
-                                <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
-                                <td>${nc.codiceProdotto}</td>
-                                <!--<td>${nc.costoNC}</td>
-                                <td>${nc.repartoP}</td>
-                                <td>${nc.aContenimento}</td>
-                                <td>${nc.cause}</td>
-                                <td>${nc.aCorrettiva}</td>
-                                <td>${nc.aPreventiva}</td>
-                                <td>${nc.intesaComp}</td>-->
-                                <td>${nc.tipo}</td>
-                                <td>${nc.cliente}</td>
-                                <td>${nc.richiedente.matricola}</td>
+                                <th>Numero NC</th>
+                                <th>Titolo</th>
+                                <th>Descrizione</th>
+                                <th>Data Apertura</th>
+                                <th>Data Chiusura</th>
+                                <th>Priorità</th>
+                                <th>Codice Prodotto</th>
+                                <!--<th>Costo NC</th>
+                                <th>Reparto Prodotto</th>
+                                <th>Azioni di Contenimento</th>
+                                <th>Cause</th>
+                                <th>Azioni Correttive</th>
+                                <th>Azioni Preventive</th>
+                                <th>Intesa e Comprensione</th>-->
+                                <th>Tipo</th>
+                                <th>Cliente</th>
+                                <th>Richiedente</th>
+
                             </tr>
-                        </c:forEach>
-                    </table>
-                </c:if>
-
-                <c:if test="${!empty ncRichiede}">
-                    <h3>NC che ha richiesto</h3>
-                    <table class="table table-striped table-bordered">
-                        <tr>
-                            <th>Numero NC</th>
-                            <th>Titolo</th>
-                            <th>Descrizione</th>
-                            <th>Data Apertura</th>
-                            <th>Data Chiusura</th>
-                            <th>Priorità</th>
-                            <th>Codice Prodotto</th>
-                            <th>Tipo</th>
-                            <th>Cliente</th>
-                            <th>Team Leader</th>
-
-                        </tr>
-                        <c:forEach items="${ncRichiede}" var="nc">
+                            <c:forEach items="${ncLeader}" var="nc">
+                                <tr>
+                                    <td>${nc.numeroNC}</td>
+                                    <td>${nc.titolo}</td>
+                                    <td>${nc.descrizione}</td>
+                                    <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
+                                    <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
+                                    <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
+                                    <td>${nc.codiceProdotto}</td>
+                                    <!--<td>${nc.costoNC}</td>
+                                    <td>${nc.repartoP}</td>
+                                    <td>${nc.aContenimento}</td>
+                                    <td>${nc.cause}</td>
+                                    <td>${nc.aCorrettiva}</td>
+                                    <td>${nc.aPreventiva}</td>
+                                    <td>${nc.intesaComp}</td>-->
+                                    <td>${nc.tipo}</td>
+                                    <td>${nc.cliente}</td>
+                                    <td>${nc.richiedente.matricola}</td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </c:if>
+                    <br/>
+                    <c:if test="${!empty ncRichiede}">
+                        <h3>NC che ha richiesto</h3>
+                        <table class="table table-striped table-bordered">
                             <tr>
-                                <td>${nc.numeroNC}</td>
-                                <td>${nc.titolo}</td>
-                                <td>${nc.descrizione}</td>
-                                <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
-                                <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
-                                <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
-                                <td>${nc.codiceProdotto}</td>
-                                <td>${nc.tipo}</td>
-                                <td>${nc.cliente}</td>
-                                <td>${nc.teamLeader.matricola}</td>
+                                <th>Numero NC</th>
+                                <th>Titolo</th>
+                                <th>Descrizione</th>
+                                <th>Data Apertura</th>
+                                <th>Data Chiusura</th>
+                                <th>Priorità</th>
+                                <th>Codice Prodotto</th>
+                                <th>Tipo</th>
+                                <th>Cliente</th>
+                                <th>Team Leader</th>
+
                             </tr>
-                        </c:forEach>
-                    </table>
-                </c:if>
-
-                <c:if test="${!empty ncResponsabile}">
-                    <h3>NC di cui è responsabile</h3>
-                    <table class="table table-striped table-bordered">
-                        <tr>
-                            <th>Numero NC</th>
-                            <th>Titolo</th>
-                            <th>Descrizione</th>
-                            <th>Data Apertura</th>
-                            <th>Data Chiusura</th>
-                            <th>Priorità</th>
-                            <th>Codice Prodotto</th>
-                            <th>Tipo</th>
-                            <th>Cliente</th>
-                            <th>Richiedente</th>
-                            <th>Team Leader</th>
-
-                        </tr>
-                        <c:forEach items="${ncResponsabile}" var="nc">
+                            <c:forEach items="${ncRichiede}" var="nc">
+                                <tr>
+                                    <td>${nc.numeroNC}</td>
+                                    <td>${nc.titolo}</td>
+                                    <td>${nc.descrizione}</td>
+                                    <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
+                                    <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
+                                    <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
+                                    <td>${nc.codiceProdotto}</td>
+                                    <td>${nc.tipo}</td>
+                                    <td>${nc.cliente}</td>
+                                    <td>${nc.teamLeader.matricola}</td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </c:if>
+                    <br/>
+                    <c:if test="${!empty ncResponsabile}">
+                        <h3>NC di cui è responsabile</h3>
+                        <table class="table table-striped table-bordered">
                             <tr>
-                                <td>${nc.numeroNC}</td>
-                                <td>${nc.titolo}</td>
-                                <td>${nc.descrizione}</td>
-                                <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
-                                <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
-                                <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
-                                <td>${nc.codiceProdotto}</td>
-                                <td>${nc.tipo}</td>
-                                <td>${nc.cliente}</td>
-                                <td>${nc.teamLeader.matricola}</td>
-                                <td>${nc.richiedente.matricola}</td>
+                                <th>Numero NC</th>
+                                <th>Titolo</th>
+                                <th>Descrizione</th>
+                                <th>Data Apertura</th>
+                                <th>Data Chiusura</th>
+                                <th>Priorità</th>
+                                <th>Codice Prodotto</th>
+                                <th>Tipo</th>
+                                <th>Cliente</th>
+                                <th>Richiedente</th>
+                                <th>Team Leader</th>
+
                             </tr>
-                        </c:forEach>
-                    </table>
-                </c:if>
-
-                <c:if test="${!empty ncMembro}">
-                    <h3>NC a cui fa parte come mebro del team di lavoro</h3>
-                    <table class="table table-striped table-bordered">
-                        <tr>
-                            <th>Numero NC</th>
-                            <th>Titolo</th>
-                            <th>Descrizione</th>
-                            <th>Data Apertura</th>
-                            <th>Data Chiusura</th>
-                            <th>Priorità</th>
-                            <th>Codice Prodotto</th>
-                            <th>Tipo</th>
-                            <th>Cliente</th>
-                            <th>Richiedente</th>
-                            <th>Team Leader</th>
-
-                        </tr>
-                        <c:forEach items="${ncMembro}" var="nc">
+                            <c:forEach items="${ncResponsabile}" var="nc">
+                                <tr>
+                                    <td>${nc.numeroNC}</td>
+                                    <td>${nc.titolo}</td>
+                                    <td>${nc.descrizione}</td>
+                                    <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
+                                    <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
+                                    <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
+                                    <td>${nc.codiceProdotto}</td>
+                                    <td>${nc.tipo}</td>
+                                    <td>${nc.cliente}</td>
+                                    <td>${nc.teamLeader.matricola}</td>
+                                    <td>${nc.richiedente.matricola}</td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </c:if>
+                    <br/>
+                    <c:if test="${!empty ncMembro}">
+                        <h3>NC a cui fa parte come mebro del team di lavoro</h3>
+                        <table class="table table-striped table-bordered">
                             <tr>
-                                <td>${nc.numeroNC}</td>
-                                <td>${nc.titolo}</td>
-                                <td>${nc.descrizione}</td>
-                                <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
-                                <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
-                                <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
-                                <td>${nc.codiceProdotto}</td>
-                                <td>${nc.tipo}</td>
-                                <td>${nc.cliente}</td>
-                                <td>${nc.teamLeader.matricola}</td>
-                                <td>${nc.richiedente.matricola}</td>
+                                <th>Numero NC</th>
+                                <th>Titolo</th>
+                                <th>Descrizione</th>
+                                <th>Data Apertura</th>
+                                <th>Data Chiusura</th>
+                                <th>Priorità</th>
+                                <th>Codice Prodotto</th>
+                                <th>Tipo</th>
+                                <th>Cliente</th>
+                                <th>Richiedente</th>
+                                <th>Team Leader</th>
+
                             </tr>
-                        </c:forEach>
-                    </table>
-                </c:if>
+                            <c:forEach items="${ncMembro}" var="nc">
+                                <tr>
+                                    <td>${nc.numeroNC}</td>
+                                    <td>${nc.titolo}</td>
+                                    <td>${nc.descrizione}</td>
+                                    <td>${String.valueOf(nc.dataA).substring(0,10)}</td>
+                                    <td>${nc.dataC==null ? "Non definita" : String.valueOf(nc.dataC).substring(0,10)}</td>
+                                    <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
+                                    <td>${nc.codiceProdotto}</td>
+                                    <td>${nc.tipo}</td>
+                                    <td>${nc.cliente}</td>
+                                    <td>${nc.teamLeader.matricola}</td>
+                                    <td>${nc.richiedente.matricola}</td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </c:if>
+                    <c:if test="${empty ncResponsabile && empty ncLeader && empty ncRichiede && empty ncMembro}">
+                        <h3 class="text-info">Non è presente non conformità di alcun tipo al momento</h3>
+                    </c:if>
+                </div>
             </div>
         </div>
     </body>

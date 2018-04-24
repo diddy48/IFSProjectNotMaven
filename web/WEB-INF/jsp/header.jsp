@@ -9,7 +9,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <nav class="navbar navbar-expand-md sticky-top  navbar-dark bg-primary">
-    <a class="navbar-brand" href="<c:url value="/"/>">Gestione delle Non Conformità</a>
+    <a class="navbar-brand" href="<c:url value="/"/>"><img height="40px" width="40px" src="<c:url value="/resources/img/icona.png"/>"/> Gestione delle Non Conformità</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -66,7 +66,6 @@
     <sec:authorize access="isAnonymous()">
         <div class="navbar-collapse collapse order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
-
                 <li class="nav-item ">
                     <a class="nav-link active" href="<c:url value="/login"/>"> Accedi</a>
                 </li>
@@ -76,12 +75,14 @@
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <div class="navbar-collapse collapse order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
-
                 <li class="nav-item ">
-                    <a class="nav-link" href="javascript:formSubmit()"> Esci</a>
+                    <a class="nav-link active" href="#">Benvenuto <span class="h4">${dipLoggato.nome}</span></a>
+                </li>
+                <li class="nav-item ">
+                    <h4><a class="nav-link" href="javascript:formSubmit()"><img width="25px" height="30px" src="<c:url value="/resources/img/exit.png"/>"/></a></h4>
                 </li>
             </ul>
-        </div>
+       </div>
     </c:if>
 </nav>
 <c:url value="/logout" var="logoutUrl" />

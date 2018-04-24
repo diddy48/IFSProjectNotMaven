@@ -15,7 +15,12 @@ import java.util.List;
 import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -45,6 +50,7 @@ public class AdminController {
     public String adminPage(ModelMap model) {
         List<Dipendenti> dipendenti = serviceDip.findAll();
         model.addAttribute("dipendenti", dipendenti);
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "adminHome";
     }
 
@@ -55,27 +61,32 @@ public class AdminController {
         if (error != null) {
             model.addAttribute("error", error);
         }
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "insertdip";
     }
 
     @RequestMapping(value = "/addDip", method = GET)
     public String addDip(ModelMap model,
-            @Valid @ModelAttribute(value = "dip") Dipendenti dip, BindingResult bindDip//,
-    //@Valid @ModelAttribute(value = "user") User user, BindingResult bindUser
+            @Valid @ModelAttribute(value = "dip") Dipendenti dip, BindingResult bindDip,
+            @Valid @ModelAttribute(value = "user") User user, BindingResult bindUser
     ) {
-        if (bindDip.hasErrors() /*||bindUser.hasErrors()*/) {
-            model.addAttribute("error",/* bindUser.getAllErrors() + */ "<br/>" + bindDip.getAllErrors());
+        user.setUsername(user.getUsername().toUpperCase());
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        if (bindUser.hasErrors()) {
+            model.addAttribute("error", "<br/>" + bindUser.getAllErrors());
             return "redirect:/admin/insertDip";
         }
-        serviceDip.saveDipedenti(dip);
-        User user = new User(dip.getUsername().getUsername(),dip.getUsername().getPassword(),true);
         serviceUser.addUser(user);
+        dip.setUsername(user);
+        serviceDip.saveDipedenti(dip);
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "redirect:/admin/home";
     }
 
-    @RequestMapping(value = "/deleteDip", method = POST)
+    @RequestMapping(value = "/deleteDip", method = GET)
     public String deleteDip(ModelMap model, @RequestParam(value = "matricola") int matricola) {
         serviceDip.deleteDipendenti(matricola);
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "redirect:/admin/home";
     }
 }

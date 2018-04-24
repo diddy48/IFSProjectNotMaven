@@ -98,7 +98,7 @@ public class Dipendenti implements Serializable {
         this.dataNascita = dataNascita;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)//(fetch = FetchType.EAGER, mappedBy = "usernameDip", cascade = CascadeType.ALL)
+    @OneToOne//(cascade = CascadeType.ALL)//(fetch = FetchType.EAGER, mappedBy = "usernameDip", cascade = CascadeType.ALL)
     @JoinColumn(name = "Username")
     public User getUsername() {
         return username;

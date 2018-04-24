@@ -98,6 +98,7 @@ public class LeaderController {
         model.addAttribute("reparti", RepartoProdotto.valuesMap());
         model.addAttribute("tipo", Tipo.valuesMap());
         model.addAttribute("nc", nc);
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "insertnc";
     }
 
@@ -117,6 +118,7 @@ public class LeaderController {
                 model.addAttribute("insert", "Hai aggiunto con successo una nuova Non Conformita'");
             }
         }
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "redirect:/";
     }
 
@@ -124,6 +126,7 @@ public class LeaderController {
     public String deleteNC(@RequestParam(value = "numeroNC", required = true) Integer numeroNC, ModelMap model) {
         serviceNc.deleteNC(numeroNC);
         model.addAttribute("added", "Hai eliminato con successo una Non Conformita'");
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "redirect:/";
     }
 
@@ -137,6 +140,7 @@ public class LeaderController {
         serviceNc.saveOrUpdateNC(nc);
         model.addAttribute("submit", submit);
         model.addAttribute("numeroNC", numeroNC);
+        model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "redirect:/leader/insertNC";
     }
 

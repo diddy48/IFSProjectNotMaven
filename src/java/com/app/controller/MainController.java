@@ -38,12 +38,15 @@ public class MainController {
 
     @Autowired
     NCService serviceNc;
+    
+    public static Dipendenti dipLoggato;
 
     @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
     public String defaultPage(ModelMap model, Principal principal) {
         if (principal != null) {
             Dipendenti dipendente = serviceDip.findByUsername(principal.getName());
-            model.addAttribute("dipendente",dipendente);
+            dipLoggato=dipendente;
+            model.addAttribute("dipLoggato",dipendente);
         }
         model.addAttribute("ncAperte", serviceNc.findNCbyFase("A"));
         model.addAttribute("ncIntermedie", serviceNc.findNCbyFase("I"));

@@ -20,10 +20,11 @@
     <body >
         <jsp:include page="header.jsp" />
         <div class="container-fluid">
-            <h1>${submit} una Non Conformità</h1>
-            <hr>
             <div class="row">
                 <div class="col-md-8 offset-md-2">
+                    <br/>
+                    <h1>${submit} una Non Conformità</h1>
+                    <hr/>
                     <c:if test="${not empty added}">
                         <div class="error text-success">${added}</div>
                     </c:if>
@@ -175,9 +176,9 @@
     });
 
     /*$(document).on("click", "input[name=dataC]", function () {
-        var dataC = $('[name="dataC"]').val();
-        if (dataC != null) {
-            $('[name="costoNC"]').prop("required", "true");
-        }
-    });*/
+     var dataC = $('[name="dataC"]').val();
+     if (dataC != null) {
+     $('[name="costoNC"]').prop("required", "true");
+     }
+     });*/
 </script>
