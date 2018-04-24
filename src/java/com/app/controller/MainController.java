@@ -60,8 +60,9 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
-    public String login(@RequestParam(value = "error", required = false) String error,
+    public String login(Principal principal,@RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "logout", required = false) String logout, HttpServletRequest request, ModelMap model) {
+        if(principal!=null) return "redirect:/";
         if (error != null) {
             model.addAttribute("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
         }
