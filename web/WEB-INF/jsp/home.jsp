@@ -54,13 +54,15 @@
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                                 <td>
                                                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                                        <form action="${delete}" method="GET">
+                                                        <form action="${delete}" method="POST">
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                             <input class="btn btn-danger btn-block" type="submit" name="delete" value="Elimina" />
                                                         </form>
                                                     </sec:authorize>
                                                     <sec:authorize access="hasRole('ROLE_LEADER')">
-                                                        <form action="${update}" method="GET">
+                                                        <form action="${update}" method="POST">
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Modifica" />
                                                         </form>
@@ -103,20 +105,23 @@
                                                 <td>
 
                                                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                                        <form action="${delete}" method="GET">
+                                                        <form action="${delete}" method="POST">
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                             <input class="btn btn-danger btn-block" type="submit" name="delete" value="Elimina" />
                                                         </form>
                                                     </sec:authorize>
                                                     <sec:authorize access="hasRole('ROLE_LEADER')">
-                                                        <form action="${update}" method="GET">
+                                                        <form action="${update}" method="POST">
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Modifica" />
                                                         </form>
                                                     </sec:authorize>
                                                     <form action="${display}" method="GET">
                                                         <input type='text' name="fase" value="Intermedia" hidden="true"/>
                                                         <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                         <input class="btn btn-secondary btn-block" type="submit" name="submit" value="Visualizza NC" />
                                                     </form>
                                                 </td>
@@ -151,14 +156,16 @@
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                                 <td>
                                                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                                        <form action="${delete}" method="GET">
+                                                        <form action="${delete}" method="POST">
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                             <input class="btn btn-danger btn-block" type="submit" name="delete" value="Elimina" />
                                                         </form>
                                                     </sec:authorize>
                                                     <sec:authorize access="hasRole('ROLE_LEADER')">
-                                                        <form action="${update}" method="GET">
+                                                        <form action="${update}" method="POST">
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Modifica" />
                                                         </form>
                                                     </sec:authorize>
@@ -214,7 +221,8 @@
                                                     <sec:authorize access="hasRole('ROLE_LEADER')">
                                                         <div class="row">
                                                             <div class=" col-md-6 ">
-                                                                <form action="${delete}" method="GET">
+                                                                <form action="${delete}" method="POST">
+                                                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                                     <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                                     <input class="btn btn-danger btn-block" type="submit" name="delete" value="Elimina" />
                                                                 </form>

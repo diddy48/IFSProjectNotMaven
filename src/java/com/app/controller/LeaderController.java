@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -49,7 +50,7 @@ public class LeaderController {
     @Autowired
     NCService serviceNc;
 
-    @RequestMapping(value = "/insertNC", method = RequestMethod.GET)
+    @RequestMapping(value = "/insertNC", method = RequestMethod.POST)
     public String insertNC(ModelMap model,
             @RequestParam(value = "insert", required = false) String added,
             @RequestParam(value = "error", required = false) String error,
@@ -122,7 +123,7 @@ public class LeaderController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/deleteNC", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteNC", method = RequestMethod.POST)
     public String deleteNC(@RequestParam(value = "numeroNC", required = true) Integer numeroNC, ModelMap model) {
         serviceNc.deleteNC(numeroNC);
         model.addAttribute("added", "Hai eliminato con successo una Non Conformita'");

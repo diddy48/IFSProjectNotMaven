@@ -24,7 +24,7 @@
                     <h1>Inserisci i dati del dipendente</h1>
                     <hr/>
                     <c:url value="/admin/addDip"  var="insert"/>
-                    <form action="${insert}"  method="GET" modelAttribute="{dip,user}">
+                    <form action="${insert}"  method="POST" modelAttribute="{dip,user}">
                         <div class="form-group">
                             <form:label path="user.username">Username </form:label>
                             <form:input path="user.username" required="true" class="form-control" placeholder="Inserisci lo username del dipendente" />
@@ -48,10 +48,11 @@
                         <form:input path="user.enabled" required="true" hidden="true" value="1" />
                         <div class="form-group">
                             <form:label path="dip.dataNascita">Data di nascita </form:label>
-                                <form:input type="date" path="dip.dataNascita" required="true" class="form-control" />
-                            </div>
-                            <input class="btn btn-primary" type="submit" name="submit" value="Inserisci"/>
-                        </form>
+                            <form:input type="date" path="dip.dataNascita" required="true" class="form-control" />
+                        </div>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <input class="btn btn-primary" type="submit" name="submit" value="Inserisci"/>
+                    </form>
                     <c:if test="${not empty error}" >
                         <h4 class="text-danger">${error}</h4>
                     </c:if>

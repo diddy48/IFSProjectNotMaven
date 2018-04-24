@@ -65,7 +65,7 @@ public class AdminController {
         return "insertdip";
     }
 
-    @RequestMapping(value = "/addDip", method = GET)
+    @RequestMapping(value = "/addDip", method = POST)
     public String addDip(ModelMap model,
             @Valid @ModelAttribute(value = "dip") Dipendenti dip, BindingResult bindDip,
             @Valid @ModelAttribute(value = "user") User user, BindingResult bindUser
