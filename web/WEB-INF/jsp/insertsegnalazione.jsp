@@ -71,11 +71,11 @@
                                 </form:select>
                             </div>
                             <div class=" col-md-6">
-                                <div class="form-group" hidden="hidden"}>
+                                <div class="form-group" hidden="hidden">
                                     <form:label path="cliente">Cliente</form:label>
                                     <form:input class="form-control" path="cliente" placeholder="Inserisci il nome del cliente"/>
                                 </div>
-                                <div class="form-group" hidden="hidden"}>
+                                <div class="form-group" hidden="hidden">
                                     <form:label path="richiedente.matricola">Richiedente</form:label>
                                     <form:select class="form-control" path="richiedente.matricola">
                                         <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />

@@ -7,9 +7,12 @@ package com.app.controller;
 
 import com.app.model.Dipendenti;
 import com.app.model.User;
+import com.app.model.UserRole;
 import com.app.service.DipendentiService;
 import com.app.service.UserService;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -46,7 +49,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/insertDip", method = GET)
-    public String insertDip(ModelMap model, @RequestParam(value = "error",required=false) String error) {
+    public String insertDip(ModelMap model, @RequestParam(value = "error", required = false) String error) {
         model.addAttribute("dip", new Dipendenti());
         model.addAttribute("user", new User());
         if (error != null) {
@@ -56,15 +59,16 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/addDip", method = GET)
-    public String addDip(ModelMap model, @Valid
-            @ModelAttribute(value = "dip") Dipendenti dip, BindingResult bindDip,
-            @ModelAttribute(value = "user") User user, BindingResult bindUser) {
-
-        if (bindUser.hasErrors() || bindDip.hasErrors()) {
-            model.addAttribute("error", bindUser.getAllErrors() + "<br/>" + bindDip.getAllErrors());
+    public String addDip(ModelMap model,
+            @Valid @ModelAttribute(value = "dip") Dipendenti dip, BindingResult bindDip//,
+    //@Valid @ModelAttribute(value = "user") User user, BindingResult bindUser
+    ) {
+        if (bindDip.hasErrors() /*||bindUser.hasErrors()*/) {
+            model.addAttribute("error",/* bindUser.getAllErrors() + */ "<br/>" + bindDip.getAllErrors());
             return "redirect:/admin/insertDip";
         }
         serviceDip.saveDipedenti(dip);
+        User user = new User(dip.getUsername().getUsername(),dip.getUsername().getPassword(),true);
         serviceUser.addUser(user);
         return "redirect:/admin/home";
     }
