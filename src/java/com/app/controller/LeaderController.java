@@ -5,8 +5,12 @@
  */
 package com.app.controller;
 
+import com.app.model.Appartenere;
 import com.app.model.Dipendenti;
 import com.app.model.NC;
+import com.app.model.PKAppartenere;
+import com.app.model.PKResponsabilita;
+import com.app.model.Responsabilita;
 import com.app.objects.Priorita;
 import com.app.objects.RepartoProdotto;
 import com.app.objects.Tipo;
@@ -14,19 +18,25 @@ import com.app.service.DipendentiService;
 import com.app.service.NCService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -50,7 +60,7 @@ public class LeaderController {
     @Autowired
     NCService serviceNc;
 
-    @RequestMapping(value = "/insertNC", method = RequestMethod.POST)
+    @RequestMapping(value = "/insertNC", method = RequestMethod.GET)
     public String insertNC(ModelMap model,
             @RequestParam(value = "insert", required = false) String added,
             @RequestParam(value = "error", required = false) String error,
@@ -105,15 +115,19 @@ public class LeaderController {
 
     @RequestMapping(value = "/addNC", method = RequestMethod.GET)
     public String addNC(@Valid @ModelAttribute("nc") NC nc, BindingResult bindingResult,
-            @RequestParam(value = "richiedente", required = false) Integer matricolaRichiedente,
             @RequestParam(value = "update", required = false) String update,
+            @RequestParam(value = "membri") ArrayList<Integer> matricoleMembri,
+            @RequestParam(value = "responsabili") ArrayList<Integer> matricoleResponsabili,
             ModelMap model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("error", "" + bindingResult.getAllErrors());
         } else {
+            HashSet<Appartenere> membri = (HashSet<Appartenere>) getSetAppartenere(matricoleMembri, nc);
+            HashSet<Responsabilita> responsabili = (HashSet<Responsabilita>) getSetResponsabilita(matricoleResponsabili, nc);
+            nc.setMembri(membri);
+            nc.setResponsabili(responsabili);
             serviceNc.saveOrUpdateNC(nc);
             if (update != null) {
-                //serviceNc.update(nc);
                 model.addAttribute("update", "Hai aggiornato con successo una Non Conformita'");
             } else {
                 model.addAttribute("insert", "Hai aggiunto con successo una nuova Non Conformita'");
@@ -152,5 +166,26 @@ public class LeaderController {
             matrNom.put("" + dip.getMatricola(), dip.getMatricola() + " | " + dip.getNome() + " " + dip.getCognome());
         }
         return matrNom;
+    }
+
+    private Set<Appartenere> getSetAppartenere(ArrayList<Integer> membri, NC nc) {
+        Set<Appartenere> membriSet = new HashSet<Appartenere>();
+        for (Integer s : membri) {
+            Appartenere a = new Appartenere();
+            a.setPkAppartenere(new PKAppartenere(serviceDip.findById(s), nc));
+            membriSet.add(a);
+        }
+        return membriSet;
+    }
+
+    private Set<Responsabilita> getSetResponsabilita(ArrayList<Integer> responsabili, NC nc) {
+        Set<Responsabilita> responsabiliSet = new HashSet<Responsabilita>();
+        for (Integer s : responsabili) {
+            System.out.println(s);
+            Responsabilita a = new Responsabilita();
+            a.setPkResponsabilita(new PKResponsabilita(serviceDip.findById(s), nc));
+            responsabiliSet.add(a);
+        }
+        return responsabiliSet;
     }
 }

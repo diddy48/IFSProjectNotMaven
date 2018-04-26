@@ -30,6 +30,12 @@ public class PKAppartenere implements Serializable{
     public PKAppartenere() {
     }
 
+    public PKAppartenere(Dipendenti membro, NC nc) {
+        this.membro = membro;
+        this.nc = nc;
+    }
+
+    
     @ManyToOne(fetch= LAZY, cascade = CascadeType.ALL)
     public Dipendenti getMembro() {
         return membro;

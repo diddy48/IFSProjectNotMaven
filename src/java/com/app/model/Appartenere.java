@@ -27,17 +27,22 @@ import javax.persistence.Transient;
 @Table(name = "appartenere")
 @AssociationOverrides({
     @AssociationOverride(name = "pkAppartenere.membro",
-        joinColumns =@JoinColumn(name = "Matricola")),
+            joinColumns = @JoinColumn(name = "Matricola"))
+    ,
     @AssociationOverride(name = "pkAppartenere.nc",
-        joinColumns =@JoinColumn(name = "NumeroNC")) })
+            joinColumns = @JoinColumn(name = "NumeroNC"))})
 public class Appartenere {
-    
+
     private PKAppartenere pkAppartenere = new PKAppartenere();
     private String ruolo;
 
     public Appartenere() {
     }
-    
+
+    public Appartenere(String ruolo) {
+        this.ruolo = ruolo;
+    }
+
     @EmbeddedId
     public PKAppartenere getPkAppartenere() {
         return pkAppartenere;
@@ -47,7 +52,7 @@ public class Appartenere {
         this.pkAppartenere = pkAppartenere;
     }
 
-    @Column(name="Ruolo",length=50)
+    @Column(name = "Ruolo", length = 50)
     public String getRuolo() {
         return ruolo;
     }
@@ -55,7 +60,7 @@ public class Appartenere {
     public void setRuolo(String ruolo) {
         this.ruolo = ruolo;
     }
-    
+
     @Transient
     public Dipendenti getMembro() {
         return getPkAppartenere().getMembro();

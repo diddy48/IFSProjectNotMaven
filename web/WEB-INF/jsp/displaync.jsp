@@ -44,7 +44,16 @@
                             <td colspan="8"><span class="font-weight-bold">Priorit&agrave: </span>${nc.priorita.descrizione}</td>
                         </tr>
                         <tr>
-                            <td colspan="8" rowspan="2"><span class="font-weight-bold">Team di lavoro: </td>
+                            <td colspan="8" rowspan="2"><span class="font-weight-bold">Team di lavoro: </span>
+                                <c:if test="${empty nc.membri}">
+                                    <span class="text-info">Non è stato assegnato alcun team di lavor per questa non conformita</span>
+                                </c:if>
+                                <ul>
+                                <c:forEach items="${nc.membri}" var="membro">
+                                    <li>${membro.pkAppartenere.membro.matricola}</li><% // ${membro.pkAppartenere.membro.nome} ${membro.pkAppartenere.membro.cognome}%>
+                                </c:forEach>
+                                </ul>
+                            </td>
                             <td colspan="8"><span class="font-weight-bold">Codice prodotto: </span>${nc.codiceProdotto}</td>
                         </tr>
                         <tr>

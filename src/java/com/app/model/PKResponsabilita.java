@@ -29,6 +29,12 @@ public class PKResponsabilita implements Serializable {
     public PKResponsabilita() {
     }
 
+    public PKResponsabilita(Dipendenti responsabile, NC nc) {
+        this.responsabile = responsabile;
+        this.nc = nc;
+    }
+    
+
     @ManyToOne(fetch= LAZY,cascade = CascadeType.ALL)
     public Dipendenti getResponsabile() {
         return responsabile;

@@ -67,13 +67,13 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <form:label path="dataA">Data Apertura</form:label>
-                                    <input class="form-control" type="date" name="dataA" required=""/>
-                                </div>
-                                <div class="form-group col-md-3">
+                                <input class="form-control" type="date" name="dataA" required="true" value="${nc.dataA}"/>
+                            </div>
+                            <div class="form-group col-md-3">
                                 <form:label id ="dataC" path="dataC">Data Chiusura</form:label><!--value="${not empty nc.dataC ? nc.dataC : "" }"-->
-                                    <input class="form-control" type="date"  name="dataC"  />
-                                </div>
-                                <div class="form-group col-md-3">
+                                <input class="form-control" type="date"  name="dataC" value="${nc.dataA}"  />
+                            </div>
+                            <div class="form-group col-md-3">
                                 <form:label path="priorita">Priorità</form:label>
                                 <form:select class="form-control" path="priorita" items="${priorita}"/>
                             </div>
@@ -130,14 +130,20 @@
                                         <form:options items="${dipendenti}" />
                                     </form:select>
                                 </div>
-                                <!--<div class="form-group">
-                                <form:label path="membri">Team di Lavoro</form:label>
-                                <form:select class="form-control" path="membri" multiple="true">
-                                    <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
-                                    <form:options items="${dipendenti}" />
-                                </form:select>
-
-                            </div>-->
+                                <div class="form-group">
+                                    <form:label path="membri">Team di Lavoro</form:label>
+                                    <form:select class="form-control" multiple="true" path="membri">
+                                        <form:option value="" label="-- Seleziona i membro --"  selected="true" />
+                                        <form:options items="${dipendenti}"/>
+                                    </form:select>
+                                </div>
+                                <div class="form-group">
+                                    <form:label path="responsabili">Responsabili</form:label>
+                                    <form:select class="form-control" multiple="true" path="responsabili">
+                                        <form:option value="" label="-- Seleziona i responsabili --" selected="true" />
+                                        <form:options items="${dipendenti}"/>
+                                    </form:select>
+                                </div>
                             </div>
                         </div>
                         <c:choose>

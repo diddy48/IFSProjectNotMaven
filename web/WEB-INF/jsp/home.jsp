@@ -61,8 +61,7 @@
                                                         </form>
                                                     </sec:authorize>
                                                     <sec:authorize access="hasRole('ROLE_LEADER')">
-                                                        <form action="${update}" method="POST">
-                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                                        <form action="${update}" method="GET">
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Modifica" />
                                                         </form>
@@ -112,9 +111,8 @@
                                                         </form>
                                                     </sec:authorize>
                                                     <sec:authorize access="hasRole('ROLE_LEADER')">
-                                                        <form action="${update}" method="POST">
+                                                        <form action="${update}" method="GET">
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
-                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Modifica" />
                                                         </form>
                                                     </sec:authorize>
@@ -163,9 +161,8 @@
                                                         </form>
                                                     </sec:authorize>
                                                     <sec:authorize access="hasRole('ROLE_LEADER')">
-                                                        <form action="${update}" method="POST">
+                                                        <form action="${update}" method="GET">
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
-                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Modifica" />
                                                         </form>
                                                     </sec:authorize>

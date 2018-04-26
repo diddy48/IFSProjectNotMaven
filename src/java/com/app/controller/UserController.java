@@ -71,7 +71,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/showNC", method = RequestMethod.POST)
+    @RequestMapping(value = "/showNC", method = RequestMethod.GET)
     public String listNC(ModelMap model, Principal principal, @RequestParam(value = "matricola", required = false) Integer matricola) {
         Dipendenti dipendente;
         if (matricola == null) {
