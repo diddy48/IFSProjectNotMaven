@@ -119,20 +119,22 @@ public class LeaderController {
             @RequestParam(value = "membri") ArrayList<Integer> matricoleMembri,
             @RequestParam(value = "responsabili") ArrayList<Integer> matricoleResponsabili,
             ModelMap model) {
-        if (bindingResult.hasErrors()) {
+        /*if (bindingResult.hasErrors()) {
             model.addAttribute("error", "" + bindingResult.getAllErrors());
+        } else {*/
+        HashSet<Appartenere> membri = (HashSet<Appartenere>) getSetAppartenere(matricoleMembri, nc);
+        HashSet<Responsabilita> responsabili = (HashSet<Responsabilita>) getSetResponsabilita(matricoleResponsabili, nc);
+        nc.setMembri(membri);
+        nc.setResponsabili(responsabili);
+        serviceNc.saveOrUpdateNC(nc);
+
+        //return "<br/>"+bindingResult.getAllErrors()+ responsabili.toString();
+        if (update != null) {
+            model.addAttribute("update", "Hai aggiornato con successo una Non Conformita'");
         } else {
-            HashSet<Appartenere> membri = (HashSet<Appartenere>) getSetAppartenere(matricoleMembri, nc);
-            HashSet<Responsabilita> responsabili = (HashSet<Responsabilita>) getSetResponsabilita(matricoleResponsabili, nc);
-            nc.setMembri(membri);
-            nc.setResponsabili(responsabili);
-            serviceNc.saveOrUpdateNC(nc);
-            if (update != null) {
-                model.addAttribute("update", "Hai aggiornato con successo una Non Conformita'");
-            } else {
-                model.addAttribute("insert", "Hai aggiunto con successo una nuova Non Conformita'");
-            }
+            model.addAttribute("insert", "Hai aggiunto con successo una nuova Non Conformita'");
         }
+        // }
         model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "redirect:/";
     }
@@ -162,8 +164,8 @@ public class LeaderController {
     public Map<String, String> getMatricoleNome() {
         List<Dipendenti> dips = serviceDip.findAll();
         Map<String, String> matrNom = new HashMap<>();
-        for (Dipendenti dip : dips) {
-            matrNom.put("" + dip.getMatricola(), dip.getMatricola() + " | " + dip.getNome() + " " + dip.getCognome());
+        for (int i = 1; i < dips.size(); i++) {
+            matrNom.put("" + dips.get(i).getMatricola(), dips.get(i).getMatricola() + " | " + dips.get(i).getNome() + " " + dips.get(i).getCognome());
         }
         return matrNom;
     }
@@ -178,10 +180,9 @@ public class LeaderController {
         return membriSet;
     }
 
-    private Set<Responsabilita> getSetResponsabilita(ArrayList<Integer> responsabili, NC nc) {
-        Set<Responsabilita> responsabiliSet = new HashSet<Responsabilita>();
+    private HashSet<Responsabilita> getSetResponsabilita(ArrayList<Integer> responsabili, NC nc) {
+        HashSet<Responsabilita> responsabiliSet = new HashSet<Responsabilita>();
         for (Integer s : responsabili) {
-            System.out.println(s);
             Responsabilita a = new Responsabilita();
             a.setPkResponsabilita(new PKResponsabilita(serviceDip.findById(s), nc));
             responsabiliSet.add(a);

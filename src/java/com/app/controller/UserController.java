@@ -108,8 +108,8 @@ public class UserController {
     public Map<String, String> getMatricoleNome() {
         List<Dipendenti> dips = serviceDip.findAll();
         Map<String, String> matrNom = new HashMap<>();
-        for (Dipendenti dip : dips) {
-            matrNom.put("" + dip.getMatricola(), dip.getMatricola() + " | " + dip.getNome() + " " + dip.getCognome());
+        for (int i=1 ;i<dips.size();i++) {
+            matrNom.put("" + dips.get(i).getMatricola(), dips.get(i).getMatricola() + " | " + dips.get(i).getNome() + " " + dips.get(i).getCognome());
         }
         return matrNom;
     }

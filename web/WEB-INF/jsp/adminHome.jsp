@@ -42,8 +42,7 @@
                                                 </form> 
                                             </div>
                                             <div class="col-md-6">
-                                                <form action="${showNC}" method="POST">
-                                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                                <form action="${showNC}" method="GET">
                                                     <input type="text" name="matricola" value="${u.matricola}" hidden="true"/>
                                                     <input class="btn btn-secondary btn-block" type="submit" name="submit" value="NC commissionate" />
                                                 </form> 
