@@ -44,17 +44,27 @@
                             <td colspan="8"><span class="font-weight-bold">Priorit&agrave: </span>${nc.priorita.descrizione}</td>
                         </tr>
                         <tr>
-                            <td colspan="8" rowspan="2"><span class="font-weight-bold">Team di lavoro: </span>
+                            <td colspan="4" rowspan="2"><span class="font-weight-bold">Team di lavoro: </span>
                                 <c:if test="${empty nc.membri}">
-                                    <span class="text-info">Non è stato assegnato alcun team di lavor per questa non conformita</span>
+                                    <span class="text-info">Non è stato assegnato alcun team di lavor oper questa non conformita</span>
                                 </c:if>
                                 <ul>
-                                <c:forEach items="${nc.membri}" var="membro">
-                                    <li>${membro.pkAppartenere.membro.matricola}</li><% // ${membro.pkAppartenere.membro.nome} ${membro.pkAppartenere.membro.cognome}%>
-                                </c:forEach>
+                                    <c:forEach items="${nc.membri}" var="membro">
+                                        <li>${membro.pkAppartenere.membro.matricola}</li><% // ${membro.pkAppartenere.membro.nome} ${membro.pkAppartenere.membro.cognome}%>
+                                        </c:forEach>
                                 </ul>
                             </td>
-                            <td colspan="8"><span class="font-weight-bold">Codice prodotto: </span>${nc.codiceProdotto}</td>
+                            <td colspan="6" rowspan="2"><span class="font-weight-bold">Responsabili:  </span>
+                                <c:if test="${empty nc.responsabili}">
+                                    <span class="text-info">Non è stato assegnato alcun responsabile per questa non conformita</span>
+                                </c:if>
+                                <ul>
+                                    <c:forEach items="${nc.responsabili}" var="resp">
+                                        <li>${resp.pkResponsabilita.responsabile.matricola}</li><% // ${membro.pkAppartenere.membro.nome} ${membro.pkAppartenere.membro.cognome}%>
+                                        </c:forEach>
+                                </ul>
+                            </td>
+                            <td colspan="6"><span class="font-weight-bold">Codice prodotto: </span>${nc.codiceProdotto}</td>
                         </tr>
                         <tr>
                             <td colspan="8"><span class="font-weight-bold">Reparto prodotto: </span>${nc.repartoP.descrizione}</td>

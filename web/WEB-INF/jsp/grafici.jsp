@@ -1,4 +1,5 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
@@ -28,10 +29,10 @@
         "type": "pie",
         "theme": "light",
         "dataProvider": [{
-                "reparto": "Produzione",
+                "reparto": "Amministrativo",
                 "nc": ${calcNCReparto[0]}
             }, {
-                "reparto": "Progettazione",
+                "reparto": "Commerciale",
                 "nc": ${calcNCReparto[1]}
             }, {
                 "reparto": "Logistica in entrata",
@@ -40,10 +41,10 @@
                 "reparto": "Logistica in uscita",
                 "nc": ${calcNCReparto[3]}
             }, {
-                "reparto": "Commerciale",
+                "reparto": "Produzione",
                 "nc": ${calcNCReparto[4]}
             }, {
-                "reparto": "Amministrativo",
+                "reparto": "Progettazione",
                 "nc": ${calcNCReparto[5]}
             }],
         "valueField": "nc",
@@ -166,17 +167,38 @@
 <div class="row">
     <div class="col-md-6">
         <center><h1>In base al Reparto</h1></center>
-        <div class="chartdiv " id="chartReparto"></div>
+        <div class="chartdiv " id="chartReparto">
+            <c:if test="${empty calcNCReparto}">
+                <br/>
+                <br/>
+                <br/>
+                <center><h4 class="text-info">Non sono presenti non conformita tali da fornire dati</h4></center>
+                </c:if>
+        </div>
     </div>
     <div class="col-md-6">
         <center><h1>In base alla Fase</h1></center>
-        <div class="chartdiv" id="chartFase"></div>
+        <div class="chartdiv" id="chartFase">
+            <c:if test="${empty calcNCReparto}">
+                <br/>
+                <br/>
+                <br/>
+                <center><h4 class="text-info">Non sono presenti non conformita tali da fornire dati</h4></center>
+                </c:if>
+        </div>
     </div>
 </div>
 <div class="row">
     <div class="col">
         <center><h1>In base al Mese</h1></center>
-        <div class="chartDiv" id="chartMese"></div>	
+        <div class="chartDiv" id="chartMese">
+            <c:if test="${empty calcNCReparto}">
+                <br/>
+                <br/>
+                <br/>
+                <center><h4 class="text-info">Non sono presenti non conformita tali da fornire dati</h4></center>
+                </c:if>
+        </div>	
     </div>
 </div>
 </html>

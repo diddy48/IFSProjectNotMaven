@@ -71,7 +71,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <form:label id ="dataC" path="dataC">Data Chiusura</form:label><!--value="${not empty nc.dataC ? nc.dataC : "" }"-->
-                                <input class="form-control" type="date"  name="dataC" value="${nc.dataA}"  />
+                                <input class="form-control" type="date"  name="dataC" value="${nc.dataC}"  />
                             </div>
                             <div class="form-group col-md-3">
                                 <form:label path="priorita">Priorità</form:label>

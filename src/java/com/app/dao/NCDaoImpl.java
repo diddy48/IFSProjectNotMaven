@@ -221,26 +221,40 @@ public class NCDaoImpl implements NCDao {
     @Override
     public int[] getCountByReparto() {
         int[] a = {0, 0, 0, 0, 0, 0};
+        boolean empty = true;
         List<NC> ncs = getSession().createCriteria(NC.class).add(Restrictions.eq("enabled", 1)).list();
         for (NC nc : ncs) {
-            if (nc.getRepartoP().equals(RepartoProdotto.Amministrativo)) {
-                a[0] += 1;
+            switch (nc.getRepartoP()) {
+                case Amministrativo:
+                    a[0] += 1;
+                    empty = false;
+                    break;
+                case Commerciale:
+                    a[1] += 1;
+                    empty = false;
+                    break;
+                case LogisticaE:
+                    a[2] += 1;
+                    empty = false;
+                    break;
+                case LogisticaU:
+                    a[3] += 1;
+                    empty = false;
+                    break;
+                case Produzione:
+                    a[4] += 1;
+                    empty = false;
+                    break;
+                case Progettazione:
+                    a[5] += 1;
+                    empty = false;
+                    break;
+                default:
+                    break;
             }
-            if (nc.getRepartoP().equals(RepartoProdotto.Commerciale)) {
-                a[1] += 1;
-            }
-            if (nc.getRepartoP().equals(RepartoProdotto.LogisticaE)) {
-                a[2] += 1;
-            }
-            if (nc.getRepartoP().equals(RepartoProdotto.LogisticaU)) {
-                a[3] += 1;
-            }
-            if (nc.getRepartoP().equals(RepartoProdotto.Produzione)) {
-                a[4] += 1;
-            }
-            if (nc.getRepartoP().equals(RepartoProdotto.Progettazione)) {
-                a[5] += 1;
-            }
+        }
+        if (empty) {
+            return null;
         }
         return a;
     }
@@ -251,12 +265,16 @@ public class NCDaoImpl implements NCDao {
         a[0] = findNCbyFase("A").size();
         a[1] = findNCbyFase("I").size();
         a[2] = findNCbyFase("C").size();
+        if (a[0] == 0 && a[1] == 0 && a[2] == 0) {
+            return null;
+        }
         return a;
     }
 
     @Override
     public int[] getCountByMese() {
         int[] a = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        boolean empty = true;
         List<NC> ncs = getSession().createCriteria(NC.class).add(Restrictions.eq("enabled", 1)).list();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -264,43 +282,58 @@ public class NCDaoImpl implements NCDao {
             try {
                 if (nc.getDataA().compareTo(sdf.parse("01/01/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/01/" + year)) <= 0) {
                     a[0] += 1;
+                    empty = false;
                 }
                 if (nc.getDataA().compareTo(sdf.parse("01/02/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("28/02/" + year)) <= 0) {
                     a[1] += 1;
+                    empty = false;
                 }
                 if (nc.getDataA().compareTo(sdf.parse("01/03/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/03/" + year)) <= 0) {
                     a[2] += 1;
+                    empty = false;
                 }
                 if (nc.getDataA().compareTo(sdf.parse("01/04/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("30/04/" + year)) <= 0) {
                     a[3] += 1;
+                    empty = false;
                 }
                 if (nc.getDataA().compareTo(sdf.parse("01/05/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/05/" + year)) <= 0) {
                     a[4] += 1;
+                    empty = false;
                 }
                 if (nc.getDataA().compareTo(sdf.parse("01/06/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("30/06/" + year)) <= 0) {
                     a[5] += 1;
+                    empty = false;
                 }
                 if (nc.getDataA().compareTo(sdf.parse("01/07/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/07/" + year)) <= 0) {
                     a[6] += 1;
+                    empty = false;
                 }
                 if (nc.getDataA().compareTo(sdf.parse("01/08/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/08/" + year)) <= 0) {
                     a[7] += 1;
+                    empty = false;
                 }
                 if (nc.getDataA().compareTo(sdf.parse("01/09/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("30/09/" + year)) <= 0) {
                     a[8] += 1;
+                    empty = false;
                 }
                 if (nc.getDataA().compareTo(sdf.parse("01/10/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/10/" + year)) <= 0) {
                     a[9] += 1;
+                    empty = false;
                 }
                 if (nc.getDataA().compareTo(sdf.parse("01/11/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("30/11/" + year)) <= 0) {
                     a[10] += 1;
+                    empty = false;
                 }
                 if (nc.getDataA().compareTo(sdf.parse("01/12/" + year)) >= 0 && nc.getDataA().compareTo(sdf.parse("31/12/" + year)) <= 0) {
                     a[11] += 1;
+                    empty = false;
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(NCDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        if (empty) {
+            return null;
         }
         return a;
     }
