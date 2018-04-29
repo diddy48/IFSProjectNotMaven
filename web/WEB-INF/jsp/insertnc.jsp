@@ -139,7 +139,7 @@
                                 </div>
                                 <div class="form-group">
                                     <form:label path="responsabili">Responsabili</form:label>
-                                    <form:select class="form-control" multiple="true" path="responsabili">
+                                    <form:select class="form-control" multiple="true" path="responsabili" required="true">
                                         <form:option value="" label="-- Seleziona i responsabili --" selected="true" />
                                         <form:options items="${dipendenti}"/>
                                     </form:select>
