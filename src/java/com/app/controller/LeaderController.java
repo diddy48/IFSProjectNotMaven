@@ -14,8 +14,10 @@ import com.app.model.Responsabilita;
 import com.app.objects.Priorita;
 import com.app.objects.RepartoProdotto;
 import com.app.objects.Tipo;
+import com.app.service.AppartenereService;
 import com.app.service.DipendentiService;
 import com.app.service.NCService;
+import com.app.service.ResponsabilitaService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,6 +62,12 @@ public class LeaderController {
     @Autowired
     NCService serviceNc;
 
+    @Autowired
+    AppartenereService serviceAppartenere;
+
+    @Autowired
+    ResponsabilitaService serviceResponsabilita;
+
     @RequestMapping(value = "/insertNC", method = RequestMethod.GET)
     public String insertNC(ModelMap model,
             @RequestParam(value = "insert", required = false) String added,
@@ -103,6 +111,8 @@ public class LeaderController {
                 nc.setCliente(toUpdate.getCliente());
             }
             nc.setTeamLeader(toUpdate.getTeamLeader());
+            nc.setMembri(toUpdate.getMembri());
+            nc.setResponsabili(toUpdate.getResponsabili());
         }
         model.addAttribute("dipendenti", getMatricoleNome());
         model.addAttribute("priorita", Priorita.valuesMap());

@@ -77,6 +77,11 @@ public class AdminController {
             return "redirect:/admin/insertDip";
         }
         serviceUser.addUser(user);
+        UserRole ur = new UserRole();
+        ur.setRole("ROLE_USER");
+        Set<UserRole> roles = new HashSet<>();
+        roles.add(ur);
+        user.setUserRole(roles);
         dip.setUsername(user);
         serviceDip.saveDipedenti(dip);
         model.addAttribute("dipLoggato", MainController.dipLoggato);

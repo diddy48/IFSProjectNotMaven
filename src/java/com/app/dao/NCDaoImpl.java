@@ -222,7 +222,7 @@ public class NCDaoImpl implements NCDao {
     public int[] getCountByReparto() {
         int[] a = {0, 0, 0, 0, 0, 0};
         boolean empty = true;
-        List<NC> ncs = getSession().createCriteria(NC.class).add(Restrictions.eq("enabled", 1)).list();
+        List<NC> ncs = getSession().createCriteria(NC.class).add(Restrictions.eq("enabled", 1)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
         for (NC nc : ncs) {
             switch (nc.getRepartoP()) {
                 case Amministrativo:
@@ -275,7 +275,7 @@ public class NCDaoImpl implements NCDao {
     public int[] getCountByMese() {
         int[] a = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         boolean empty = true;
-        List<NC> ncs = getSession().createCriteria(NC.class).add(Restrictions.eq("enabled", 1)).list();
+        List<NC> ncs = getSession().createCriteria(NC.class).add(Restrictions.eq("enabled", 1)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         int year = Calendar.getInstance().get(Calendar.YEAR);
         for (NC nc : ncs) {

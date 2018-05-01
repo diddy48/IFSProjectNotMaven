@@ -14,6 +14,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="links.jsp" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <title>Nuova NC</title>
     </head>
@@ -70,7 +76,7 @@
                                 <input class="form-control" type="date" name="dataA" required="true" value="${nc.dataA}"/>
                             </div>
                             <div class="form-group col-md-3">
-                                <form:label id ="dataC" path="dataC">Data Chiusura</form:label><!--value="${not empty nc.dataC ? nc.dataC : "" }"-->
+                                <form:label id ="dataC" path="dataC">Data Chiusura</form:label>
                                 <input class="form-control" type="date"  name="dataC" value="${nc.dataC}"  />
                             </div>
                             <div class="form-group col-md-3">
@@ -125,15 +131,15 @@
                                 </div>
                                 <div class="form-group" hidden=${(submit=='Modifica')&&(nc.richiedente!=null) ? "" : "hidden"}>
                                     <form:label path="richiedente.matricola">Richiedente</form:label>
-                                    <form:select class="form-control" path="richiedente.matricola">
+                                    <form:select class="form-control" path="richiedente.matricola" >
                                         <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
                                         <form:options items="${dipendenti}" />
                                     </form:select>
                                 </div>
                                 <div class="form-group">
                                     <form:label path="membri">Team di Lavoro</form:label>
-                                    <form:select class="form-control" multiple="true" path="membri">
-                                        <form:option value="" label="-- Seleziona i membro --"  selected="true" />
+                                    <form:select class="form-control" multiple="true" path="membri" >
+                                        <form:option value="" label="-- Seleziona i membro --"  selected="true"  disabled=""/>
                                         <form:options items="${dipendenti}"/>
                                     </form:select>
                                 </div>
@@ -180,11 +186,13 @@
             $('[name="cliente"]').prop("required", "true");
         }
     });
-
-    /*$(document).on("click", "input[name=dataC]", function () {
-     var dataC = $('[name="dataC"]').val();
-     if (dataC != null) {
-     $('[name="costoNC"]').prop("required", "true");
-     }
-     });*/
+    $(document).on("change", "input[name=dataC]", function () {
+        var dataC = $('[name="dataC"]').val();
+        if (dataC !== "") {
+            $('[name="costoNC"]').prop("required", "true");
+        } else {
+            $('[name="costoNC"]').trigger("reset");
+            $('[name="costoNC"]').prop("required", "");
+        }
+    });
 </script>
