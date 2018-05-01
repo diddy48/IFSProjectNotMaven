@@ -9,6 +9,7 @@ import com.app.model.Dipendenti;
 import com.app.model.User;
 import com.app.model.UserRole;
 import com.app.service.DipendentiService;
+import com.app.service.UserRoleService;
 import com.app.service.UserService;
 import java.util.HashSet;
 import java.util.List;
@@ -45,6 +46,9 @@ public class AdminController {
 
     @Autowired
     UserService serviceUser;
+    
+    @Autowired 
+    UserRoleService serviceUserRole;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
@@ -77,11 +81,12 @@ public class AdminController {
             return "redirect:/admin/insertDip";
         }
         serviceUser.addUser(user);
+        
         UserRole ur = new UserRole();
+        ur.setUser(user);
         ur.setRole("ROLE_USER");
-        Set<UserRole> roles = new HashSet<>();
-        roles.add(ur);
-        user.setUserRole(roles);
+        serviceUserRole.saveOrUpdateUserRole(ur);
+        
         dip.setUsername(user);
         serviceDip.saveDipedenti(dip);
         model.addAttribute("dipLoggato", MainController.dipLoggato);

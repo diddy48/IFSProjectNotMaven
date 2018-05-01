@@ -26,9 +26,9 @@
                 <div class="row">
                     <div class="col-md-7">
                         <!-- For login user -->
-                            <h1>
-                                Dashboard
-                            </h1>
+                        <h1>
+                            Dashboard
+                        </h1>
                     </div>
                 </div>
                 <br/>
@@ -245,6 +245,8 @@
                     </div>
                 </div>
             </sec:authorize>
+
+            <jsp:include page="footer.jsp"/>
         </div>
     </body>
 </html>
