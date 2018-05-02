@@ -15,6 +15,6 @@ public interface DipendentiService {
     void saveDipedenti(Dipendenti dip);
     void deleteDipendenti(int id);
     Dipendenti findDipendenti(String mail,String password);
-    /*void updateDipedenti(Dipendenti dip);*/
+    boolean isLeader(Integer matricola,Integer numeroNC);
     List<Dipendenti> findAll(); 
 }

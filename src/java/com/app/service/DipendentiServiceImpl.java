@@ -61,4 +61,9 @@ public class DipendentiServiceImpl implements DipendentiService {
         return dao.findDipendenti(mail, password);
     }
 
+    @Override
+    public boolean isLeader(Integer matricola, Integer numeroNC) {
+        return dao.isLeader(matricola, numeroNC);
+    }
+
 }

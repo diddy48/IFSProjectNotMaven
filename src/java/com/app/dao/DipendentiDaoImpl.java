@@ -7,7 +7,9 @@ package com.app.dao;
 
 //import biblio.model.Utenti;
 import com.app.model.Dipendenti;
+import com.app.model.NC;
 import java.util.List;
+import java.util.Objects;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -67,6 +69,12 @@ public class DipendentiDaoImpl implements DipendentiDao {
             return null;
         }
         return (Dipendenti) criteria.uniqueResult();
+    }
+
+    @Override
+    public boolean isLeader(Integer matricola,Integer numeroNC) {
+        NC nc = (NC) getSession().createCriteria(NC.class).add(Restrictions.eq("numeroNC", numeroNC)).list().get(0);
+        return Objects.equals(nc.getTeamLeader().getMatricola(), matricola);
     }
 
 }

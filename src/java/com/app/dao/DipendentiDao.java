@@ -18,5 +18,6 @@ public interface DipendentiDao {
     Dipendenti findDipendenti(String mail,String password);
     void saveDipendenti(Dipendenti dip);
     void deleteDipendenti(int id);
+    boolean isLeader(Integer matricola,Integer numeroNC);
     List<Dipendenti> findAll();
 }

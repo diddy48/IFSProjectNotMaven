@@ -61,10 +61,12 @@
                                                         </form>
                                                     </sec:authorize>
                                                     <sec:authorize access="hasRole('ROLE_LEADER')">
+                                                        <c:if test="${nc.teamLeader.matricola==dipLoggato.matricola|| dipLoggato.matricola==1}">
                                                         <form action="${update}" method="GET">
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Modifica" />
                                                         </form>
+                                                        </c:if>
                                                     </sec:authorize>
                                                     <form action="${display}" method="GET">
                                                         <input type="text" name="fase" value="Aperta" hidden="true"/>
@@ -111,10 +113,12 @@
                                                         </form>
                                                     </sec:authorize>
                                                     <sec:authorize access="hasRole('ROLE_LEADER')">
+                                                        <c:if test="${nc.teamLeader.matricola==dipLoggato.matricola|| dipLoggato.matricola==1}">
                                                         <form action="${update}" method="GET">
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Modifica" />
                                                         </form>
+                                                        </c:if>
                                                     </sec:authorize>
                                                     <form action="${display}" method="GET">
                                                         <input type='text' name="fase" value="Intermedia" hidden="true"/>
@@ -161,10 +165,12 @@
                                                         </form>
                                                     </sec:authorize>
                                                     <sec:authorize access="hasRole('ROLE_LEADER')">
+                                                        <c:if test="${nc.teamLeader.matricola==dipLoggato.matricola|| dipLoggato.matricola==1}">
                                                         <form action="${update}" method="GET">
                                                             <input type="text" name="numeroNC" value="${nc.numeroNC}" hidden="hidden"/>
                                                             <input class="btn btn-primary btn-block" type="submit" name="submit" value="Modifica" />
                                                         </form>
+                                                        </c:if>
                                                     </sec:authorize>
                                                     <form action="${display}" method="GET">
                                                         <input type='text' name="fase" value="Chiusa" hidden="true"/>
@@ -215,7 +221,8 @@
                                                 <td>${nc.dataA}</td>
                                                 <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                                 <td>
-                                                    <sec:authorize access="hasRole('ROLE_LEADER')">
+                                                    <c:choose>
+                                                    <c:when test="${nc.teamLeader.matricola == dipLoggato.matricola || dipLoggato.matricola==1}">
                                                         <div class="row">
                                                             <div class=" col-md-6 ">
                                                                 <form action="${delete}" method="POST">
@@ -231,7 +238,11 @@
                                                                 </form>
                                                             </div>
                                                         </div>
-                                                    </sec:authorize>
+                                                    </c:when>
+                                                        <c:otherwise>
+                                                            <h6 class="text-info">Non è possibile modificare le proprietà di questa segnalazione</h6>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </td>
                                             </tr>
                                         </c:forEach>
