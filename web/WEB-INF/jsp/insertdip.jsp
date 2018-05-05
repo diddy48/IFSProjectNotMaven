@@ -27,15 +27,15 @@
                     <form action="${insert}"  method="POST" modelAttribute="{dip,user}">
                         <div class="form-group">
                             <form:label path="user.username">Username </form:label>
-                            <form:input path="user.username" required="true" class="form-control" placeholder="Inserisci lo username del dipendente" />
+                            <form:input path="user.username" maxlength="30" required="true" class="form-control" placeholder="Inserisci lo username del dipendente" />
                         </div>
                         <div class="form-group">
                             <form:label path="dip.nome">Nome: </form:label>
-                            <form:input path="dip.nome" required="true" class="form-control" placeholder="Inserisci il nome del dipendente" />
+                            <form:input path="dip.nome" required="true" maxlength="30" class="form-control" placeholder="Inserisci il nome del dipendente" />
                         </div>
                         <div class="form-group">
                             <form:label path="dip.cognome">Cognome </form:label>
-                            <form:input path="dip.cognome" required="true" class="form-control" placeholder="Inserisci il nome del dipendente" />
+                            <form:input path="dip.cognome" required="true" maxlength="30" class="form-control" placeholder="Inserisci il nome del dipendente" />
                         </div>
                         <div class="form-group">
                             <form:label path="user.password">Password: </form:label>
@@ -43,7 +43,7 @@
                         </div>                    
                         <div class="form-group">
                             <form:label path="dip.cf">Codice Fiscale:  </form:label>
-                            <form:input path="dip.cf" required="true" class="form-control" placeholder="Inserisci il codice fiscale del dipendente" />
+                            <form:input path="dip.cf" required="true" maxlength="16" class="form-control" placeholder="Inserisci il codice fiscale del dipendente" />
                         </div>
                         <form:input path="user.enabled" required="true" hidden="true" value="1" />
                         <div class="form-group">
