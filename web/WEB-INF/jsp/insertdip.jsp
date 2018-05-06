@@ -19,7 +19,7 @@
         <jsp:include page="header.jsp"/>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8 offset-2">
+                <div class="col-lg-8 offset-lg-2">
                     <br/>
                     <h1>Inserisci i dati del dipendente</h1>
                     <hr/>

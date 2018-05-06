@@ -27,7 +27,7 @@
         <jsp:include page="header.jsp" />
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8 offset-md-2">
+                <div class="col-lg-8 offset-lg-2 col-sm-12">
                     <br/>
                     <h1>${submit} una Non Conformità</h1>
                     <hr/>

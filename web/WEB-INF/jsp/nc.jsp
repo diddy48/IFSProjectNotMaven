@@ -18,7 +18,7 @@
         <jsp:include page="header.jsp" />
         <div  class="container-fluid">
             <h1>Le tue Non Conformità</h1>  
-            <br/>
+            <hr>
             <div class="row">
                 <div class="col-md-12">
                     <c:if test="${!empty ncLeader}">

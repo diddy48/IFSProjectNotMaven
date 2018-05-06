@@ -3,7 +3,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
-    <p><h1><center>Grafici Non-Conformit&agrave</center></h1></h1></p>
+    <p><h1><center>Grafici Non-Conformit&agrave</center></h1></p>
+            <hr>
 </head>	
 <style>
     .chartdiv {
@@ -165,7 +166,7 @@
 </script>
 <br/>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-lg-6">
         <center><h1>In base al Reparto</h1></center>
         <div class="chartdiv " id="chartReparto">
             <c:if test="${empty calcNCReparto}">
@@ -176,7 +177,7 @@
                 </c:if>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-lg-6">
         <center><h1>In base alla Fase</h1></center>
         <div class="chartdiv" id="chartFase">
             <c:if test="${empty calcNCReparto}">

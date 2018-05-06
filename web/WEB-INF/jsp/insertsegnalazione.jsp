@@ -21,7 +21,7 @@
             <h1>Inserisci una segnalazione</h1>
             <hr>
             <div class="row">
-                <div class="col-md-8 offset-md-2">
+                <div class="col-lg-8 offset-lg-2">
                     <c:url value="/user/addNC" var="action"/>
                     <form:form method="GET" modelAttribute="nc" action="${action}" enctype="multipart/form-data">      
                         <div class="form-group"  hidden="true" >

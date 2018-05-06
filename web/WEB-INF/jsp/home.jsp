@@ -23,17 +23,13 @@
                 <c:url value="/leader/insertNC" var="update"/>
                 <c:url value="/user/displayNC" var="display"/>
                 <c:url value="/leader/enable" var="enable"/>
-                <div class="row">
-                    <div class="col-md-7">
                         <!-- For login user -->
                         <h1>
                             Dashboard
                         </h1>
-                    </div>
-                </div>
-                <br/>
+            <hr>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-sm-12">
                         <h3>Nc Aperte</h3>
                         <div class="table-responsive">
                             <c:choose>
@@ -84,7 +80,7 @@
                             </c:choose>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-sm-12">
                         <h3>Nc Intermedie</h3>                        
                         <div class="table-responsive">
                             <c:choose>
@@ -137,7 +133,7 @@
                             </c:choose>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-sm-12">
                         <h3>Nc Chiuse</h3>                        
                         <div class="table-responsive">
                             <c:choose>
@@ -199,7 +195,7 @@
             <br/>
             <sec:authorize access="hasRole('ROLE_LEADER')">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-lg-8 col-sm-12">
                         <h3>Le tue segnalazioni</h3>
                         <div class="table-responsive">
                             <c:choose>

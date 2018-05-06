@@ -8,11 +8,12 @@
     <body>
         <jsp:include page="header.jsp"/>
         <div class="container-fluid">
-            <h1>Gestisci i Dipendenti</h1>  <br/>
+            <h1>Gestisci i Dipendenti</h1>
+            <hr>
             <c:url value="/user/showNC" var="showNC"/>
             <c:url value="/admin/deleteDip" var="delete"/>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-lg-8 col-sm-12">
                     <c:if test="${!empty dipendenti}">
                         <table class="table table-striped table-bordered">
 
