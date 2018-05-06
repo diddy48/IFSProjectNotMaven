@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="form-group col-md-8">
                                 <form:label path="titolo">Titolo della Non Conformità</form:label>
-                                <form:input class="form-control" path="titolo" placeholder="Inserisci il titolo" required="required" />
+                                <form:input class="form-control" maxlength="30" path="titolo" placeholder="Inserisci il titolo" required="required" />
                             </div>
                             <div class="form-group col-md-2 offset-md-1">
                                 <br/>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <form:label path="descrizione">Descrizione</form:label>
-                                <form:textarea class="form-control" path="descrizione" rows="5" placeholder="Inserisci la descrizione" required="required" />
+                                <form:textarea class="form-control" maxlength="1000" path="descrizione" rows="5" placeholder="Inserisci la descrizione" required="required" />
                             </div>
                         </div>
                         <div class="row">
@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <form:label path="codiceProdotto">Codice Prodotto</form:label>                       
-                                <form:input class="form-control" path="codiceProdotto" placeholder="Inserisci il codice del prodotto" required="required" />
+                                <form:input class="form-control" maxlength="6" path="codiceProdotto" placeholder="Inserisci il codice del prodotto" required="required" />
                             </div>
                             <div class="form-group col-md-3">
                                 <form:label path="repartoP">Reparto Prodotto</form:label>
@@ -73,7 +73,7 @@
                             <div class=" col-md-6">
                                 <div class="form-group" hidden="hidden">
                                     <form:label path="cliente">Cliente</form:label>
-                                    <form:input class="form-control" path="cliente" placeholder="Inserisci il nome del cliente"/>
+                                    <form:input class="form-control" maxlength="40" path="cliente" placeholder="Inserisci il nome del cliente"/>
                                 </div>
                                 <div class="form-group" hidden="hidden">
                                     <form:label path="richiedente.matricola">Richiedente</form:label>
