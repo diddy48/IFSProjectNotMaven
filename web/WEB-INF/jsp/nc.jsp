@@ -61,8 +61,8 @@
                                     <td>${nc.aPreventiva}</td>
                                     <td>${nc.intesaComp}</td>-->
                                     <td>${nc.tipo}</td>
-                                    <td>${nc.cliente}</td>
-                                    <td>${nc.richiedente.matricola}</td>
+                                    <td>${nc.tipo=="R" ? nc.cliente : "Non presente"}</td>
+                                    <td>${nc.tipo=="I" ? nc.richiedente.matricola: "Non presente"}</td>
                                 </tr>
                             </c:forEach>
                         </table>
@@ -94,7 +94,7 @@
                                     <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                     <td>${nc.codiceProdotto}</td>
                                     <td>${nc.tipo}</td>
-                                    <td>${nc.cliente}</td>
+                                    <td>${nc.tipo=="R" ? nc.cliente : "Non presente"}</td>
                                     <td>${nc.teamLeader.matricola}</td>
                                 </tr>
                             </c:forEach>
@@ -128,9 +128,9 @@
                                     <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                     <td>${nc.codiceProdotto}</td>
                                     <td>${nc.tipo}</td>
-                                    <td>${nc.cliente}</td>
+                                    <td>${nc.tipo=="R" ? nc.cliente : "Non presente"}</td>
+                                    <td>${nc.tipo=="I" ? nc.richiedente.matricola: "Non presente"}</td>
                                     <td>${nc.teamLeader.matricola}</td>
-                                    <td>${nc.richiedente.matricola}</td>
                                 </tr>
                             </c:forEach>
                         </table>
@@ -151,7 +151,6 @@
                                 <th>Cliente</th>
                                 <th>Richiedente</th>
                                 <th>Team Leader</th>
-
                             </tr>
                             <c:forEach items="${ncMembro}" var="nc">
                                 <tr>
@@ -163,9 +162,9 @@
                                     <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
                                     <td>${nc.codiceProdotto}</td>
                                     <td>${nc.tipo}</td>
-                                    <td>${nc.cliente}</td>
+                                    <td>${nc.tipo=="R" ? nc.cliente : "Non presente"}</td>
+                                    <td>${nc.tipo=="I" ? nc.richiedente.matricola: "Non presente"}</td>
                                     <td>${nc.teamLeader.matricola}</td>
-                                    <td>${nc.richiedente.matricola}</td>
                                 </tr>
                             </c:forEach>
                         </table>

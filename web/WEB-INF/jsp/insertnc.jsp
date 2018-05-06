@@ -125,7 +125,7 @@
                                 <form:textarea class="form-control" maxlength="1000" path="intesaComp" rows="5" placeholder="Inserisci la descrizione" />
                             </div>
                             <div class=" col-md-6">
-                                <div class="form-group" hidden=${(submit=='Modifica')&&(nc.cliente!=null) ? "" : "hidden"}>
+                                <div class="form-group" hidden=${(submit=='Modifica')&&(nc.cliente!=null) && (nc.cliente!="") ? "" : "hidden"}>
                                     <form:label path="cliente">Cliente</form:label>
                                     <form:input class="form-control" maxlength="40" path="cliente" placeholder="Inserisci il nome del cliente"/>
                                 </div>

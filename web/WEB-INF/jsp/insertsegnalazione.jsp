@@ -77,10 +77,11 @@
                                 </div>
                                 <div class="form-group" hidden="hidden">
                                     <form:label path="richiedente.matricola">Richiedente</form:label>
-                                    <form:select class="form-control" path="richiedente.matricola">
+                                    <!--<form:select class="form-control" path="richiedente.matricola">
                                         <form:option value="" label="-- Seleziona il richiedente --" disabled="true" selected="true" />
                                         <form:options items="${dipendenti}" />
-                                    </form:select>
+                                    </form:select>-->
+                                    <form:input class="form-control" path="richiedente.matricola" disabled="true" value=""/>
                                 </div>
                             </div>
                         </div>
@@ -99,20 +100,16 @@
         if (tipo === "I") {
             $('[name="richiedente.matricola"]').parent().prop("hidden", "");
             $('[name="richiedente.matricola"]').prop("required", "true");
+            $('[name="richiedente.matricola"]').prop("value","${dipLoggato.matricola}");
             $('[name="cliente"]').parent().prop("hidden", "hidden");
             $('[name="cliente"]').prop("required", "");
+            
         } else {
             $('[name="richiedente.matricola"]').parent().prop("hidden", "hidden");
             $('[name="richiedente.matricola"]').prop("required", "");
+            $('[name="richiedente.matricola"]').prop("value","");
             $('[name="cliente"]').parent().prop("hidden", "");
             $('[name="cliente"]').prop("required", "true");
         }
     });
-
-    /*$(document).on("click", "input[name=dataC]", function () {
-     var dataC = $('[name="dataC"]').val();
-     if (dataC != null) {
-     $('[name="costoNC"]').prop("required", "true");
-     }
-     });*/
 </script>

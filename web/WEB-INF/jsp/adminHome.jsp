@@ -34,20 +34,14 @@
                                     <td>${String.valueOf(u.dataNascita).substring(0,10)}</td>
                                     <td>${u.username.username}</td>
                                     <td>
-                                        <div class="row">
-                                            <div class="col-md-6">
                                                 <form action="${delete}" method="GET">
                                                     <input type="text" name="matricola" value="${u.matricola}" hidden="true"/>
                                                     <input class="btn btn-danger btn-block" type="submit" name="submit" value="Elimina" />
                                                 </form> 
-                                            </div>
-                                            <div class="col-md-6">
                                                 <form action="${showNC}" method="GET">
                                                     <input type="text" name="matricola" value="${u.matricola}" hidden="true"/>
                                                     <input class="btn btn-secondary btn-block" type="submit" name="submit" value="NC commissionate" />
-                                                </form> 
-                                            </div>
-                                        </div>
+                                                </form>
                                     </td>
                                 </tr>
                             </c:forEach>
