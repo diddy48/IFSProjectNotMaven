@@ -67,7 +67,7 @@
                                 <form:label path="teamLeader.matricola">Team Leader</form:label>
                                 <form:select class="form-control" path="teamLeader.matricola" required="true" >
                                     <form:option value="" label="-- Seleziona il team leader --" disabled="true" selected="true" />
-                                    <form:options items="${dipendenti}" />
+                                    <form:options items="${leader}" />
                                 </form:select>
                             </div>
                             <div class=" col-md-6">

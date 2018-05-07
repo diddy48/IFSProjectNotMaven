@@ -38,7 +38,7 @@ public class User {
         this.enabled = enabled;
         this.userRole = userRole;
     }
-    
+
     @Id
     @Column(name = "username", unique = true, nullable = false, length = 45)
     public String getUsername() {
@@ -59,7 +59,6 @@ public class User {
     public void setUsernameDip(Dipendenti usernameDip) {
         this.usernameDip = usernameDip;
     }*/
-
     @Column(name = "password", nullable = false, length = 60)
     public String getPassword() {
         return this.password;

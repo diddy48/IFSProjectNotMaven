@@ -11,6 +11,8 @@ import com.app.model.NC;
 import com.app.model.PKAppartenere;
 import com.app.model.PKResponsabilita;
 import com.app.model.Responsabilita;
+import com.app.model.User;
+import com.app.model.UserRole;
 import com.app.objects.Priorita;
 import com.app.objects.RepartoProdotto;
 import com.app.objects.Tipo;
@@ -115,6 +117,7 @@ public class LeaderController {
             nc.setResponsabili(toUpdate.getResponsabili());
         }
         model.addAttribute("dipendenti", getMatricoleNome());
+        model.addAttribute("leader", getLeader());
         model.addAttribute("priorita", Priorita.valuesMap());
         model.addAttribute("reparti", RepartoProdotto.valuesMap());
         model.addAttribute("tipo", Tipo.valuesMap());
@@ -175,10 +178,21 @@ public class LeaderController {
         List<Dipendenti> dips = serviceDip.findAll();
         Map<String, String> matrNom = new HashMap<>();
         for (int i = 1; i < dips.size(); i++) {
-            matrNom.put("" + dips.get(i).getMatricola(), dips.get(i).getMatricola() + " | " + dips.get(i).getNome() + " " + dips.get(i).getCognome());
+                matrNom.put("" + dips.get(i).getMatricola(), dips.get(i).getMatricola() + " | " + dips.get(i).getNome() + " " + dips.get(i).getCognome());
         }
         return matrNom;
     }
+     
+    public Map<String, String> getLeader() {
+        List<Dipendenti> dips = serviceDip.findAll();
+        Map<String, String> matrNom = new HashMap<>();
+        for (int i = 1; i < dips.size(); i++) {
+           if (isLeader(dips.get(i).getUsername()))
+                matrNom.put("" + dips.get(i).getMatricola(), dips.get(i).getMatricola() + " | " + dips.get(i).getNome() + " " + dips.get(i).getCognome());
+        }
+        return matrNom;
+    }
+
 
     private Set<Appartenere> getSetAppartenere(ArrayList<Integer> membri, NC nc) {
         Set<Appartenere> membriSet = new HashSet<Appartenere>();
@@ -198,5 +212,13 @@ public class LeaderController {
             responsabiliSet.add(a);
         }
         return responsabiliSet;
+    }
+    public boolean isLeader(User user) {
+        for (UserRole ur : user.getUserRole()) {
+            if (ur.getRole().equals("ROLE_LEADER")) {
+                return true;
+            }
+        }
+        return false;
     }
 }
