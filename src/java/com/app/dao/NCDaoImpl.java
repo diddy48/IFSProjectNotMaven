@@ -337,4 +337,26 @@ public class NCDaoImpl implements NCDao {
         }
         return a;
     }
+
+    @Override
+    public ArrayList<String> getResponsabili(NC nc) {
+        Set<Responsabilita> responsabili = nc.getResponsabili();
+        ArrayList<String> out = new ArrayList<>();
+        for(Responsabilita r:responsabili){
+            Dipendenti d =(Dipendenti) getSession().createCriteria(Dipendenti.class).add(Restrictions.eq("matricola", r.getResponsabile().getMatricola())).list().get(0);
+            out.add(d.getNome()+" "+d.getCognome());
+        }
+        return out;
+    }
+
+    @Override
+    public ArrayList<String> getMembri(NC nc) {
+        Set<Appartenere> membri = nc.getMembri();
+        ArrayList<String> out = new ArrayList<>();
+        for(Appartenere m:membri){
+            Dipendenti d =(Dipendenti) getSession().createCriteria(Dipendenti.class).add(Restrictions.eq("matricola", m.getMembro().getMatricola())).list().get(0);
+            out.add(d.getNome()+" "+d.getCognome());
+        }
+        return out;
+    }
 }

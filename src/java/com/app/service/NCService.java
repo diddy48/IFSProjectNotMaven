@@ -6,7 +6,10 @@
 package com.app.service;
 
 import com.app.model.NC;
+import com.app.model.Responsabilita;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -35,4 +38,8 @@ public interface NCService {
     public int[] getCountByFase();
 
     public int[] getCountByMese();
+
+    public ArrayList<String> getResponsabili(NC nc);
+
+    public ArrayList<String> getMembri(NC nc);
 }

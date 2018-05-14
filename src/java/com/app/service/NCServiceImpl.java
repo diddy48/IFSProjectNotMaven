@@ -7,7 +7,10 @@ package com.app.service;
 
 import com.app.dao.NCDao;
 import com.app.model.NC;
+import com.app.model.Responsabilita;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,5 +87,15 @@ public class NCServiceImpl implements NCService {
     @Override
     public int[] getCountByMese() {
         return dao.getCountByMese();
+    }
+
+    @Override
+    public ArrayList<String> getResponsabili(NC nc) {
+        return dao.getResponsabili(nc);
+    }
+
+    @Override
+    public ArrayList<String> getMembri(NC nc) {
+        return dao.getMembri(nc);
     }
 }

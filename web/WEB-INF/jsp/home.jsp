@@ -23,6 +23,10 @@
                 <c:url value="/leader/insertNC" var="update"/>
                 <c:url value="/user/displayNC" var="display"/>
                 <c:url value="/leader/enable" var="enable"/>
+                
+                <c:url value="/resources/img/greenDot.png" var="b"/>
+                <c:url value="/resources/img/yellowDot.png" var="m"/>
+                <c:url value="/resources/img/redDot.png" var="a"/>
                         <!-- For login user -->
                         <h1>
                             Dashboard
@@ -47,7 +51,7 @@
                                                 <td>${nc.numeroNC}</td>
                                                 <td>${nc.titolo}</td>
                                                 <td>${nc.dataA}</td>
-                                                <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
+                                                <td><center><img src="${nc.priorita=="B" ? b : (nc.priorita=="M" ? m : (nc.priorita=="A" ? a : ""))}" width="30px" height="30px" /></center></td>
                                                 <td>
                                                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                                                         <form action="${delete}" method="POST">
@@ -98,7 +102,7 @@
                                                 <td>${nc.numeroNC}</td>
                                                 <td>${nc.titolo}</td>
                                                 <td>${nc.dataA}</td>
-                                                <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
+                                                <td><center><img src="${nc.priorita=="B" ? b : (nc.priorita=="M" ? m : (nc.priorita=="A" ? a : ""))}" width="30px" height="30px" /></center></td>
                                                 <td>
 
                                                     <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -151,7 +155,7 @@
                                                 <td>${nc.numeroNC}</td>
                                                 <td>${nc.titolo}</td>
                                                 <td>${nc.dataA} - ${nc.dataC}</td>
-                                                <td>${nc.priorita=="B" ? "Bassa" : (nc.priorita=="M" ? "Media" : (nc.priorita=="A" ? "Alta" : ""))}</td>
+                                                <td><center><img src="${nc.priorita=="B" ? b : (nc.priorita=="M" ? m : (nc.priorita=="A" ? a : ""))}" width="30px" height="30px" /></center></td>
                                                 <td>
                                                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                                                         <form action="${delete}" method="POST">

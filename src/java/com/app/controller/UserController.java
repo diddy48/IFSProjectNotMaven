@@ -7,6 +7,7 @@ package com.app.controller;
 
 import com.app.model.Dipendenti;
 import com.app.model.NC;
+import com.app.model.Responsabilita;
 import com.app.model.User;
 import com.app.model.UserRole;
 import com.app.objects.Priorita;
@@ -15,9 +16,12 @@ import com.app.objects.Tipo;
 import com.app.service.DipendentiService;
 import com.app.service.NCService;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -94,8 +98,15 @@ public class UserController {
 
     @RequestMapping(value = "/displayNC", method = GET)
     public String displayNC(ModelMap model, @RequestParam("numeroNC") Integer numeroNC, @RequestParam(value = "fase", required = false) String fase) {
-        model.addAttribute("nc", serviceNc.findById(numeroNC));
+        NC nc = serviceNc.findById(numeroNC);
+        model.addAttribute("nc", nc);
         model.addAttribute("fase", fase);//serviceNc.getFase(numeroNC));
+        if (nc.getRichiedente() != null) {
+            Dipendenti richiedente = serviceDip.findById(nc.getRichiedente().getMatricola());
+            model.addAttribute("richiedente", richiedente.getNome() + " " + richiedente.getCognome());
+        }
+        model.addAttribute("responsabili",serviceNc.getResponsabili(nc));
+        model.addAttribute("membri",serviceNc.getMembri(nc));
         model.addAttribute("dipLoggato", MainController.dipLoggato);
         return "displaync";
     }
@@ -113,22 +124,22 @@ public class UserController {
         List<Dipendenti> dips = serviceDip.findAll();
         Map<String, String> matrNom = new HashMap<>();
         for (int i = 1; i < dips.size(); i++) {
-                matrNom.put("" + dips.get(i).getMatricola(), dips.get(i).getMatricola() + " | " + dips.get(i).getNome() + " " + dips.get(i).getCognome());
+            matrNom.put("" + dips.get(i).getMatricola(), dips.get(i).getMatricola() + " | " + dips.get(i).getNome() + " " + dips.get(i).getCognome());
         }
         return matrNom;
     }
-     
+
     public Map<String, String> getLeader() {
         List<Dipendenti> dips = serviceDip.findAll();
         Map<String, String> matrNom = new HashMap<>();
         for (int i = 1; i < dips.size(); i++) {
-           if (isLeader(dips.get(i).getUsername()))
+            if (isLeader(dips.get(i).getUsername())) {
                 matrNom.put("" + dips.get(i).getMatricola(), dips.get(i).getMatricola() + " | " + dips.get(i).getNome() + " " + dips.get(i).getCognome());
+            }
         }
         return matrNom;
     }
-    
-    
+
     public boolean isLeader(User user) {
         for (UserRole ur : user.getUserRole()) {
             if (ur.getRole().equals("ROLE_LEADER")) {

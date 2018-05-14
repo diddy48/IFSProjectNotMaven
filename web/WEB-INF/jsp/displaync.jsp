@@ -30,8 +30,12 @@
                         </tr>
                         <tr>
                             <td colspan="8"><span class="font-weight-bold">Titolo: </span>${nc.titolo}</td>
-                            <td colspan="4"><span class="font-weight-bold">Tipo: </span>${nc.tipo.descrizione}</td>
-                            <td colspan="4"><span class="font-weight-bold">Fase: </span>${fase}</td>
+                            <td><span class="font-weight-bold">Fase: </span>${fase}</td>
+                            <td><span class="font-weight-bold">Tipo: </span>${nc.tipo.descrizione}</td>
+                            <c:choose>
+                                <c:when test="${nc.richiedente==null}"><td colspan="4"><span class="font-weight-bold">Cliente: </span>${nc.cliente}</td></c:when>
+                                <c:otherwise><td colspan="4"><span class="font-weight-bold">Richiedente: </span>${richiedente}</td></c:otherwise>
+                            </c:choose>
                         </tr>
                         <tr>
                             <td colspan="8"><span class="font-weight-bold">Data apertura: </span>${nc.dataA}</td>
@@ -49,8 +53,8 @@
                                     <span class="text-info">Non è stato assegnato alcun team di lavor oper questa non conformita</span>
                                 </c:if>
                                 <ul>
-                                    <c:forEach items="${nc.membri}" var="membro">
-                                        <li>${membro.pkAppartenere.membro.matricola}</li><% // ${membro.pkAppartenere.membro.nome} ${membro.pkAppartenere.membro.cognome}%>
+                                    <c:forEach items="${membri}" var="membro">
+                                        <li>${membro}</li><% // ${membro.pkAppartenere.membro.nome} ${membro.pkAppartenere.membro.cognome}%>
                                         </c:forEach>
                                 </ul>
                             </td>
@@ -59,8 +63,8 @@
                                     <span class="text-info">Non è stato assegnato alcun responsabile per questa non conformita</span>
                                 </c:if>
                                 <ul>
-                                    <c:forEach items="${nc.responsabili}" var="resp">
-                                        <li>${resp.pkResponsabilita.responsabile.matricola}</li><% // ${membro.pkAppartenere.membro.nome} ${membro.pkAppartenere.membro.cognome}%>
+                                    <c:forEach items="${responsabili}" var="resp">
+                                        <li>${resp}</li>
                                         </c:forEach>
                                 </ul>
                             </td>

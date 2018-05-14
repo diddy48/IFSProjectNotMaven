@@ -6,6 +6,7 @@
 package com.app.dao;
 
 import com.app.model.NC;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,5 +36,9 @@ public interface NCDao {
     public int[] getCountByFase();
 
     public int[] getCountByMese();
+
+    public ArrayList<String> getResponsabili(NC nc);
+
+    public ArrayList<String> getMembri(NC nc);
 }
 
